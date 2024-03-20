@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public bool left = false;
     public bool right = false;
 
+    public bool move = false;
+
     private Rigidbody2D rb;
 
     private Animator anim;
@@ -28,6 +30,22 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if (movement.sqrMagnitude != 0)
+        {
+            move = true;
+            anim.SetBool("MoveBool", move);
+        }
+
+        else
+        {
+            move = false;
+            anim.SetBool("MoveBool", move);
+        }
+
+        anim.SetFloat("Horizontal", movement.x);
+        anim.SetFloat("Vertical", movement.y);
+        anim.SetFloat("Speed", movement.sqrMagnitude); // Using sqrMagnitude for better performance.
 
         //Debug.Log(movement.x + "" + movement.y);
 
