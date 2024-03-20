@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Joystick joystick;
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float offset;
 
     private Vector2 movement;
 
@@ -33,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
         movement.x = joystick.Horizontal;
         movement.y = joystick.Vertical;
 
+        if (joystick.gameObject.activeSelf == false)
+        {
+            movement.x = 0;
+            movement.y = 0;
+        }
+
         if (movement.sqrMagnitude != 0)
         {
             move = true;
@@ -51,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.Log(movement.x + "" + movement.y);
 
-        if (movement.y < 0 && !front)
+        if (movement.y < -offset && !front)
         {
             front = true;
             back = false;
@@ -67,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("FrontBool", front);
         }
 
-        if (movement.y > 0 && !back)
+        if (movement.y > offset && !back)
         {
             back = true;
             front = false;
@@ -83,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("BackBool", back);
         }
 
-        if (movement.x < 0 && !left)
+        if (movement.x < -offset && !left)
         {
             left = true;
             front = false;
@@ -99,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("LeftBool", left);
         }
 
-        if (movement.x > 0 && !right)
+        if (movement.x > offset && !right)
         {
             right = true;
             left = false;
