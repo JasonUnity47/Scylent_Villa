@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // Declaration
+    public Joystick joystick;
+
     [SerializeField] private float moveSpeed;
 
     private Vector2 movement;
@@ -28,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.x = joystick.Horizontal;
+        movement.y = joystick.Vertical;
 
         if (movement.sqrMagnitude != 0)
         {
