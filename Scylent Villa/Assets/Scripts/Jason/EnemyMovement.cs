@@ -2,43 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Unity.VisualScripting;
 
 public abstract class EnemyMovement : MonoBehaviour
 {
-    private Transform targetPos;
+    #region Declaration
+    // Patrol
+    [Header("Patrol")]
+    public Transform[] moveSpots;
+    private int currentIndex = 0;
 
+    // Value
+    [Header("Value")]
     public float moveSpeed;
+    public float chaseSpeed;
     public float stoppingDistance;
     public float activateDistance;
+
+    // Timer
+    [Header("Timer")]
+    public float startWaitTime;
+    private float timeBtwWaitTime;
+
+    // Pathfinding Values
     private float nextWayPointDistance = 3f;
     private float pathUpdateSeconds = 0.5f;
+    private int currentWayPoint = 0;
 
-    public float waitForPatrol;
-
-    public Transform[] patrolPoints;
-
-    private int currentPointIndex = 0;
-    protected int currentWayPoint = 0;
-
+    // Check Value
+    [Header("Check Value")]
     public bool isDetected = false;
-    public bool isNearby = false;
-    public bool isPatrol = false;
 
-    protected Path path;
+    // Object Reference
+    private Transform targetPos;
+
+    // Pathfinding Reference
+    private Path path;
     private Seeker seeker;
 
+    // Component Reference
     protected Rigidbody2D rb;
 
-    // Start is called before the first frame update
+    #endregion
+
     public virtual void Start()
     {
         targetPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         seeker = GetComponent<Seeker>();
-
         rb = GetComponent<Rigidbody2D>();
+
+        timeBtwWaitTime = startWaitTime; // Set the intial time for timer.
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
+
+    // Pathfinding Function
+    #region Pathfinding Function
 
     public virtual void UpdatePath()
     {
@@ -57,6 +76,9 @@ public abstract class EnemyMovement : MonoBehaviour
         }
     }
 
+    #endregion
+
+    // Detect player
     public virtual void TargetInDistance()
     {
         if (Vector2.Distance(rb.position, targetPos.position) < activateDistance)
@@ -70,19 +92,7 @@ public abstract class EnemyMovement : MonoBehaviour
         }
     }
 
-    public virtual void NearPlayer()
-    {
-        if (Vector2.Distance(rb.position, targetPos.position) <= stoppingDistance)
-        {
-            isNearby = true;
-        }
-
-        else
-        {
-            isNearby = false;
-        }
-    }
-
+    // Chase Player
     public virtual void PathFollow()
     {
         if (path == null)
@@ -96,7 +106,7 @@ public abstract class EnemyMovement : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWayPoint] - rb.position).normalized;
-        Vector2 force = direction * moveSpeed * Time.deltaTime;
+        Vector2 force = direction * chaseSpeed * Time.deltaTime;
 
         rb.AddForce(force);
 
@@ -108,38 +118,32 @@ public abstract class EnemyMovement : MonoBehaviour
         }
     }
 
+    // Patrol
     public virtual void Patrol()
     {
-        if (rb.position == (Vector2)patrolPoints[currentPointIndex].position)
-        {
-            if (!isPatrol)
-            {
-                isPatrol = true;
+        rb.position = Vector2.MoveTowards(rb.position, moveSpots[currentIndex].position, moveSpeed * Time.deltaTime);
 
-                StartCoroutine("WaitPatrol");
+        if (Vector2.Distance(rb.position, moveSpots[currentIndex].position) < 0.2f)
+        {
+            if (timeBtwWaitTime <= 0)
+            {
+                if (currentIndex + 1 < moveSpots.Length)
+                {
+                    currentIndex++;
+                }
+
+                else
+                {
+                    currentIndex = 0;
+                }
+
+                timeBtwWaitTime = startWaitTime;
+            }
+
+            else
+            {
+                timeBtwWaitTime -= Time.deltaTime;
             }
         }
-
-        if (rb.position != (Vector2)patrolPoints[currentPointIndex].position)
-        {
-            rb.position = Vector2.Lerp(rb.position, patrolPoints[currentPointIndex].position, moveSpeed * Time.fixedDeltaTime);
-        }
-    }
-
-    IEnumerator WaitPatrol()
-    {
-        yield return new WaitForSeconds(waitForPatrol);
-
-        if (currentPointIndex + 1 < patrolPoints.Length)
-        {
-            currentPointIndex++;
-        }
-
-        else
-        {
-            currentPointIndex = 0;
-        }
-
-        isPatrol = false;
     }
 }
