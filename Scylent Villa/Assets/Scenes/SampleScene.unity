@@ -18400,6 +18400,7 @@ GameObject:
   - component: {fileID: 1818138382}
   - component: {fileID: 1818138385}
   - component: {fileID: 1818138386}
+  - component: {fileID: 1818138387}
   m_Layer: 0
   m_Name: Master
   m_TagString: Untagged
@@ -18621,6 +18622,20 @@ MonoBehaviour:
   activateDistance: 6
   startWaitTime: 5
   isDetected: 0
+--- !u!114 &1818138387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818138376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e088f0e072d93bb4291a9c9d6ec9880d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStunned: 0
+  stunTime: 3
 --- !u!1 &1853021956
 GameObject:
   m_ObjectHideFlags: 0
