@@ -22,6 +22,12 @@ public class MasterPatrolState : MasterState
     {
         base.LogicalUpdate();
 
+        Vector2 direction = master.masterMovement.GetMoveSpot();
+
+        master.Anim.SetFloat("Horizontal", direction.x);
+        master.Anim.SetFloat("Vertical", direction.y);
+        master.Anim.SetFloat("Speed", direction.sqrMagnitude);
+
         // Check whether player is around the enemy.
         master.masterMovement.TargetInDistance();
 

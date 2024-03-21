@@ -106,6 +106,7 @@ public abstract class EnemyMovement : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWayPoint] - rb.position).normalized;
+
         Vector2 force = direction * chaseSpeed * Time.deltaTime;
 
         rb.AddForce(force);
@@ -121,9 +122,9 @@ public abstract class EnemyMovement : MonoBehaviour
     // Patrol
     public virtual void Patrol()
     {
-        rb.position = Vector2.MoveTowards(rb.position, moveSpots[currentIndex].position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, moveSpots[currentIndex].position, moveSpeed * Time.deltaTime);
 
-        if (Vector2.Distance(rb.position, moveSpots[currentIndex].position) < 0.2f)
+        if (Vector2.Distance(transform.position, moveSpots[currentIndex].position) < 0.2f)
         {
             if (timeBtwWaitTime <= 0)
             {
@@ -145,5 +146,19 @@ public abstract class EnemyMovement : MonoBehaviour
                 timeBtwWaitTime -= Time.deltaTime;
             }
         }
+    }
+
+    public Vector2 GetMoveSpot()
+    {
+        Vector2 movement = moveSpots[currentIndex].position - transform.position;
+
+        return movement;
+    }
+
+    public Vector2 GetTarget()
+    {
+        Vector2 movement = targetPos.position - transform.position;
+
+        return movement;
     }
 }

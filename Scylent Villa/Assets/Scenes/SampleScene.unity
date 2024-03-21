@@ -18618,7 +18618,7 @@ MonoBehaviour:
   - {fileID: 4599565}
   moveSpeed: 1.8
   chaseSpeed: 300
-  stoppingDistance: 0.2
+  stoppingDistance: 0.1
   activateDistance: 6
   startWaitTime: 5
   isDetected: 0

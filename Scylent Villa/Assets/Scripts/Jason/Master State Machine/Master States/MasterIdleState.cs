@@ -19,6 +19,8 @@ public class MasterIdleState : MasterState
 
         timeBtwFrame = startTime; // Set initial timer.
 
+        master.Anim.SetFloat("Speed", 0f);
+
         master.Rb.velocity = Vector2.zero; // Avoid slipping.
     }
 
@@ -30,6 +32,12 @@ public class MasterIdleState : MasterState
     public override void LogicalUpdate()
     {
         base.LogicalUpdate();
+
+        Vector2 direction = master.masterMovement.GetTarget();
+
+        master.Anim.SetFloat("Horizontal", direction.x);
+        master.Anim.SetFloat("Vertical", direction.y);
+        master.Anim.SetFloat("Speed", direction.sqrMagnitude);
 
         // Check whether player is around the enemy.
         master.masterMovement.TargetInDistance();
