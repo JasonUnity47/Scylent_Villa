@@ -13,10 +13,16 @@ public abstract class EnemyMovement : MonoBehaviour
     private float nextWayPointDistance = 3f;
     private float pathUpdateSeconds = 0.5f;
 
+    public float waitForPatrol;
+
+    public Transform[] patrolPoints;
+
+    private int currentPointIndex = 0;
     protected int currentWayPoint = 0;
 
     public bool isDetected = false;
     public bool isNearby = false;
+    public bool isPatrol = false;
 
     protected Path path;
     private Seeker seeker;
@@ -100,5 +106,40 @@ public abstract class EnemyMovement : MonoBehaviour
         {
             currentWayPoint++;
         }
+    }
+
+    public virtual void Patrol()
+    {
+        if (rb.position == (Vector2)patrolPoints[currentPointIndex].position)
+        {
+            if (!isPatrol)
+            {
+                isPatrol = true;
+
+                StartCoroutine("WaitPatrol");
+            }
+        }
+
+        if (rb.position != (Vector2)patrolPoints[currentPointIndex].position)
+        {
+            rb.position = Vector2.Lerp(rb.position, patrolPoints[currentPointIndex].position, moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    IEnumerator WaitPatrol()
+    {
+        yield return new WaitForSeconds(waitForPatrol);
+
+        if (currentPointIndex + 1 < patrolPoints.Length)
+        {
+            currentPointIndex++;
+        }
+
+        else
+        {
+            currentPointIndex = 0;
+        }
+
+        isPatrol = false;
     }
 }
