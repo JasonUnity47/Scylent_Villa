@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4599564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.76, y: 0.85, z: 0}
+  m_LocalPosition: {x: 1.76, y: 0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18397,10 +18397,10 @@ GameObject:
   - component: {fileID: 1818138378}
   - component: {fileID: 1818138383}
   - component: {fileID: 1818138381}
-  - component: {fileID: 1818138382}
   - component: {fileID: 1818138385}
   - component: {fileID: 1818138386}
   - component: {fileID: 1818138387}
+  - component: {fileID: 1818138382}
   m_Layer: 0
   m_Name: Master
   m_TagString: Untagged
@@ -18617,10 +18617,10 @@ MonoBehaviour:
   - {fileID: 2098950004}
   - {fileID: 4599565}
   moveSpeed: 1.8
-  chaseSpeed: 300
-  stoppingDistance: 0.1
+  chaseSpeed: 150
   activateDistance: 6
   startWaitTime: 5
+  movement: {x: 0, y: 0}
   isDetected: 0
 --- !u!114 &1818138387
 MonoBehaviour:
@@ -67893,7 +67893,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098950003}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.26, y: 0.85, z: 0}
+  m_LocalPosition: {x: 11.26, y: 0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67924,7 +67924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134883048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.23, y: 2.58, z: 0}
+  m_LocalPosition: {x: 19.23, y: 2.6999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

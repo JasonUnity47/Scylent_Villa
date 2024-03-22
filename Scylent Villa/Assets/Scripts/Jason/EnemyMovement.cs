@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using Unity.VisualScripting;
 
 public abstract class EnemyMovement : MonoBehaviour
 {
@@ -16,13 +15,14 @@ public abstract class EnemyMovement : MonoBehaviour
     [Header("Value")]
     public float moveSpeed;
     public float chaseSpeed;
-    public float stoppingDistance;
     public float activateDistance;
 
     // Timer
     [Header("Timer")]
     public float startWaitTime;
     private float timeBtwWaitTime;
+
+    public Vector2 movement;
 
     // Pathfinding Values
     private float nextWayPointDistance = 3f;
@@ -124,7 +124,7 @@ public abstract class EnemyMovement : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, moveSpots[currentIndex].position, moveSpeed * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, moveSpots[currentIndex].position) < 0.2f)
+        if (Vector2.Distance(transform.position, moveSpots[currentIndex].position) < 0.3f)
         {
             if (timeBtwWaitTime <= 0)
             {
@@ -150,14 +150,14 @@ public abstract class EnemyMovement : MonoBehaviour
 
     public Vector2 GetMoveSpot()
     {
-        Vector2 movement = moveSpots[currentIndex].position - transform.position;
+        movement = moveSpots[currentIndex].position - transform.position;
 
         return movement;
     }
 
     public Vector2 GetTarget()
     {
-        Vector2 movement = targetPos.position - transform.position;
+        movement = targetPos.position - transform.position;
 
         return movement;
     }

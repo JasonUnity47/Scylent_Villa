@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class MasterPatrolState : MasterState
 {
+    private bool move = false;
+    public bool front = false;
+    public bool back = false;
+    public bool left = false;
+    public bool right = false;
+
+    private float offset = 0.2f;
+
+    private Vector2 direction;
+
     public MasterPatrolState(Master master, MasterStateMachine stateMachine, string animName) : base(master, stateMachine, animName)
     {
     }
@@ -22,7 +32,9 @@ public class MasterPatrolState : MasterState
     {
         base.LogicalUpdate();
 
-        Vector2 direction = master.masterMovement.GetMoveSpot();
+        direction = master.masterMovement.GetMoveSpot();
+
+        AnimationChange();
 
         master.Anim.SetFloat("Horizontal", direction.x);
         master.Anim.SetFloat("Vertical", direction.y);
@@ -46,6 +58,85 @@ public class MasterPatrolState : MasterState
         if (!master.masterMovement.isDetected)
         {
             master.masterMovement.Patrol();
+        }
+    }
+
+    public virtual void AnimationChange()
+    {
+        if (direction.sqrMagnitude != 0)
+        {
+            move = true;
+            master.Anim.SetBool("MoveBool", move);
+        }
+
+        else
+        {
+            move = false;
+            master.Anim.SetBool("MoveBool", move);
+        }
+
+        if (direction.y < -offset && !front)
+        {
+            front = true;
+            back = false;
+            left = false;
+            right = false;
+
+            //Debug.Log(1);
+
+            master.Anim.SetBool("BackBool", back);
+            master.Anim.SetBool("RightBool", right);
+            master.Anim.SetBool("LeftBool", left);
+
+            master.Anim.SetBool("FrontBool", front);
+        }
+
+        if (direction.y > offset && !back)
+        {
+            back = true;
+            front = false;
+            left = false;
+            right = false;
+
+            //Debug.Log(2);
+
+            master.Anim.SetBool("FrontBool", front);
+            master.Anim.SetBool("RightBool", right);
+            master.Anim.SetBool("LeftBool", left);
+
+            master.Anim.SetBool("BackBool", back);
+        }
+
+        if (direction.x < -offset && !left)
+        {
+            left = true;
+            front = false;
+            back = false;
+            right = false;
+
+            //Debug.Log(3);
+
+            master.Anim.SetBool("FrontBool", front);
+            master.Anim.SetBool("BackBool", back);
+            master.Anim.SetBool("RightBool", right);
+
+            master.Anim.SetBool("LeftBool", left);
+        }
+
+        if (direction.x > offset && !right)
+        {
+            right = true;
+            left = false;
+            front = false;
+            back = false;
+
+            //Debug.Log(4);
+
+            master.Anim.SetBool("FrontBool", front);
+            master.Anim.SetBool("BackBool", back);
+            master.Anim.SetBool("LeftBool", left);
+
+            master.Anim.SetBool("RightBool", right);
         }
     }
 }
