@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float offset;
 
     private Vector2 movement;
+
+    public Vector2 direction;
 
     public bool front = false;
     public bool back = false;
@@ -120,6 +123,11 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("LeftBool", left);
 
             anim.SetBool("RightBool", right);
+        }
+        
+        if (movement != Vector2.zero)
+        {
+            direction = ((movement + (Vector2)transform.position) - (Vector2)transform.position) * -1;
         }
     }
 
