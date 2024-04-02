@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
+
 public abstract class EnemyMovement : MonoBehaviour
 {
     #region Declaration
+    // FOV
+    public UnityEngine.Rendering.Universal.Light2D enemyLight;
+    [SerializeField] private LayerMask player;
+
     // Patrol
     [Header("Patrol")]
     public Transform[] moveSpots;
@@ -15,7 +20,8 @@ public abstract class EnemyMovement : MonoBehaviour
     [Header("Value")]
     public float moveSpeed;
     public float chaseSpeed;
-    public float activateDistance;
+    public float range;
+    public float fovAngle;
 
     // Timer
     [Header("Timer")]
@@ -51,6 +57,8 @@ public abstract class EnemyMovement : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
+        
+
         timeBtwWaitTime = startWaitTime; // Set the intial time for timer.
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
@@ -81,15 +89,43 @@ public abstract class EnemyMovement : MonoBehaviour
     // Detect player
     public virtual void TargetInDistance()
     {
-        if (Vector2.Distance(rb.position, targetPos.position) < activateDistance)
+        Vector2 directionToPlayer = (targetPos.position - transform.position).normalized;
+
+        // Calculate angle between the direction to the player and the direction of the Light2D transform
+        Vector2 lightDirection = enemyLight.transform.up; // Assuming the Light2D is oriented upwards
+        float angleToPlayer = Vector2.Angle(lightDirection, directionToPlayer);
+
+        if (enemyLight != null && enemyLight.lightType == UnityEngine.Rendering.Universal.Light2D.LightType.Point)
         {
-            isDetected = true;
+            if (angleToPlayer < fovAngle / 2)
+            {
+                Debug.DrawRay(transform.position, directionToPlayer * range, Color.green); // Visualize the raycast
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, directionToPlayer, range, player);
+
+                Debug.Log("Number of hits: " + hits.Length);
+
+                // Check if any of the hits are the player
+                foreach (RaycastHit2D hit in hits)
+                {
+                    if (hit.collider != null && hit.collider.CompareTag("Player"))
+                    {
+                        isDetected = true;
+                        Debug.Log("Player detected!");
+                        return;
+                    }
+                    else
+                    {
+                        // Player is not within FOV
+                        isDetected = false;
+                        Debug.Log("Player not detected.");
+                    }
+                }
+            }
         }
 
-        else
-        {
-            isDetected = false;
-        }
+        // Player is not within FOV
+        isDetected = false;
+        Debug.Log("Player not detected.");
     }
 
     // Chase Player
