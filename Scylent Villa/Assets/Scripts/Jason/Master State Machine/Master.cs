@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,9 @@ using UnityEngine;
 public class Master : MonoBehaviour
 {
     // Script Reference
-    public MasterMovement masterMovement { get; private set; }
+    public AIPath aIPath  { get; private set; }
+
+    public EnemyPatrol enemyPatrol { get; private set; }
 
     public MasterStateMachine StateMachine { get; private set; }
 
@@ -19,8 +22,14 @@ public class Master : MonoBehaviour
 
     public Animator Anim { get; private set; }
 
+    // Value
+    public bool isMoving = false;
+
     private void Awake()
     {
+        aIPath = GetComponent<AIPath>();
+        enemyPatrol = GetComponent<EnemyPatrol>();
+
         StateMachine = new MasterStateMachine();
 
         IdleState = new MasterIdleState(this, StateMachine, "IdleBool");
@@ -33,7 +42,6 @@ public class Master : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
 
-        masterMovement = GetComponent<MasterMovement>();
 
         StateMachine.InitializeState(IdleState);
     }
@@ -46,5 +54,33 @@ public class Master : MonoBehaviour
     private void FixedUpdate()
     {
         StateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    public void CheckMovement()
+    {
+        if (aIPath.velocity.magnitude != 0)
+        {
+            isMoving = true;
+        }
+
+        else
+        {
+            isMoving = false;
+        }
+    }
+
+    private Vector2 GetDirection()
+    {
+        return (Vector2)aIPath.destination - (Vector2)transform.position;
+    }
+
+    public void AnimationChange()
+    {
+        Vector2 direction = GetDirection();
+
+        Anim.SetFloat("Horizontal", Mathf.Clamp(direction.x, -1f, 1f));
+        Anim.SetFloat("Vertical", Mathf.Clamp(direction.y, -1f, 1f));
+
+        Anim.SetBool("MoveBool", isMoving);
     }
 }

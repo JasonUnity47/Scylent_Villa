@@ -19,8 +19,6 @@ public class MasterIdleState : MasterState
 
         timeBtwFrame = startTime; // Set initial timer.
 
-        master.Anim.SetFloat("Speed", 0f);
-
         master.Rb.velocity = Vector2.zero; // Avoid slipping.
     }
 
@@ -33,45 +31,32 @@ public class MasterIdleState : MasterState
     {
         base.LogicalUpdate();
 
-        Vector2 direction = master.masterMovement.GetTarget();
+        //// IF detect THEN change to CHASE STATE.
+        //if (master.masterMovement.isDetected)
+        //{
+        //    // Using timer to perform a feeling that enemy is preparing to move.
+        //    if (timeBtwFrame <= 0)
+        //    {
+        //        stateMachine.ChangeState(master.ChaseState);
+        //        timeBtwFrame = startTime;
+        //    }
 
-        master.Anim.SetFloat("Horizontal", direction.x);
-        master.Anim.SetFloat("Vertical", direction.y);
-        master.Anim.SetFloat("Speed", direction.sqrMagnitude);
+        //    else
+        //    {
+        //        timeBtwFrame -= Time.deltaTime;
+        //    }
+        //}
 
-        // Check whether player is around the enemy.
-        master.masterMovement.TargetInDistance();
-
-        // IF detect THEN change to CHASE STATE.
-        if (master.masterMovement.isDetected)
+        // Using timer to perform a feeling that enemy is preparing to move.
+        if (timeBtwFrame <= 0)
         {
-            // Using timer to perform a feeling that enemy is preparing to move.
-            if (timeBtwFrame <= 0)
-            {
-                stateMachine.ChangeState(master.ChaseState);
-                timeBtwFrame = startTime;
-            }
-
-            else
-            {
-                timeBtwFrame -= Time.deltaTime;
-            }
+            stateMachine.ChangeState(master.PatrolState);
+            timeBtwFrame = startTime;
         }
 
-        // ELSE change to PATROL STATE.
         else
         {
-            // Using timer to perform a feeling that enemy is preparing to move.
-            if (timeBtwFrame <= 0)
-            {
-                stateMachine.ChangeState(master.PatrolState);
-                timeBtwFrame = startTime;
-            }
-
-            else
-            {
-                timeBtwFrame -= Time.deltaTime;
-            }
+            timeBtwFrame -= Time.deltaTime;
         }
     }
 

@@ -32,33 +32,33 @@ public class MasterChaseState : MasterState
     {
         base.LogicalUpdate();
 
-        direction = master.masterMovement.GetTarget();
+        //direction = master.masterMovement.GetTarget();
 
-        AnimationChange();
+        //AnimationChange();
 
-        master.Anim.SetFloat("Horizontal", direction.x);
-        master.Anim.SetFloat("Vertical", direction.y);
-        master.Anim.SetFloat("Speed", direction.sqrMagnitude);
+        //master.Anim.SetFloat("Horizontal", direction.x);
+        //master.Anim.SetFloat("Vertical", direction.y);
+        //master.Anim.SetFloat("Speed", direction.sqrMagnitude);
 
-        // Check whether player is around the enemy.
-        master.masterMovement.TargetInDistance();
+        //// Check whether player is around the enemy.
+        //master.masterMovement.TargetInDistance();
 
-        // IF not detect THEN change to IDLE STATE.
-        if (!master.masterMovement.isDetected)
-        {
-            stateMachine.ChangeState(master.IdleState);
-        }
+        //// IF not detect THEN change to IDLE STATE.
+        //if (!master.masterMovement.isDetected)
+        //{
+        //    stateMachine.ChangeState(master.IdleState);
+        //}
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
 
-        // IF detect THEN chase player.
-        if (master.masterMovement.isDetected)
-        {
-            master.masterMovement.PathFollow();
-        }
+        //// IF detect THEN chase player.
+        //if (master.masterMovement.isDetected)
+        //{
+        //    master.masterMovement.PathFollow();
+        //}
     }
 
     public virtual void AnimationChange()
