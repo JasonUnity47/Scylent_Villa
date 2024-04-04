@@ -27,15 +27,9 @@ public class AbilitySpawner : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void RemoveAbility()
     {
-        if (other.CompareTag("Player"))
-        {
-            // Destroy the collided ability
-            Destroy(currentAbility);
-            // Reset ability spawned flag
-            abilitySpawned = false;
-        }
+        abilitySpawned = false;
     }
 
     private void SpawnNewAbility()

@@ -8,12 +8,10 @@ public class FoodSpawner : MonoBehaviour
     public Transform[] spawnPoints;
     [SerializeField] private GameObject food;
     [SerializeField] private bool[] locker;
-    [SerializeField] private int minCurrencyAmount;
-    [SerializeField] private int maxCurrencyAmount;
+    private CurrencyUI currencyUI;
     public int maxFood;
     public int currentNumFood;
-    public CurrencyUI currencyUI;
-    private int totalCurrencyEarned = 0;
+    public int totalCurrencyEarned = 0;
 
     private int lastNumber = -1;
 
@@ -23,10 +21,7 @@ public class FoodSpawner : MonoBehaviour
 
     private void Start()
     {
-        // Get a reference to the CurrencyUI component
         currencyUI = FindObjectOfType<CurrencyUI>();
-        // Update the UI with initial total currency (which is 0 at start)
-        currencyUI.UpdateTotalCurrencyUI(totalCurrencyEarned);
 
         currentNumFood = 0;
         timeBtwFrame = startTime;
@@ -59,7 +54,8 @@ public class FoodSpawner : MonoBehaviour
                 if (randomNumber != lastNumber && locker[randomNumber] == false)
                 {
                     locker[randomNumber] = true;
-                    Instantiate(food, spawnPoints[randomNumber].position, Quaternion.identity);
+                    GameObject newFoodInstance = Instantiate(food, spawnPoints[randomNumber].position, Quaternion.identity);
+                    newFoodInstance.GetComponent<Food>().SetSpawnPointIndex(randomNumber);
                     currentNumFood++;
                 }
 
@@ -84,32 +80,24 @@ public class FoodSpawner : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    public void DecrementFoodCount()
     {
-        if (other.CompareTag("Player"))
-        {
-            // Remove the collided food
-            Destroy(other.gameObject);
-
-            // Spawn a new food
-            SpawnNewFood();
-
-            // Earn currency
-            int currencyEarned = Random.Range(minCurrencyAmount, maxCurrencyAmount + 1);
-            // Now you can do something with this currencyEarned value, like adding it to the player's currency
-            Debug.Log("Currency Earned: " + currencyEarned);
-
-            // Add the earned currency to total currency
-            totalCurrencyEarned += currencyEarned;
-
-            // Update the UI with the new total currency amount
-            currencyUI.UpdateTotalCurrencyUI(totalCurrencyEarned);
-        }
+        currentNumFood--; // Decrement currentNumFood when a food is destroyed
+       
     }
 
-    private void SpawnNewFood()
+    public void ResetLockerAtIndex(int index)
     {
-        int randomNumber = Random.Range(0, spawnPoints.Length);
-        Instantiate(food, spawnPoints[randomNumber].position, Quaternion.identity);
+        locker[index] = false;
+    }
+
+    public void CurrencyCount(int currencyEarned)
+    {
+        // Add the earned currency to total currency
+        totalCurrencyEarned += currencyEarned;
+
+        // Update the UI with the new total currency amount
+        currencyUI.UpdateTotalCurrencyUI(totalCurrencyEarned);
     }
 }

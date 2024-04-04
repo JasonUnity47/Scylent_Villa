@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2878430258316277507}
   - component: {fileID: 7300200458454201136}
   - component: {fileID: 549527038261698904}
+  - component: {fileID: 7924885279246434556}
   m_Layer: 6
   m_Name: Bucket
   m_TagString: Item
@@ -32,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 726857991027937267}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7300200458454201136
 SpriteRenderer:
@@ -131,6 +132,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &7924885279246434556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465573993922102893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf7eb13667974844baffa1a6d8a6d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationDuration: 1.2
+  animationHeight: 0.15
 --- !u!1 &4046566790019836420
 GameObject:
   m_ObjectHideFlags: 0

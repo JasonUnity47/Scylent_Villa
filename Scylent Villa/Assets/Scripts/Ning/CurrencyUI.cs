@@ -16,6 +16,6 @@ public class CurrencyUI : MonoBehaviour
     public void UpdateTotalCurrencyUI(int totalCurrency)
     {
         // Update the text component with the total currency amount
-        currencyText.text =  totalCurrency.ToString();
+        currencyText.text = totalCurrency.ToString();
     }
 }
