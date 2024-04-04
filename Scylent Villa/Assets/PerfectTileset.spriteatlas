@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PerfectTileset
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1894040709
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -237580714
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -113067293
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -503950536
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 320450152
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1318217026
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1153610905
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -652475880
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -712085115
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1415087825
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -891092425
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 2013887938
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -956060509
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1495802228
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1587998449
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -647198955
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -2036948911
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1052237433
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -220960049
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1533154806
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1051012360
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -290548330
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1693033313
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1641066183
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1707312189
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -575968974
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1943872766
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 284390138
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 2033632512
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1554649584
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1877482000
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 593292927
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1884973626
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1747444541
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1175551424
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1392659805
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 202605962
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 1352950947
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 369969032
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1906296906
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1062744446
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1676670903
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -560954356
+    - 8e0cb6ba54736784b9772c8fe43e38d0: 486311178
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -1922509316
+    - 8e0cb6ba54736784b9772c8fe43e38d0: -2010553570
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -1894040709, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -237580714, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -113067293, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -503950536, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 320450152, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1318217026, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1153610905, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -652475880, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -712085115, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1415087825, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -891092425, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 2013887938, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -956060509, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1495802228, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1587998449, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -647198955, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -2036948911, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1052237433, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -220960049, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1533154806, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1051012360, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -290548330, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1693033313, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1641066183, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1707312189, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -575968974, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1943872766, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 284390138, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 2033632512, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1554649584, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1877482000, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 593292927, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1884973626, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1747444541, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1175551424, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1392659805, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 202605962, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 1352950947, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 369969032, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1906296906, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1062744446, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1676670903, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -560954356, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: 486311178, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -1922509316, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  - {fileID: -2010553570, guid: 8e0cb6ba54736784b9772c8fe43e38d0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - New Tileset-export 1_19
+  - New Tileset-export 1_18
+  - New Tileset-export 1_11
+  - New Tileset-export 1_10
+  - New Tileset-export 1_13
+  - New Tileset-export 1_12
+  - New Tileset-export 1_15
+  - New Tileset-export 1_14
+  - New Tileset-export 1_17
+  - New Tileset-export 1_16
+  - New Tileset-export 1_20
+  - New Tileset-export 1_21
+  - New Tileset-export 1_22
+  - New Tileset-export 1_42
+  - New Tileset-export 1_23
+  - New Tileset-export 1_33
+  - New Tileset-export 1_43
+  - New Tileset-export 1_24
+  - New Tileset-export 1_32
+  - New Tileset-export 1_40
+  - New Tileset-export 1_25
+  - New Tileset-export 1_31
+  - New Tileset-export 1_41
+  - New Tileset-export 1_26
+  - New Tileset-export 1_30
+  - New Tileset-export 1_27
+  - New Tileset-export 1_37
+  - New Tileset-export 1_28
+  - New Tileset-export 1_36
+  - New Tileset-export 1_44
+  - New Tileset-export 1_29
+  - New Tileset-export 1_35
+  - New Tileset-export 1_45
+  - New Tileset-export 1_34
+  - New Tileset-export 1_39
+  - New Tileset-export 1_38
+  - New Tileset-export 1_2
+  - New Tileset-export 1_3
+  - New Tileset-export 1_0
+  - New Tileset-export 1_1
+  - New Tileset-export 1_6
+  - New Tileset-export 1_7
+  - New Tileset-export 1_4
+  - New Tileset-export 1_5
+  - New Tileset-export 1_8
+  - New Tileset-export 1_9
+  m_RenderDataMap: {}
+  m_Tag: PerfectTileset
+  m_IsVariant: 0

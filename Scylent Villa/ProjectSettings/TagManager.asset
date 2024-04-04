@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
+  - Environment
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Wall
+  - Obstacle
   - Water
   - UI
   - Item
