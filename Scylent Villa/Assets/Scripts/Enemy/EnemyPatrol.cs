@@ -12,14 +12,15 @@ public class EnemyPatrol : MonoBehaviour
     // Patrol
     [Header("Patrol")]
     [SerializeField] private Transform[] moveSpots;
-    private int currentIndex = 0;
 
     // Value
     [Header("Value")]
     public float moveSpeed;
+    int randomIndex;
+    int lastIndex;
 
-    // Timer
-    [Header("Timer")]
+// Timer
+[Header("Timer")]
     [SerializeField] private float startWaitTime;
     private float timeBtwWaitTime;
 
@@ -31,24 +32,28 @@ public class EnemyPatrol : MonoBehaviour
         aIPath = GetComponent<AIPath>();
         rb = GetComponent<Rigidbody2D>();
         timeBtwWaitTime = startWaitTime; // Set the intial time for timer.
+
+        randomIndex = Random.Range(0, moveSpots.Length);
+
+        lastIndex = -1;
     }
 
     public void Patrol()
     {
-        aIPath.destination = moveSpots[currentIndex].position;
+        aIPath.destination = moveSpots[randomIndex].position;
 
-        if (Vector2.Distance(transform.position, moveSpots[currentIndex].position) < 0.3f)
+        if (Vector2.Distance(transform.position, moveSpots[randomIndex].position) < 0.3f)
         {
             if (timeBtwWaitTime <= 0)
             {
-                if (currentIndex + 1 < moveSpots.Length)
-                {
-                    currentIndex++;
-                }
+                lastIndex = randomIndex;
 
-                else
+                randomIndex = Random.Range(0, moveSpots.Length);
+
+                if (randomIndex == lastIndex)
                 {
-                    currentIndex = 0;
+                    timeBtwWaitTime = 0;
+                    return;
                 }
 
                 timeBtwWaitTime = startWaitTime;

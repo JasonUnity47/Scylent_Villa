@@ -24,9 +24,9 @@ public class MasterPatrolState : MasterState
 
         master.CheckMovement();
 
-        master.AnimationChange();
-
         master.enemyPatrol.Patrol();
+
+        master.AnimationChange();
 
         //// Check whether player is around the enemy.
         //master.masterMovement.TargetInDistance();
