@@ -6,7 +6,7 @@ using Pathfinding;
 public class Master : MonoBehaviour
 {
     // Script Reference
-    public AIPath aIPath  { get; private set; }
+    public AIPath aIPath { get; private set; }
 
     public EnemyPatrol enemyPatrol { get; private set; }
 
@@ -23,12 +23,16 @@ public class Master : MonoBehaviour
     // Value
     public bool isMoving = false;
 
-    public bool front = false;
-    public bool back = false;
-    public bool left = false;
-    public bool right = false;
+    public bool Front { get; private set; }
+    public bool Back { get; private set; }
+    public bool Left { get; private set; }
+    public bool Right {get; private set;}
 
-    private float offset = 0.2f;
+    public float activationOffset = 0.5f;
+    public float deactivationOffset = 0.2f;
+
+    public float animTime;
+    private float timeBtwAnim;
 
     private void Awake()
     {
@@ -45,6 +49,8 @@ public class Master : MonoBehaviour
     private void Start()
     {
         Anim = GetComponent<Animator>();
+
+        timeBtwAnim = animTime;
 
         StateMachine.InitializeState(IdleState);
     }
@@ -79,74 +85,62 @@ public class Master : MonoBehaviour
 
     public void AnimationChange()
     {
-        // LOOK FRONT
-        if (aIPath.velocity.y < -offset && !front)
+        // Check if the enemy is moving
+        isMoving = aIPath.velocity.magnitude > 0.1f; // Adjust the threshold as needed
+
+        // Look Left
+        if (aIPath.velocity.x < -activationOffset && !Left)
         {
-            front = true;
-
-            back = false;
-            left = false;
-            right = false;
-
-            Anim.SetBool("BackBool", back);
-            Anim.SetBool("RightBool", right);
-            Anim.SetBool("LeftBool", left);
-
-            Anim.SetBool("FrontBool", front);
+            Left = true;
+            Front = Back = Right = false;
+        }
+        else if (aIPath.velocity.x > deactivationOffset && Left)
+        {
+            Left = false;
         }
 
-
-        // LOOK BACK
-        if (aIPath.velocity.y > offset && !back)
+        // Look Right
+        if (aIPath.velocity.x > activationOffset && !Right)
         {
-            back = true;
-
-            front = false;
-            left = false;
-            right = false;
-
-            Anim.SetBool("FrontBool", front);
-            Anim.SetBool("RightBool", right);
-            Anim.SetBool("LeftBool", left);
-
-            Anim.SetBool("BackBool", back);
+            Right = true;
+            Front = Back = Left = false;
+        }
+        else if (aIPath.velocity.x < -deactivationOffset && Right)
+        {
+            Right = false;
         }
 
-        // LOOK LEFT
-        if (aIPath.velocity.x < -offset && !left)
+        // Look Back
+        if (aIPath.velocity.y > activationOffset && !Back)
         {
-            left = true;
-
-            front = false;
-            back = false;
-            right = false;
-
-            Anim.SetBool("FrontBool", front);
-            Anim.SetBool("BackBool", back);
-            Anim.SetBool("RightBool", right);
-
-            Anim.SetBool("LeftBool", left);
+            Back = true;
+            Front = Left = Right = false;
+        }
+        else if (aIPath.velocity.y < -deactivationOffset && Back)
+        {
+            Back = false;
         }
 
-        // LOOK RIGHT
-        if (aIPath.velocity.x > offset && !right)
+        // Look Front
+        if (aIPath.velocity.y < -activationOffset && !Front)
         {
-            right = true;
-
-            left = false;
-            front = false;
-            back = false;
-
-            Anim.SetBool("FrontBool", front);
-            Anim.SetBool("BackBool", back);
-            Anim.SetBool("LeftBool", left);
-
-            Anim.SetBool("RightBool", right);
+            Front = true;
+            Back = Left = Right = false;
+        }
+        else if (aIPath.velocity.y > deactivationOffset && Front)
+        {
+            Front = false;
         }
 
-        // CHECK IS ENEMY MOVING
+        // Update animation parameters
         Anim.SetBool("MoveBool", isMoving);
         Anim.SetFloat("Horizontal", Mathf.Clamp(aIPath.velocity.x, -1, 1));
         Anim.SetFloat("Vertical", Mathf.Clamp(aIPath.velocity.y, -1, 1));
+
+        // Update animation booleans
+        Anim.SetBool("FrontBool", Front);
+        Anim.SetBool("BackBool", Back);
+        Anim.SetBool("LeftBool", Left);
+        Anim.SetBool("RightBool", Right);
     }
 }
