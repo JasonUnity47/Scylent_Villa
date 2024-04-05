@@ -5,11 +5,15 @@ using Pathfinding;
 
 public class Master : MonoBehaviour
 {
+    // Declaration
     // Script Reference
     public AIPath aIPath { get; private set; }
 
     public EnemyPatrol enemyPatrol { get; private set; }
 
+    public MasterFOV masterFOV { get; private set; }
+
+    // State Machine Reference
     public MasterStateMachine StateMachine { get; private set; }
 
     public MasterIdleState IdleState { get; private set; }
@@ -18,26 +22,29 @@ public class Master : MonoBehaviour
 
     public MasterChaseState ChaseState { get; private set; }
 
+    // Component
     public Animator Anim { get; private set; }
 
     // Value
     public bool isMoving = false;
 
     public bool Front { get; private set; }
+
     public bool Back { get; private set; }
+
     public bool Left { get; private set; }
+
     public bool Right {get; private set;}
 
     public float activationOffset = 0.5f;
-    public float deactivationOffset = 0.2f;
 
-    public float animTime;
-    private float timeBtwAnim;
+    public float deactivationOffset = 0.2f;
 
     private void Awake()
     {
         aIPath = GetComponent<AIPath>();
         enemyPatrol = GetComponent<EnemyPatrol>();
+        masterFOV = GetComponentInChildren<MasterFOV>();
 
         StateMachine = new MasterStateMachine();
 
@@ -49,9 +56,6 @@ public class Master : MonoBehaviour
     private void Start()
     {
         Anim = GetComponent<Animator>();
-
-        timeBtwAnim = animTime;
-
         StateMachine.InitializeState(IdleState);
     }
 
@@ -65,6 +69,7 @@ public class Master : MonoBehaviour
         StateMachine.CurrentState.PhysicsUpdate();
     }
 
+    // CHECK whether the enemy is moving.
     public void CheckMovement()
     {
         if (aIPath.velocity.magnitude != 0)
@@ -76,13 +81,11 @@ public class Master : MonoBehaviour
         {
             isMoving = false;
         }
+
+        return;
     }
 
-    private Vector2 GetDirection()
-    {
-        return  (Vector2)transform.position - (Vector2)aIPath.destination;
-    }
-
+    // PERFORM animation.
     public void AnimationChange()
     {
         // Check if the enemy is moving
@@ -142,5 +145,7 @@ public class Master : MonoBehaviour
         Anim.SetBool("BackBool", Back);
         Anim.SetBool("LeftBool", Left);
         Anim.SetBool("RightBool", Right);
+
+        return;
     }
 }

@@ -9,15 +9,10 @@ public class MasterIdleState : MasterState
     }
 
     // Declaration
-    // Timer
-    private float startTime = 1f;
-    private float timeBtwFrame;
 
     public override void Enter()
     {
         base.Enter();
-
-        timeBtwFrame = startTime; // Set initial timer.
     }
 
     public override void Exit()
@@ -29,32 +24,16 @@ public class MasterIdleState : MasterState
     {
         base.LogicalUpdate();
 
-        //// IF detect THEN change to CHASE STATE.
-        //if (master.masterMovement.isDetected)
-        //{
-        //    // Using timer to perform a feeling that enemy is preparing to move.
-        //    if (timeBtwFrame <= 0)
-        //    {
-        //        stateMachine.ChangeState(master.ChaseState);
-        //        timeBtwFrame = startTime;
-        //    }
-
-        //    else
-        //    {
-        //        timeBtwFrame -= Time.deltaTime;
-        //    }
-        //}
-
-        // Using timer to perform a feeling that enemy is preparing to move.
-        if (timeBtwFrame <= 0)
+        // IF detect player THEN change to CHASE STATE.
+        if (master.masterFOV.isDetected)
         {
-            stateMachine.ChangeState(master.PatrolState);
-            timeBtwFrame = startTime;
+            stateMachine.ChangeState(master.ChaseState);
         }
 
         else
         {
-            timeBtwFrame -= Time.deltaTime;
+            // ELSE change to PATROL STATE.
+            stateMachine.ChangeState(master.PatrolState);
         }
     }
 

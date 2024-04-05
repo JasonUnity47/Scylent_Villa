@@ -3,16 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class EnemyFOV : MonoBehaviour
+public class MasterFOV : MonoBehaviour
 {
     // Declaration
     public float fovAngle = 90f;
     public float range = 8;
     [SerializeField] private LayerMask whatIsPlayer;
 
-    public RaycastHit2D playerObject;
-
+    private RaycastHit2D playerObject;
     private Transform playerPos;
     private Vector2 directionToPlayer;
 
@@ -38,15 +38,17 @@ public class EnemyFOV : MonoBehaviour
     void DetectPlayer()
     {
         directionToPlayer = (playerPos.position - transform.position).normalized;
-        float angle = Vector3.Angle(directionToPlayer, transform.up);
+        // Calculate angle between the direction to the player and the direction of the Light2D transform
+        Vector2 lightDirection = transform.up; // Assuming the Light2D is oriented upwards
+        float angleToPlayer = Vector2.Angle(lightDirection, directionToPlayer);
 
         playerObject = Physics2D.Raycast(transform.position, directionToPlayer, range, whatIsPlayer);
 
-        if (angle < fovAngle / 2)
+        if (angleToPlayer < fovAngle / 2)
         {
             if (playerObject.collider != null && playerObject.collider.CompareTag("Player"))
             {
-                Debug.DrawRay(transform.position, directionToPlayer * range, Color.yellow);
+                Debug.DrawRay(transform.position, directionToPlayer * range, Color.cyan); // Visualize the raycast
                 isDetected = true;
             }
 
@@ -54,11 +56,6 @@ public class EnemyFOV : MonoBehaviour
             {
                 isDetected = false;
             }
-        }
-
-        else
-        {
-            isDetected = false;
         }
 
         return;
@@ -102,11 +99,17 @@ public class EnemyFOV : MonoBehaviour
                 }
             }
         }
+
         else
         {
             // If player is detected, rotate towards the player
+            // Create a quaternion rotation that points in the given direction (Vector3.forward is used for the z-axis)
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, directionToPlayer);
+
+            // Set the rotation of the FOV transform
             transform.rotation = rotation;
         }
+
+        return;
     }
 }

@@ -22,20 +22,21 @@ public class MasterPatrolState : MasterState
     {
         base.LogicalUpdate();
 
-        master.CheckMovement();
-
+        // PERFORM partrol movement.
         master.enemyPatrol.Patrol();
 
+        // CHECK whether the enemy is moving.
+        master.CheckMovement();
+
+        // PERFORM animation.
         master.AnimationChange();
 
-        //// Check whether player is around the enemy.
-        //master.masterMovement.TargetInDistance();
-
-        //// IF detect THEN change to IDLE STATE.
-        //if (master.masterMovement.isDetected)
-        //{
-        //    stateMachine.ChangeState(master.IdleState);
-        //}
+        // CHECK whether player is within the field of view of the enemy.
+        // IF detect THEN change to IDLE STATE.
+        if (master.masterFOV.isDetected)
+        {
+            stateMachine.ChangeState(master.IdleState);
+        }
     }
 
     public override void PhysicsUpdate()
