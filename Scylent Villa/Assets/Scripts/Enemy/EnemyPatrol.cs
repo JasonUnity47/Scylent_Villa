@@ -19,8 +19,8 @@ public class EnemyPatrol : MonoBehaviour
     int randomIndex;
     int lastIndex;
 
-// Timer
-[Header("Timer")]
+    // Timer
+    [Header("Timer")]
     [SerializeField] private float startWaitTime;
     private float timeBtwWaitTime;
 

@@ -18,8 +18,6 @@ public class MasterIdleState : MasterState
         base.Enter();
 
         timeBtwFrame = startTime; // Set initial timer.
-
-        master.Rb.velocity = Vector2.zero; // Avoid slipping.
     }
 
     public override void Exit()

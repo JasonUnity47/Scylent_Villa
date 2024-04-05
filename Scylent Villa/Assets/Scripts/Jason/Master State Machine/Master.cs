@@ -18,14 +18,11 @@ public class Master : MonoBehaviour
 
     public MasterChaseState ChaseState { get; private set; }
 
-    public Rigidbody2D Rb { get; private set; }
-
     public Animator Anim { get; private set; }
 
     // Value
     public bool isMoving = false;
 
-    private bool move = false;
     public bool front = false;
     public bool back = false;
     public bool left = false;
@@ -47,9 +44,7 @@ public class Master : MonoBehaviour
 
     private void Start()
     {
-        Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
-
 
         StateMachine.InitializeState(IdleState);
     }
@@ -84,70 +79,74 @@ public class Master : MonoBehaviour
 
     public void AnimationChange()
     {
+        // LOOK FRONT
         if (aIPath.velocity.y < -offset && !front)
         {
             front = true;
+
             back = false;
             left = false;
             right = false;
 
-            //Debug.Log(1);
-
             Anim.SetBool("BackBool", back);
             Anim.SetBool("RightBool", right);
             Anim.SetBool("LeftBool", left);
+
             Anim.SetBool("FrontBool", front);
         }
 
+
+        // LOOK BACK
         if (aIPath.velocity.y > offset && !back)
         {
             back = true;
+
             front = false;
             left = false;
             right = false;
 
-            //Debug.Log(2);
-
             Anim.SetBool("FrontBool", front);
             Anim.SetBool("RightBool", right);
             Anim.SetBool("LeftBool", left);
+
             Anim.SetBool("BackBool", back);
         }
 
+        // LOOK LEFT
         if (aIPath.velocity.x < -offset && !left)
         {
             left = true;
+
             front = false;
             back = false;
             right = false;
 
-            //Debug.Log(3);
-
             Anim.SetBool("FrontBool", front);
             Anim.SetBool("BackBool", back);
             Anim.SetBool("RightBool", right);
+
             Anim.SetBool("LeftBool", left);
         }
 
+        // LOOK RIGHT
         if (aIPath.velocity.x > offset && !right)
         {
             right = true;
+
             left = false;
             front = false;
             back = false;
 
-            //Debug.Log(4);
-
             Anim.SetBool("FrontBool", front);
             Anim.SetBool("BackBool", back);
             Anim.SetBool("LeftBool", left);
+
             Anim.SetBool("RightBool", right);
         }
 
+        // CHECK IS ENEMY MOVING
         Anim.SetBool("MoveBool", isMoving);
         Anim.SetFloat("Horizontal", Mathf.Clamp(aIPath.velocity.x, -1, 1));
         Anim.SetFloat("Vertical", Mathf.Clamp(aIPath.velocity.y, -1, 1));
-
-      
     }
 }
