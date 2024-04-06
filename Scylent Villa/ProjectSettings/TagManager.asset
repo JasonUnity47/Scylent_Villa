@@ -7,6 +7,9 @@ TagManager:
   - Item
   - Environment
   - Obstacle
+  - IncreaseFOVBuff
+  - DoubleCurrencyBuff
+  - AccelerationBuff
   layers:
   - Default
   - TransparentFX
