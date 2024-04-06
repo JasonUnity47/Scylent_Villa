@@ -27,6 +27,21 @@ public class EvolutionSystem : MonoBehaviour
     public float moveSpeedPlus;
     public float fovPlus;
 
+    // Colors
+    [Header("Color")]
+    private Color[] colors;
+    private int colorIndex;
+    private Color pink = new Color(1f, 0.8f, 0.8f);
+    private Color orange = new Color(1f, 0.71f, 0.258f);
+    private Color red = new Color(1f, 0.239f, 0.239f);
+    private Color purple = new Color(0.847f, 0.301f, 1f);
+    private Color white = Color.white;
+
+    private void Awake()
+    {
+        colors = new Color[] { pink, orange, red, purple, white };
+    }
+
     private void Start()
     {
         // Initialize timer to 0.
@@ -35,6 +50,8 @@ public class EvolutionSystem : MonoBehaviour
 
         // Initialize time between each check to predefined check time.
         timeBtwEachCheck = checkTime;
+
+        colorIndex = 0;
     }
 
     private void Update()
@@ -113,9 +130,9 @@ public class EvolutionSystem : MonoBehaviour
 
                 if (master.GetComponent<SpriteRenderer>())
                 {
-                    if (master.GetComponent<SpriteRenderer>().color != Color.red)
+                    if (master.GetComponent<SpriteRenderer>().color != colors[colorIndex])
                     {
-                        master.GetComponent<SpriteRenderer>().color = Color.red;
+                        master.GetComponent<SpriteRenderer>().color = colors[colorIndex];
                     }
                 }
 
@@ -137,9 +154,9 @@ public class EvolutionSystem : MonoBehaviour
 
                 if (maid.GetComponent<SpriteRenderer>())
                 {
-                    if (maid.GetComponent<SpriteRenderer>().color != Color.green)
+                    if (maid.GetComponent<SpriteRenderer>().color != colors[colorIndex])
                     {
-                        maid.GetComponent<SpriteRenderer>().color = Color.green;
+                        maid.GetComponent<SpriteRenderer>().color = colors[colorIndex];
                     }
                 }
 
@@ -161,9 +178,9 @@ public class EvolutionSystem : MonoBehaviour
 
                 if (son.GetComponent<SpriteRenderer>())
                 {
-                    if (son.GetComponent<SpriteRenderer>().color != Color.blue)
+                    if (son.GetComponent<SpriteRenderer>().color != colors[colorIndex])
                     {
-                        son.GetComponent<SpriteRenderer>().color = Color.blue;
+                        son.GetComponent<SpriteRenderer>().color = colors[colorIndex];
                     }
                 }
 
@@ -173,6 +190,13 @@ public class EvolutionSystem : MonoBehaviour
                     son.GetComponentInChildren<SonFOV>().lightView.pointLightInnerAngle += 10;
                     son.GetComponentInChildren<SonFOV>().lightView.pointLightOuterAngle += 10;
                 }
+            }
+
+            colorIndex++;
+
+            if (colorIndex + 1 > colors.Length)
+            {
+                colorIndex = 0;
             }
         }
     }
