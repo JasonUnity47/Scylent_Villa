@@ -23,7 +23,7 @@ public class MasterFOV : MonoBehaviour
     private Master master;
     private MasterHit masterHit;
 
-    private Light2D lightView;
+    public Light2D lightView;
 
     private void Start()
     {

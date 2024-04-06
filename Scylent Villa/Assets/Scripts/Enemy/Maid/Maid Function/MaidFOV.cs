@@ -21,7 +21,7 @@ public class MaidFOV : MonoBehaviour
     private Maid maid;
     private MaidHit maidHit;
 
-    private Light2D lightView;
+    public Light2D lightView;
 
     private void Start()
     {

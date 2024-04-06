@@ -21,7 +21,7 @@ public class SonFOV : MonoBehaviour
     private Son son;
     private SonHit sonHit;
 
-    private Light2D lightView;
+    public Light2D lightView;
 
     private void Start()
     {
