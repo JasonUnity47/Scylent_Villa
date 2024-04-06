@@ -10,6 +10,7 @@ TagManager:
   - IncreaseFOVBuff
   - DoubleCurrencyBuff
   - AccelerationBuff
+  - Enemy
   layers:
   - Default
   - TransparentFX
