@@ -6,7 +6,7 @@ public class IncreaseFOVBuff : MonoBehaviour
 {
     [SerializeField] private float animationDuration = 1.2f; // Duration of the animation
     [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab
-    //[SerializeField] private float fovIncreaseAmount = 30f;
+    [SerializeField] private float fovIncreaseAmount = 1f; // Adjust this value as needed
     private BuffSpawner buffSpawner;
     private bool isAnimating = true;
     private int spawnPointIndex; // New variable to store spawn point index
@@ -27,6 +27,9 @@ public class IncreaseFOVBuff : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+
+            playerMovement.ApplyFOVIncrease(fovIncreaseAmount);
             isAnimating = false;
             buffSpawner.DecrementBuffCount();
             buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point

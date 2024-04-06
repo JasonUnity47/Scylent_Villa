@@ -26,6 +26,11 @@ public class DoubleCurrencyBuff : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Food[] foods = FindObjectsOfType<Food>();
+            foreach (Food food in foods)
+            {
+                food.ActivateDoubleCurrency();
+            }
             isAnimating = false;
             buffSpawner.DecrementBuffCount();
             buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point

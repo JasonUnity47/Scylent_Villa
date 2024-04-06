@@ -6,7 +6,7 @@ public class AccelerationBuff : MonoBehaviour
 {
     [SerializeField] private float animationDuration = 1.2f; // Duration of the animation
     [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab
-    //[SerializeField] private float accelerationMultiplier = 2f;
+    [SerializeField] private float accelerationMultiplier = 2f;
     private BuffSpawner buffSpawner; // Reference to the BuffSpawner
     private bool isAnimating = true;
 
@@ -28,6 +28,9 @@ public class AccelerationBuff : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+
+            playerMovement.ApplyAcceleration(accelerationMultiplier);
             isAnimating = false;
             buffSpawner.DecrementBuffCount();
             buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point

@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     // Declaration
     public Joystick joystick;
 
+    [SerializeField] private float moveSpeedDefault; // Store default move speed
     [SerializeField] private float moveSpeed;
     [SerializeField] private float offset;
+    private float originalFOV;
+    private float currentFOV;
 
     private Vector2 movement;
 
@@ -26,12 +30,25 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator anim;
 
+    private Coroutine buffDurationCoroutine; // Coroutine reference for duration of buff
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         front = true;
+
+        // Store default FOV
+        UnityEngine.Rendering.Universal.Light2D playerLight = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
+        if (playerLight != null)
+        {
+            originalFOV = playerLight.pointLightOuterRadius;
+            currentFOV = originalFOV;
+        }
+
+        // Store default move speed
+        moveSpeedDefault = moveSpeed;
     }
 
     private void Update()
@@ -136,5 +153,61 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    // Apply acceleration buff
+    public void ApplyAcceleration(float multiplier)
+    {
+        moveSpeed *= multiplier;
+
+        // Start coroutine to revert changes after duration
+        if (buffDurationCoroutine != null)
+        {
+            StopCoroutine(buffDurationCoroutine);
+        }
+        buffDurationCoroutine = StartCoroutine(RevertAccelerationAfterDuration(multiplier));
+    }
+
+    // Apply FOV increase buff
+    public void ApplyFOVIncrease(float increaseAmount)
+    {
+        currentFOV += increaseAmount;
+
+        // Update FOV
+        UnityEngine.Rendering.Universal.Light2D playerLight = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
+        if (playerLight != null)
+        {
+            playerLight.pointLightOuterRadius = currentFOV;
+        }
+
+        // Start coroutine to revert changes after duration
+        if (buffDurationCoroutine != null)
+        {
+            StopCoroutine(buffDurationCoroutine);
+        }
+        buffDurationCoroutine = StartCoroutine(RevertFOVAfterDuration(increaseAmount));
+    }
+
+    // Coroutine to revert acceleration changes after specified duration
+    private IEnumerator RevertAccelerationAfterDuration(float multiplier)
+    {
+        yield return new WaitForSeconds(15f); // Wait for 15 seconds
+
+        // Revert acceleration changes
+        moveSpeed = moveSpeedDefault;
+    }
+
+    // Coroutine to revert FOV changes after specified duration
+    private IEnumerator RevertFOVAfterDuration(float increaseAmount)
+    {
+        yield return new WaitForSeconds(15f); // Wait for 15 seconds
+
+        // Revert FOV changes
+        UnityEngine.Rendering.Universal.Light2D playerLight = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
+        if (playerLight != null)
+        {
+            currentFOV -= increaseAmount;
+            playerLight.pointLightOuterRadius = currentFOV;
+        }
     }
 }
