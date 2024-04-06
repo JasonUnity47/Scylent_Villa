@@ -34,28 +34,31 @@ public class EnemyPatrol : MonoBehaviour
 
     public void Patrol()
     {
-        aIPath.destination = moveSpots[randomIndex].position;
-
-        if (Vector2.Distance(transform.position, moveSpots[randomIndex].position) < 0.3f)
+        if (moveSpots.Length != 0)
         {
-            if (timeBtwWaitTime <= 0)
+            aIPath.destination = moveSpots[randomIndex].position;
+
+            if (Vector2.Distance(transform.position, moveSpots[randomIndex].position) < 0.3f)
             {
-                lastIndex = randomIndex;
-
-                randomIndex = Random.Range(0, moveSpots.Length);
-
-                if (randomIndex == lastIndex)
+                if (timeBtwWaitTime <= 0)
                 {
-                    timeBtwWaitTime = 0;
-                    return;
+                    lastIndex = randomIndex;
+
+                    randomIndex = Random.Range(0, moveSpots.Length);
+
+                    if (randomIndex == lastIndex)
+                    {
+                        timeBtwWaitTime = 0;
+                        return;
+                    }
+
+                    timeBtwWaitTime = startWaitTime;
                 }
 
-                timeBtwWaitTime = startWaitTime;
-            }
-
-            else
-            {
-                timeBtwWaitTime -= Time.deltaTime;
+                else
+                {
+                    timeBtwWaitTime -= Time.deltaTime;
+                }
             }
         }
 
