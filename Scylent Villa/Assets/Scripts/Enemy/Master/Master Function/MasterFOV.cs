@@ -9,6 +9,7 @@ public class MasterFOV : MonoBehaviour
 {
     // Declaration
     public float fovAngle = 90f;
+    public float range = 7f;
 
     [SerializeField] private GameObject detectionMark;
     private GameObject detectionObject;
@@ -59,7 +60,7 @@ public class MasterFOV : MonoBehaviour
         Vector2 lightDirection = transform.up; // Assuming the Light2D is oriented upwards
         float angleToPlayer = Vector2.Angle(lightDirection, directionToPlayer);
 
-        RaycastHit2D playerObject = Physics2D.Raycast(transform.position, directionToPlayer);
+        RaycastHit2D playerObject = Physics2D.Raycast(transform.position, directionToPlayer, range);
         Debug.DrawRay(transform.position, directionToPlayer, Color.red); // Visualize the raycast
 
         if (angleToPlayer < fovAngle / 2)

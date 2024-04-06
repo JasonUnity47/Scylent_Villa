@@ -11,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private PlayerMovement playerMovement;
+    [SerializeField] private GameObject FOV;
+    [SerializeField] private GameObject bloodEffect;
 
     private void Start()
     {
@@ -21,14 +23,45 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (isDead && !once)
+        if (isDead)
         {
-            once = true;
-
-            Physics2D.IgnoreLayerCollision(8, 7);
-            playerMovement.enabled = false;
             rb.velocity = Vector2.zero;
-            anim.SetBool("DeadBool", true);
+
+            if (!once)
+            {
+                once = true;
+
+                FOV.SetActive(false);
+
+                Vector2 bloodPos = (Vector2)transform.position + new Vector2(0, 0.1f);
+
+                GameObject blood = Instantiate(bloodEffect, bloodPos, Quaternion.identity, transform);
+                Destroy(blood, 1.3f);
+
+                if (playerMovement.front)
+                {
+                    anim.SetBool("DeadFront", true);
+                }
+
+                else if (playerMovement.back)
+                {
+                    anim.SetBool("DeadBack", true);
+                }
+
+                else if (playerMovement.left)
+                {
+                    anim.SetBool("DeadLeft", true);
+                }
+
+                else if (playerMovement.right)
+                {
+                    anim.SetBool("DeadRight", true);
+                }
+
+                Physics2D.IgnoreLayerCollision(8, 7);
+
+                playerMovement.enabled = false;
+            }
         }
     }
 }
