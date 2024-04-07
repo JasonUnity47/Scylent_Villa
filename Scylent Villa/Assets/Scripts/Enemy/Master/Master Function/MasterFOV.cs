@@ -23,6 +23,8 @@ public class MasterFOV : MonoBehaviour
     private Master master;
     private MasterHit masterHit;
 
+    private AbilityManager abilityManager;
+
     public Light2D lightView;
 
     private void Start()
@@ -31,6 +33,8 @@ public class MasterFOV : MonoBehaviour
         master = GetComponentInParent<Master>();
         masterHit = GetComponentInParent<MasterHit>();
 
+        abilityManager = FindObjectOfType<AbilityManager>();
+
         lightView = GetComponentInChildren<Light2D>();
     }
 
@@ -38,8 +42,11 @@ public class MasterFOV : MonoBehaviour
     {
         if (!masterHit.hitPlayer)
         {
-            DetectPlayer();
-            SetLightPosition();
+            if (!abilityManager.IsPlayerInStealth())
+            {
+                DetectPlayer();
+                SetLightPosition();
+            }
         }
 
         else

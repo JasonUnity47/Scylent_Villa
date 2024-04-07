@@ -21,6 +21,8 @@ public class SonFOV : MonoBehaviour
     private Son son;
     private SonHit sonHit;
 
+    private AbilityManager abilityManager;
+
     public Light2D lightView;
 
     private void Start()
@@ -29,6 +31,8 @@ public class SonFOV : MonoBehaviour
         son = GetComponentInParent<Son>();
         sonHit = GetComponentInParent<SonHit>();
 
+        abilityManager = FindObjectOfType<AbilityManager>();
+
         lightView = GetComponentInChildren<Light2D>();
     }
 
@@ -36,8 +40,11 @@ public class SonFOV : MonoBehaviour
     {
         if (!sonHit.hitPlayer)
         {
-            DetectPlayer();
-            SetLightPosition();
+            if (!abilityManager.IsPlayerInStealth())
+            {
+                DetectPlayer();
+                SetLightPosition();
+            }
         }
 
         else

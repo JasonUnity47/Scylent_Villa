@@ -21,6 +21,8 @@ public class MaidFOV : MonoBehaviour
     private Maid maid;
     private MaidHit maidHit;
 
+    private AbilityManager abilityManager;
+
     public Light2D lightView;
 
     private void Start()
@@ -29,6 +31,8 @@ public class MaidFOV : MonoBehaviour
         maid = GetComponentInParent<Maid>();
         maidHit = GetComponentInParent<MaidHit>();
 
+        abilityManager = FindObjectOfType<AbilityManager>();
+
         lightView = GetComponentInChildren<Light2D>();
     }
 
@@ -36,8 +40,11 @@ public class MaidFOV : MonoBehaviour
     {
         if (!maidHit.hitPlayer)
         {
-            DetectPlayer();
-            SetLightPosition();
+            if (!abilityManager.IsPlayerInStealth())
+            {
+                DetectPlayer();
+                SetLightPosition();
+            }
         }
 
         else
