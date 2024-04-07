@@ -40,6 +40,9 @@ public class Master : MonoBehaviour
 
     private float deactivationOffset = 0.2f;
 
+    private bool isStunned = false;
+
+    public GameObject childObject; // Reference to the child GameObject to deactivate
     private void Awake()
     {
         aIPath = GetComponent<AIPath>();
@@ -57,6 +60,8 @@ public class Master : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         StateMachine.InitializeState(IdleState);
+
+        childObject = transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -147,5 +152,48 @@ public class Master : MonoBehaviour
         Anim.SetBool("RightBool", Right);
 
         return;
+    }
+
+    public void Stun(float duration)
+    {
+        if (!isStunned)
+        {
+            StartCoroutine(StunCoroutine(duration));
+        }
+    }
+
+    private IEnumerator StunCoroutine(float duration)
+    {
+        isStunned = true;
+
+        // disable FOV
+        DeactivateChildObject();
+
+        // Stop movement
+        aIPath.canMove = false;
+
+        // Play stun animation or effects (if any)
+
+        yield return new WaitForSeconds(duration);
+
+        // Re-enable FOV
+        ReactivateChildObject();
+
+        // Resume movement
+        aIPath.canMove = true;
+
+        isStunned = false;
+    }
+
+    // Method to deactivate the child object
+    public void DeactivateChildObject()
+    {
+        childObject.SetActive(false);
+    }
+
+    // Method to reactivate the child object
+    public void ReactivateChildObject()
+    {
+        childObject.SetActive(true);
     }
 }

@@ -8,76 +8,57 @@ public class AbilityManager : MonoBehaviour
     public GameObject bucketButton;
 
     private PlayerStealth playerStealth;
-    
+    private StunAbility stunAbility;
 
     private bool mushroomAvailable = false;
     private bool bucketAvailable = false;
-    private bool mushroomCooldown = false;
-    private bool bucketCooldown = false;
     private bool isPlayerInStealth = false;
+    public float stunDuration = 3f; 
 
     private void Start()
     {
         playerStealth = FindObjectOfType<PlayerStealth>();
-        
+        stunAbility = FindObjectOfType<StunAbility>();
+
         mushroomButton.SetActive(mushroomAvailable);
         bucketButton.SetActive(bucketAvailable);
     }
 
     public void ActivateMushroomAbility()
     {
-        if (mushroomAvailable && !mushroomCooldown)
+        if (mushroomAvailable)
         {
-            playerStealth.MakeInvisibleForDuration(3f);
+            playerStealth.MakeInvisibleForDuration(stunDuration);
             mushroomAvailable = false;
-            mushroomCooldown = true;
+            
             mushroomButton.SetActive(false);
-
-            Invoke(nameof(MushroomEnd), 3f);
-
-            Invoke(nameof(ResetMushroomCooldown), 15f);
 
             // Set the player to be in stealth
             SetPlayerStealth(true);
+
+            Invoke(nameof(MushroomEnd), 3f);
+
+            
         }
     }
 
     public void ActivateBucketAbility()
     {
-        if (bucketAvailable && !bucketCooldown)
+        if (bucketAvailable)
         {
+            stunAbility.UseStunAbility(3f);
             bucketAvailable = false;
-            bucketCooldown = true;
-            bucketButton.SetActive(false);
             
-
-            Invoke(nameof(BucketEnd), 3f);
-
-            Invoke(nameof(ResetBucketCooldown), 10f);
-
-
+            bucketButton.SetActive(false);
         }
     }
 
-    private void BucketEnd()
-    {
-        
-    }
+    
 
     private void MushroomEnd()
     {
         // Reset the player's stealth status
         SetPlayerStealth(false);
-    }
-
-    private void ResetMushroomCooldown()
-    {
-        mushroomCooldown = false;
-    }
-
-    private void ResetBucketCooldown()
-    {
-        bucketCooldown = false;
     }
 
     public void MushroomAvailableBool()

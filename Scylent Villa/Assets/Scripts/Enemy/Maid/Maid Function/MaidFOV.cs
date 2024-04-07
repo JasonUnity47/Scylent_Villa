@@ -179,4 +179,9 @@ public class MaidFOV : MonoBehaviour
             Destroy(detectionObject);
         }
     }
+
+    public bool IsPlayerDetected()
+    {
+        return isDetected;
+    }
 }

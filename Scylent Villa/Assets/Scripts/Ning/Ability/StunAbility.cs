@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StunAbility : MonoBehaviour
+{
+    public float stunRadius = 2f; // Radius within which the player can stun enemies
+    
+
+    public LayerMask enemyLayer; // Layer mask for detecting enemies
+
+    public void UseStunAbility(float stunDuration)
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, stunRadius, enemyLayer);
+
+        foreach (Collider2D enemyCollider in hitEnemies)
+        {
+            Son sonEnemy = enemyCollider.GetComponent<Son>();
+
+            if (sonEnemy != null && !sonEnemy.sonFOV.IsPlayerDetected())
+            {
+                // Stun the enemy
+                sonEnemy.Stun(stunDuration);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, stunRadius);
+    }
+}

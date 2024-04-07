@@ -179,4 +179,9 @@ public class SonFOV : MonoBehaviour
             Destroy(detectionObject);
         }
     }
+
+    public bool IsPlayerDetected()
+    {
+        return isDetected;
+    }
 }
