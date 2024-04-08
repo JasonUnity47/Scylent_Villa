@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
 
         front = true;
+        anim.SetBool("FrontBool", front);
 
         // Store default FOV
         UnityEngine.Rendering.Universal.Light2D playerLight = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();

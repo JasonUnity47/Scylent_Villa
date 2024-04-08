@@ -7,6 +7,8 @@ public class Master : MonoBehaviour
 {
     // Declaration
     // Script Reference
+    public EvolutionSystem evolutionSystem { get; private set; }
+
     public AIPath aIPath { get; private set; }
 
     public EnemyPatrol enemyPatrol { get; private set; }
@@ -42,9 +44,15 @@ public class Master : MonoBehaviour
 
     private bool isStunned = false;
 
+    private bool once = false;
+
     public GameObject childObject; // Reference to the child GameObject to deactivate
+
     private void Awake()
     {
+        Anim = GetComponent<Animator>();
+
+        evolutionSystem = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<EvolutionSystem>();
         aIPath = GetComponent<AIPath>();
         enemyPatrol = GetComponent<EnemyPatrol>();
         masterFOV = GetComponentInChildren<MasterFOV>();
@@ -58,7 +66,9 @@ public class Master : MonoBehaviour
 
     private void Start()
     {
-        Anim = GetComponent<Animator>();
+        Front = true;
+        Anim.SetBool("FrontBool", Front);
+
         StateMachine.InitializeState(IdleState);
 
         childObject = transform.GetChild(0).gameObject;
@@ -67,6 +77,8 @@ public class Master : MonoBehaviour
     private void Update()
     {
         StateMachine.CurrentState.LogicalUpdate();
+
+        EvolveStage();
     }
 
     private void FixedUpdate()
@@ -195,5 +207,35 @@ public class Master : MonoBehaviour
     public void ReactivateChildObject()
     {
         childObject.SetActive(true);
+    }
+
+    public void EvolveStage()
+    {
+        //Stage 2
+        if (evolutionSystem.stage2 && !once)
+        {
+            // Activate only once.
+            once = true;
+
+            // Store original value.
+            float originalSpeed = aIPath.maxSpeed;
+
+            // Enemy should stop moving if evolution is started.
+            aIPath.canSearch = false;
+            aIPath.maxSpeed = 0;
+
+            StartCoroutine(WaitEvovle(originalSpeed));
+        }
+    }
+
+    IEnumerator WaitEvovle(float originalSpeed)
+    {
+        yield return new WaitForSeconds(5f);
+
+        Anim.SetBool("DeadBool1", false);
+        Anim.SetBool("Stage2", true);
+
+        aIPath.canSearch = true;
+        aIPath.maxSpeed = originalSpeed;
     }
 }

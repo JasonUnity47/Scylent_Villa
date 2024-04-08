@@ -11,6 +11,7 @@ TagManager:
   - DoubleCurrencyBuff
   - AccelerationBuff
   - Enemy
+  - Game Manager
   layers:
   - Default
   - TransparentFX

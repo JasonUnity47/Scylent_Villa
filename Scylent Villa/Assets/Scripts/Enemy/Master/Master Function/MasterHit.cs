@@ -26,7 +26,10 @@ public class MasterHit : MonoBehaviour
             hitPlayer = true;
 
             // Enemy should stop searching if player is dead.
+            aIPath.canMove = false;
             aIPath.canSearch = false;
+            aIPath.maxSpeed = 0;
+            aIPath.maxAcceleration = 0;
         }
     }
 }

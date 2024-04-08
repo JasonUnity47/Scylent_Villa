@@ -9,11 +9,17 @@ public class EvolutionSystem : MonoBehaviour
     // Declaration
     // Timer
     [Header("TIMER")]
-    public float evolutionTimer;
+    private TimerSystem timerSystem;
     private float timeBtwEvolution;
+    public float timeToEvolve = 30f;
 
     public float checkTime;
     private float timeBtwEachCheck;
+
+    // Evolve Stage
+    [Header("Stage")]
+    public bool stage2 = false;
+    public bool stage3 = false;
 
     // Enemies
     [Header("ENEMIES")]
@@ -44,8 +50,10 @@ public class EvolutionSystem : MonoBehaviour
 
     private void Start()
     {
+        // Get TimerSystem
+        timerSystem = GetComponent<TimerSystem>();
+
         // Initialize timer to 0.
-        evolutionTimer = 0;
         timeBtwEvolution = 0;
 
         // Initialize time between each check to predefined check time.
@@ -62,13 +70,12 @@ public class EvolutionSystem : MonoBehaviour
         // Keep checking each enemy during the game.
         CheckEnemy();
 
+        // Enemy keep evolving over time.
         EnemyEvolve();
     }
 
     void TimeGone()
     {
-        evolutionTimer += Time.deltaTime;
-
         timeBtwEvolution += Time.deltaTime;
     }
 
@@ -116,11 +123,16 @@ public class EvolutionSystem : MonoBehaviour
 
     void EnemyEvolve()
     {
-        if (timeBtwEvolution >= 15f)
+        if (timeBtwEvolution >= timeToEvolve)
         {
             timeBtwEvolution = 0;
 
             // Masters
+            if (timerSystem.timer >= timeToEvolve * 5f && !stage2)
+            {
+                stage2 = true;
+            }
+
             foreach (GameObject master in masters)
             {
                 if (master.GetComponent<AIPath>())
