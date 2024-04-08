@@ -42,6 +42,7 @@ public class EvolutionSystem : MonoBehaviour
     private Color red = new Color(1f, 0.239f, 0.239f);
     private Color purple = new Color(0.847f, 0.301f, 1f);
     private Color white = Color.white;
+    private int colorCount = 0;
 
     private void Awake()
     {
@@ -127,12 +128,13 @@ public class EvolutionSystem : MonoBehaviour
         {
             timeBtwEvolution = 0;
 
-            // Masters Stage 2
+            // Stage 2
             if (timerSystem.timer >= timeToEvolve * 5f && !stage2)
             {
                 stage2 = true;
             }
-            // Masters Stage 3
+
+            // Stage 3
             if (timerSystem.timer >= timeToEvolve * 10f && !stage3)
             {
                 stage3 = true;
@@ -145,7 +147,7 @@ public class EvolutionSystem : MonoBehaviour
                     master.GetComponent<AIPath>().maxSpeed += 0.5f;
                 }
 
-                if (master.GetComponent<SpriteRenderer>())
+                if (master.GetComponent<SpriteRenderer>() && colorCount != 10)
                 {
                     if (master.GetComponent<SpriteRenderer>().color != colors[colorIndex])
                     {
@@ -169,7 +171,7 @@ public class EvolutionSystem : MonoBehaviour
                     maid.GetComponent<AIPath>().maxSpeed += 0.5f;
                 }
 
-                if (maid.GetComponent<SpriteRenderer>())
+                if (maid.GetComponent<SpriteRenderer>() && colorCount != 10)
                 {
                     if (maid.GetComponent<SpriteRenderer>().color != colors[colorIndex])
                     {
@@ -193,7 +195,7 @@ public class EvolutionSystem : MonoBehaviour
                     son.GetComponent<AIPath>().maxSpeed += 0.5f;
                 }
 
-                if (son.GetComponent<SpriteRenderer>())
+                if (son.GetComponent<SpriteRenderer>() && colorCount != 10)
                 {
                     if (son.GetComponent<SpriteRenderer>().color != colors[colorIndex])
                     {
@@ -209,11 +211,24 @@ public class EvolutionSystem : MonoBehaviour
                 }
             }
 
-            colorIndex++;
-
-            if (colorIndex + 1 > colors.Length)
+            if (colorCount != 10)
             {
-                colorIndex = 0;
+                colorIndex++;
+
+                if (colorIndex + 1 > colors.Length)
+                {
+                    colorIndex = 0;
+                }
+            }
+
+            if (colorCount < 10)
+            {
+                colorCount++;
+            }
+
+            else if (colorCount == 10)
+            {
+                colorCount = 10;
             }
         }
     }

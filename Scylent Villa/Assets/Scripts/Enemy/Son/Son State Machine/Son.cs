@@ -7,6 +7,8 @@ public class Son : MonoBehaviour
 {
     // Declaration
     // Script Reference
+    public EvolutionSystem evolutionSystem { get; private set; }
+
     public AIPath aIPath { get; private set; }
 
     public EnemyPatrol enemyPatrol { get; private set; }
@@ -41,10 +43,17 @@ public class Son : MonoBehaviour
 
     private bool isStunned = false;
 
+    private bool once = false;
+
+    private bool once2 = false;
+
     public GameObject childObject; // Reference to the child GameObject to deactivate
 
     private void Awake()
     {
+        Anim = GetComponent<Animator>();
+
+        evolutionSystem = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<EvolutionSystem>();
         aIPath = GetComponent<AIPath>();
         enemyPatrol = GetComponent<EnemyPatrol>();
         sonFOV = GetComponentInChildren<SonFOV>();
@@ -58,7 +67,6 @@ public class Son : MonoBehaviour
 
     private void Start()
     {
-        Anim = GetComponent<Animator>();
         StateMachine.InitializeState(IdleState);
 
         childObject = transform.GetChild(0).gameObject;
@@ -67,6 +75,8 @@ public class Son : MonoBehaviour
     private void Update()
     {
         StateMachine.CurrentState.LogicalUpdate();
+
+        EvolveStage();
     }
 
     private void FixedUpdate()
@@ -195,5 +205,78 @@ public class Son : MonoBehaviour
     public void ReactivateChildObject()
     {
         childObject.SetActive(true);
+    }
+
+    public void EvolveStage()
+    {
+        //Stage 2
+        if (evolutionSystem.stage2 && !once)
+        {
+            // Activate only once.
+            once = true;
+
+            // Store original value.
+            float originalSpeed = aIPath.maxSpeed;
+
+            // Enemy should stop moving if evolution is started.
+            aIPath.canSearch = false;
+            aIPath.maxSpeed = 0;
+
+            Anim.SetBool("DeadBool1", true);
+            childObject.SetActive(false);
+
+            StartCoroutine(WaitEvovle(originalSpeed));
+        }
+
+        //Stage 3
+        if (evolutionSystem.stage3 && !once2)
+        {
+            // Activate only once.
+            once2 = true;
+
+            // Store original value.
+            float originalSpeed = aIPath.maxSpeed;
+
+            // Enemy should stop moving if evolution is started.
+            aIPath.canSearch = false;
+            aIPath.maxSpeed = 0;
+
+            Anim.SetBool("DeadBool2", true);
+            childObject.SetActive(false);
+
+            StartCoroutine(WaitEvovle2(originalSpeed));
+        }
+    }
+
+    IEnumerator WaitEvovle(float originalSpeed)
+    {
+        yield return new WaitForSeconds(3f);
+
+        Anim.SetBool("DeadBool1", false);
+
+        yield return new WaitForSeconds(0.8f);
+
+        Anim.SetBool("Stage2", true);
+
+        childObject.SetActive(true);
+
+        aIPath.canSearch = true;
+        aIPath.maxSpeed = originalSpeed;
+    }
+
+    IEnumerator WaitEvovle2(float originalSpeed)
+    {
+        yield return new WaitForSeconds(3f);
+
+        Anim.SetBool("DeadBool2", false);
+
+        yield return new WaitForSeconds(0.8f);
+
+        Anim.SetBool("Stage3", true);
+
+        childObject.SetActive(true);
+
+        aIPath.canSearch = true;
+        aIPath.maxSpeed = originalSpeed;
     }
 }
