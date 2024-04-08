@@ -68,9 +68,6 @@ public class Master : MonoBehaviour
 
     private void Start()
     {
-        Front = true;
-        Anim.SetBool("FrontBool", Front);
-
         StateMachine.InitializeState(IdleState);
 
         childObject = transform.GetChild(0).gameObject;
@@ -226,6 +223,9 @@ public class Master : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
+            Anim.SetBool("DeadBool1", true);
+            childObject.SetActive(false);
+
             StartCoroutine(WaitEvovle(originalSpeed));
         }
 
@@ -242,16 +242,24 @@ public class Master : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
+            Anim.SetBool("DeadBool2", true);
+            childObject.SetActive(false);
+
             StartCoroutine(WaitEvovle2(originalSpeed));
         }
     }
 
     IEnumerator WaitEvovle(float originalSpeed)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         Anim.SetBool("DeadBool1", false);
+
+        yield return new WaitForSeconds(0.8f);
+
         Anim.SetBool("Stage2", true);
+
+        childObject.SetActive(true);
 
         aIPath.canSearch = true;
         aIPath.maxSpeed = originalSpeed;
@@ -259,10 +267,15 @@ public class Master : MonoBehaviour
 
     IEnumerator WaitEvovle2(float originalSpeed)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         Anim.SetBool("DeadBool2", false);
+
+        yield return new WaitForSeconds(0.8f);
+
         Anim.SetBool("Stage3", true);
+
+        childObject.SetActive(true);
 
         aIPath.canSearch = true;
         aIPath.maxSpeed = originalSpeed;

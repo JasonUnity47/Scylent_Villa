@@ -127,17 +127,16 @@ public class EvolutionSystem : MonoBehaviour
         {
             timeBtwEvolution = 0;
 
-            // Masters
-            if (timerSystem.timer >= timeToEvolve * 1f && !stage2)
+            // Masters Stage 2
+            if (timerSystem.timer >= timeToEvolve * 5f && !stage2)
             {
                 stage2 = true;
             }
-            // Masters
-            if (timerSystem.timer >= timeToEvolve * 2f && !stage3)
+            // Masters Stage 3
+            if (timerSystem.timer >= timeToEvolve * 10f && !stage3)
             {
                 stage3 = true;
             }
-
 
             foreach (GameObject master in masters)
             {

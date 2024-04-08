@@ -38,7 +38,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             aIPath.destination = moveSpots[randomIndex].position;
 
-            if (Vector2.Distance(transform.position, moveSpots[randomIndex].position) < 0.3f)
+            if (Vector2.Distance(transform.position, moveSpots[randomIndex].position) < 0.2f)
             {
                 if (timeBtwWaitTime <= 0)
                 {
@@ -49,10 +49,11 @@ public class EnemyPatrol : MonoBehaviour
                     if (randomIndex == lastIndex)
                     {
                         timeBtwWaitTime = 0;
-                        return;
                     }
-
-                    timeBtwWaitTime = startWaitTime;
+                    else
+                    {
+                        timeBtwWaitTime = startWaitTime;
+                    }
                 }
 
                 else
