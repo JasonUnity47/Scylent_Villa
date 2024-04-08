@@ -46,6 +46,8 @@ public class Master : MonoBehaviour
 
     private bool once = false;
 
+    private bool once2 = false;
+
     public GameObject childObject; // Reference to the child GameObject to deactivate
 
     private void Awake()
@@ -226,14 +228,41 @@ public class Master : MonoBehaviour
 
             StartCoroutine(WaitEvovle(originalSpeed));
         }
+
+        //Stage 3
+        if (evolutionSystem.stage3 && !once2)
+        {
+            // Activate only once.
+            once2 = true;
+
+            // Store original value.
+            float originalSpeed = aIPath.maxSpeed;
+
+            // Enemy should stop moving if evolution is started.
+            aIPath.canSearch = false;
+            aIPath.maxSpeed = 0;
+
+            StartCoroutine(WaitEvovle2(originalSpeed));
+        }
     }
 
     IEnumerator WaitEvovle(float originalSpeed)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
 
         Anim.SetBool("DeadBool1", false);
         Anim.SetBool("Stage2", true);
+
+        aIPath.canSearch = true;
+        aIPath.maxSpeed = originalSpeed;
+    }
+
+    IEnumerator WaitEvovle2(float originalSpeed)
+    {
+        yield return new WaitForSeconds(1f);
+
+        Anim.SetBool("DeadBool2", false);
+        Anim.SetBool("Stage3", true);
 
         aIPath.canSearch = true;
         aIPath.maxSpeed = originalSpeed;
