@@ -14,6 +14,7 @@ public class AbilityManager : MonoBehaviour
     private bool bucketAvailable = false;
     private bool isPlayerInStealth = false;
     public float stunDuration = 3f; 
+    public float stealthDuration = 3f;
 
     private void Start()
     {
@@ -28,17 +29,13 @@ public class AbilityManager : MonoBehaviour
     {
         if (mushroomAvailable)
         {
-            playerStealth.MakeInvisibleForDuration(stunDuration);
-            mushroomAvailable = false;
-            
-            mushroomButton.SetActive(false);
-
+            playerStealth.MakeInvisibleForDuration(stealthDuration);
             // Set the player to be in stealth
             SetPlayerStealth(true);
+            Invoke(nameof(MushroomEnd), stealthDuration);
+            mushroomAvailable = false;
+            mushroomButton.SetActive(false);
 
-            Invoke(nameof(MushroomEnd), 3f);
-
-            
         }
     }
 
@@ -46,7 +43,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (bucketAvailable)
         {
-            stunAbility.UseStunAbility(3f);
+            stunAbility.UseStunAbility(stunDuration);
             bucketAvailable = false;
             
             bucketButton.SetActive(false);

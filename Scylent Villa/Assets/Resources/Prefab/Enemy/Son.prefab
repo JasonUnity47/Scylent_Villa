@@ -41,6 +41,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5988134094768974857}
+  - {fileID: 2017488854026803215}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -334,7 +335,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
-  childObject: {fileID: 0}
+  childObject: {fileID: 5584684896032666253}
+  objectToInstantiate: {fileID: 7132299326919155788, guid: 1b96f03b508fa7a44817ef6a62115fed, type: 3}
+  childTransformName: EffectPosition
 --- !u!114 &8014766128356098997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +376,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPlayer: 0
+--- !u!1 &3490114793393273092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2017488854026803215}
+  m_Layer: 2
+  m_Name: EffectPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2017488854026803215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3490114793393273092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.569, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7248845211657396900}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5290299999819131188
 GameObject:
   m_ObjectHideFlags: 0

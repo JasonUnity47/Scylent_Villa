@@ -49,6 +49,10 @@ public class Son : MonoBehaviour
 
     public GameObject childObject; // Reference to the child GameObject to deactivate
 
+    public GameObject objectToInstantiate; // The object you want to instantiate
+
+    public string childTransformName; // Name of the child transform to instantiate the object at
+
     private void Awake()
     {
         Anim = GetComponent<Animator>();
@@ -182,9 +186,14 @@ public class Son : MonoBehaviour
         // Stop movement
         aIPath.canMove = false;
 
-        // Play stun animation or effects (if any)
+        GameObject instantiatedObject = null;
+        Transform childTransform = transform.Find(childTransformName);
+        instantiatedObject = Instantiate(objectToInstantiate, childTransform.position, Quaternion.identity);
+        instantiatedObject.transform.parent = childTransform;
 
         yield return new WaitForSeconds(duration);
+
+        Destroy(instantiatedObject);
 
         // Re-enable FOV
         ReactivateChildObject();

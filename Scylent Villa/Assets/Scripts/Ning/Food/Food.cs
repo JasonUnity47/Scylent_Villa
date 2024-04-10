@@ -11,6 +11,7 @@ public class Food : MonoBehaviour
     private bool doubleCurrencyActive = false; // Flag to track if double currency is active
     [SerializeField] private float doubleCurrencyDuration = 15f; // Duration of double currency effect
 
+    
     private CurrencyUI currencyUI;
     private FoodSpawner foodSpawner; // Reference to the FoodSpawner
     private int spawnPointIndex;

@@ -16,11 +16,25 @@ public class StunAbility : MonoBehaviour
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             Son sonEnemy = enemyCollider.GetComponent<Son>();
+            Maid maidEnemy = enemyCollider.GetComponent<Maid>();
+            Master masterEnemy = enemyCollider.GetComponent<Master>();
 
             if (sonEnemy != null && !sonEnemy.sonFOV.IsPlayerDetected())
             {
                 // Stun the enemy
                 sonEnemy.Stun(stunDuration);
+            }
+
+            if (maidEnemy != null && !maidEnemy.maidFOV.IsPlayerDetected())
+            {
+                // Stun the enemy
+                maidEnemy.Stun(stunDuration);
+            }
+
+            if (masterEnemy != null && !masterEnemy.masterFOV.IsPlayerDetected())
+            {
+                // Stun the enemy
+                masterEnemy.Stun(stunDuration);
             }
         }
     }

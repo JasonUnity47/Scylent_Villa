@@ -9,11 +9,13 @@ public class AccelerationBuff : MonoBehaviour
     [SerializeField] private float accelerationMultiplier = 2f;
     private BuffSpawner buffSpawner; // Reference to the BuffSpawner
     private bool isAnimating = true;
+    private BuffUI buffUI;
 
     private int spawnPointIndex; // New variable to store spawn point index
 
     private void Awake()
     {
+        buffUI = FindObjectOfType<BuffUI>();
         buffSpawner = FindObjectOfType<BuffSpawner>();
         StartCoroutine(Animate());
     }
@@ -31,6 +33,8 @@ public class AccelerationBuff : MonoBehaviour
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
             playerMovement.ApplyAcceleration(accelerationMultiplier);
+            buffUI.ShowAccelerationBuffUI(15f);
+
             isAnimating = false;
             buffSpawner.DecrementBuffCount();
             buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point

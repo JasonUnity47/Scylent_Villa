@@ -38,13 +38,14 @@ public class MaidFOV : MonoBehaviour
 
     private void Update()
     {
+        
+
         if (!maidHit.hitPlayer)
         {
-            if (!abilityManager.IsPlayerInStealth())
-            {
-                DetectPlayer();
-                SetLightPosition();
-            }
+           
+            DetectPlayer();
+            SetLightPosition();
+            
         }
 
         else
@@ -70,7 +71,7 @@ public class MaidFOV : MonoBehaviour
 
         if (angleToPlayer < fovAngle / 2)
         {
-            if (playerObject.collider != null && playerObject.collider.CompareTag("Player"))
+            if (playerObject.collider != null && playerObject.collider.CompareTag("Player") && !abilityManager.IsPlayerInStealth())
             {
                 Debug.DrawRay(transform.position, directionToPlayer, Color.green); // Visualize the raycast
                 isDetected = true;

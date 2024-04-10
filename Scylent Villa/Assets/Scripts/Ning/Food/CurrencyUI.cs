@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CurrencyUI : MonoBehaviour
 {
     public Text currencyText;
+    public Text fodText;
 
     void Start()
     {
@@ -17,5 +18,11 @@ public class CurrencyUI : MonoBehaviour
     {
         // Update the text component with the total currency amount
         currencyText.text = totalCurrency.ToString();
+    }
+
+    public void UpdateTotalFODUI(int totalFOD)
+    {
+        // Update the text component with the total currency amount
+        fodText.text = totalFOD.ToString();
     }
 }

@@ -40,13 +40,14 @@ public class MasterFOV : MonoBehaviour
 
     private void Update()
     {
+        
+
         if (!masterHit.hitPlayer)
         {
-            if (!abilityManager.IsPlayerInStealth())
-            {
-                DetectPlayer();
-                SetLightPosition();
-            }
+           
+            DetectPlayer();
+            SetLightPosition();
+            
         }
 
         else
@@ -72,7 +73,7 @@ public class MasterFOV : MonoBehaviour
 
         if (angleToPlayer < fovAngle / 2)
         {
-            if (playerObject.collider != null && playerObject.collider.CompareTag("Player"))
+            if (playerObject.collider != null && playerObject.collider.CompareTag("Player") && !abilityManager.IsPlayerInStealth())
             {
                 Debug.DrawRay(transform.position, directionToPlayer, Color.green); // Visualize the raycast
                 isDetected = true;

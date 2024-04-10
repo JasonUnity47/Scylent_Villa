@@ -9,10 +9,13 @@ public class IncreaseFOVBuff : MonoBehaviour
     [SerializeField] private float fovIncreaseAmount = 1f; // Adjust this value as needed
     private BuffSpawner buffSpawner;
     private bool isAnimating = true;
+    private BuffUI buffUI;
+
     private int spawnPointIndex; // New variable to store spawn point index
 
     private void Awake()
     {
+        buffUI = FindObjectOfType<BuffUI>();
         buffSpawner = FindObjectOfType<BuffSpawner>();
         StartCoroutine(Animate());
     }
@@ -30,6 +33,8 @@ public class IncreaseFOVBuff : MonoBehaviour
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
             playerMovement.ApplyFOVIncrease(fovIncreaseAmount);
+            buffUI.ShowIncreaseFOVBuffUI(15f);
+
             isAnimating = false;
             buffSpawner.DecrementBuffCount();
             buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point
