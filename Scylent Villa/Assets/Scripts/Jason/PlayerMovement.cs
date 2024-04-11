@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeedDefault; // Store default move speed
     [SerializeField] private float moveSpeed;
     [SerializeField] private float offset;
+    [SerializeField] private float increaseAmount = 1f; // Adjust this value as needed
+    [SerializeField] private float multiplier = 2f;
     private float originalFOV;
     private float currentFOV;
 
@@ -157,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Apply acceleration buff
-    public void ApplyAcceleration(float multiplier)
+    public void ApplyAcceleration()
     {
         moveSpeed *= multiplier;
 
@@ -170,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Apply FOV increase buff
-    public void ApplyFOVIncrease(float increaseAmount)
+    public void ApplyFOVIncrease()
     {
         currentFOV += increaseAmount;
 
