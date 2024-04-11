@@ -19,7 +19,7 @@ public class PlayerStealth : MonoBehaviour
     private IEnumerator MakeInvisibleCoroutine(float duration)
     {
         Color originalColor = spriteRenderer.color;
-        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);
+        spriteRenderer.color = new Color(0, 1, 0.8564062f, 0.25f);
         yield return new WaitForSeconds(duration);
         spriteRenderer.color = originalColor;
     }
