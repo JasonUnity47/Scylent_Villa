@@ -144,7 +144,7 @@ public class EvolutionSystem : MonoBehaviour
             {
                 if (master.GetComponent<AIPath>())
                 {
-                    master.GetComponent<AIPath>().maxSpeed += 0.005f;
+                    master.GetComponent<AIPath>().maxSpeed += 0.025f;
                 }
 
                 if (master.GetComponent<SpriteRenderer>() && colorCount != 10)
@@ -157,9 +157,9 @@ public class EvolutionSystem : MonoBehaviour
 
                 if (master.GetComponentInChildren<MasterFOV>())
                 {
-                    master.GetComponentInChildren<MasterFOV>().fovAngle += 0.005f;
-                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightInnerAngle += 10;
-                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightOuterAngle += 10;
+                    master.GetComponentInChildren<MasterFOV>().fovAngle += 2;
+                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightInnerAngle += 2;
+                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightOuterAngle += 2;
                 }
             }
 
@@ -168,7 +168,7 @@ public class EvolutionSystem : MonoBehaviour
             {
                 if (maid.GetComponent<AIPath>())
                 {
-                    maid.GetComponent<AIPath>().maxSpeed += 0.005f;
+                    maid.GetComponent<AIPath>().maxSpeed += 0.025f;
                 }
 
                 if (maid.GetComponent<SpriteRenderer>() && colorCount != 10)
@@ -181,9 +181,9 @@ public class EvolutionSystem : MonoBehaviour
 
                 if (maid.GetComponentInChildren<MaidFOV>())
                 {
-                    maid.GetComponentInChildren<MaidFOV>().fovAngle += 0.005f;
-                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightInnerAngle += 10;
-                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightOuterAngle += 10;
+                    maid.GetComponentInChildren<MaidFOV>().fovAngle += 2;
+                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightInnerAngle += 2;
+                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightOuterAngle += 2;
                 }
             }
 
@@ -192,7 +192,7 @@ public class EvolutionSystem : MonoBehaviour
             {
                 if (son.GetComponent<AIPath>())
                 {
-                    son.GetComponent<AIPath>().maxSpeed += 0.005f;
+                    son.GetComponent<AIPath>().maxSpeed += 0.025f;
                 }
 
                 if (son.GetComponent<SpriteRenderer>() && colorCount != 10)
@@ -205,9 +205,9 @@ public class EvolutionSystem : MonoBehaviour
 
                 if (son.GetComponentInChildren<SonFOV>())
                 {
-                    son.GetComponentInChildren<SonFOV>().fovAngle += 0.005f;
-                    son.GetComponentInChildren<SonFOV>().lightView.pointLightInnerAngle += 10;
-                    son.GetComponentInChildren<SonFOV>().lightView.pointLightOuterAngle += 10;
+                    son.GetComponentInChildren<SonFOV>().fovAngle += 2;
+                    son.GetComponentInChildren<SonFOV>().lightView.pointLightInnerAngle += 2;
+                    son.GetComponentInChildren<SonFOV>().lightView.pointLightOuterAngle += 2;
                 }
             }
 
