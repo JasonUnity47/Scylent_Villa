@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float offset;
     [SerializeField] private float increaseAmount = 1f; // Adjust this value as needed
     [SerializeField] private float multiplier = 2f;
+    [SerializeField] private float accelerationDuration = 15f;
+    [SerializeField] private float FOVDuration = 10f;
     private float originalFOV;
     private float currentFOV;
 
@@ -161,14 +163,17 @@ public class PlayerMovement : MonoBehaviour
     // Apply acceleration buff
     public void ApplyAcceleration()
     {
-        moveSpeed *= multiplier;
+        if (moveSpeed == moveSpeedDefault)
+        {
+            moveSpeed *= multiplier;
+        }
 
         // Start coroutine to revert changes after duration
         if (buffDurationCoroutine != null)
         {
             StopCoroutine(buffDurationCoroutine);
         }
-        buffDurationCoroutine = StartCoroutine(RevertAccelerationAfterDuration(multiplier));
+        buffDurationCoroutine = StartCoroutine(RevertAccelerationAfterDuration());
     }
 
     // Apply FOV increase buff
@@ -192,9 +197,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Coroutine to revert acceleration changes after specified duration
-    private IEnumerator RevertAccelerationAfterDuration(float multiplier)
+    private IEnumerator RevertAccelerationAfterDuration()
     {
-        yield return new WaitForSeconds(15f); // Wait for 15 seconds
+        yield return new WaitForSeconds(accelerationDuration); // Wait for 15 seconds
 
         // Revert acceleration changes
         moveSpeed = moveSpeedDefault;
@@ -203,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
     // Coroutine to revert FOV changes after specified duration
     private IEnumerator RevertFOVAfterDuration(float increaseAmount)
     {
-        yield return new WaitForSeconds(15f); // Wait for 15 seconds
+        yield return new WaitForSeconds(FOVDuration); // Wait for 15 seconds
 
         // Revert FOV changes
         UnityEngine.Rendering.Universal.Light2D playerLight = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
