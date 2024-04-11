@@ -50,7 +50,7 @@ public class FieldOfView : MonoBehaviour
 
     void Highlight(RaycastHit2D obj)
     {
-        if (obj.transform.childCount != 0)
+        if (obj.transform.childCount != 0 && obj.transform.Find("Outline") == true)
         {
             obj.transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -58,7 +58,7 @@ public class FieldOfView : MonoBehaviour
 
     void Unhighlight(RaycastHit2D obj)
     {
-        if (obj.transform.childCount != 0)
+        if (obj.transform.childCount != 0 && obj.transform.Find("Outline") == true)
         {
             obj.transform.GetChild(0).gameObject.SetActive(false);
         }

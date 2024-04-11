@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject FOV;
     [SerializeField] private GameObject bloodEffect;
 
+    public JoystickPosition joystickPosition;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,7 +62,9 @@ public class PlayerHealth : MonoBehaviour
 
                 Physics2D.IgnoreLayerCollision(8, 7);
 
+                joystickPosition.joystick.SetActive(false);
                 playerMovement.enabled = false;
+                joystickPosition.enabled = false;
             }
         }
     }
