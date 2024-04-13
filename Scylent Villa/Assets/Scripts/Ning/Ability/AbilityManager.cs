@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
 {
+    public static AbilityManager Instance { get; private set; }
+
+    private AbilitySpawner abilitySpawner;
+
     public GameObject mushroomButton;
     public GameObject bucketButton;
+    private Button bucketButtonComponent;
 
     private PlayerStealth playerStealth;
     private StunAbility stunAbility;
 
-    private bool mushroomAvailable = false;
-    private bool bucketAvailable = false;
+    
     private bool isPlayerInStealth = false;
     public float stunDuration = 3f; 
     public float stealthDuration = 3f;
@@ -20,34 +25,48 @@ public class AbilityManager : MonoBehaviour
     {
         playerStealth = FindObjectOfType<PlayerStealth>();
         stunAbility = FindObjectOfType<StunAbility>();
+        abilitySpawner = FindObjectOfType<AbilitySpawner>();
+        
+        bucketButtonComponent = bucketButton.GetComponent<Button>();
+        
+        bucketButtonComponent.interactable = false;
+        mushroomButton.SetActive(false);
+        bucketButton.SetActive(false);
+    }
 
-        mushroomButton.SetActive(mushroomAvailable);
-        bucketButton.SetActive(bucketAvailable);
+    private void Update()
+    {
+        UpdateBucketButtonInteractability();
+    }
+
+    private void UpdateBucketButtonInteractability()
+    {
+        bucketButtonComponent.interactable = stunAbility.CanUseStunAbility();
     }
 
     public void ActivateMushroomAbility()
     {
-        if (mushroomAvailable)
-        {
+        
             playerStealth.MakeInvisibleForDuration(stealthDuration);
+            abilitySpawner.RemoveAbility();
             // Set the player to be in stealth
             SetPlayerStealth(true);
             Invoke(nameof(MushroomEnd), stealthDuration);
-            mushroomAvailable = false;
+           
             mushroomButton.SetActive(false);
 
-        }
+        
     }
 
     public void ActivateBucketAbility()
     {
-        if (bucketAvailable)
-        {
+        
             stunAbility.UseStunAbility(stunDuration);
-            bucketAvailable = false;
+            abilitySpawner.RemoveAbility();
+            
             
             bucketButton.SetActive(false);
-        }
+        
     }
 
     
@@ -60,13 +79,13 @@ public class AbilityManager : MonoBehaviour
 
     public void MushroomAvailableBool()
     {
-        mushroomAvailable = true;
+        
         mushroomButton.SetActive(true);
     }
 
     public void BucketAvailableBool()
     {
-        bucketAvailable = true;
+        
         bucketButton.SetActive(true);
     }
 

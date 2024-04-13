@@ -5,15 +5,14 @@ using UnityEngine;
 public class Bucket : MonoBehaviour
 {
     private AbilityManager abilityManager;
-    private AbilitySpawner abilitySpawner;
+    
     private bool isAnimating = true;
     [SerializeField] private float animationDuration = 0.5f; // Duration of the animation
     [SerializeField] private float animationHeight = 0.5f; // Height to move the food prefab
 
     private void Awake()
     {
-        // Get reference to FoodSpawner script
-        abilitySpawner = FindObjectOfType<AbilitySpawner>();
+        
         abilityManager = FindObjectOfType<AbilityManager>();
 
 
@@ -26,7 +25,7 @@ public class Bucket : MonoBehaviour
         {
             isAnimating = false; // Stop animation
 
-            abilitySpawner.RemoveAbility();
+            
             abilityManager.BucketAvailableBool();
 
 
