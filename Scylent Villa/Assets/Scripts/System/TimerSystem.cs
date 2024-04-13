@@ -10,9 +10,12 @@ public class TimerSystem : MonoBehaviour
     public float fodInterval = 300f; // Time interval for awarding FOD in seconds (5 minutes)
     public int fodCount = 0;
     private CurrencyUI currencyUI;
+    [SerializeField] private GameObject uIFOD;
 
     private void Start()
     {
+        uIFOD.SetActive(false);
+
         currencyUI = FindObjectOfType<CurrencyUI>();
         timer = 0;
     }
@@ -35,5 +38,20 @@ public class TimerSystem : MonoBehaviour
 
         // Reset survivalTime after awarding FOD
         survivalTime = 0f;
+
+        StartCoroutine(ActivateFODUI());
+
+    }
+
+    private IEnumerator ActivateFODUI()
+    {
+        
+        uIFOD.SetActive(true);
+
+        
+        yield return new WaitForSeconds(5f);
+
+        
+        uIFOD.SetActive(false);
     }
 }
