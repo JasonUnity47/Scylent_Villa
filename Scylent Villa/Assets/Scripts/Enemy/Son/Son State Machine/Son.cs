@@ -81,6 +81,8 @@ public class Son : MonoBehaviour
         StateMachine.CurrentState.LogicalUpdate();
 
         EvolveStage();
+
+        CheckFOV();
     }
 
     private void FixedUpdate()
@@ -204,6 +206,19 @@ public class Son : MonoBehaviour
         isStunned = false;
     }
 
+    // Check whether the fov is active.
+    // If the fov is unactive then no detection mark appears.
+    void CheckFOV()
+    {
+        if (!sonFOV.gameObject.activeSelf)
+        {
+            sonFOV.isDetected = false;
+            sonFOV.ShowDetection();
+        }
+
+        return;
+    }
+
     // Method to deactivate the child object
     public void DeactivateChildObject()
     {
@@ -231,11 +246,10 @@ public class Son : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
-            // Enemy should stop detecting the player if evolution is started.
-            sonFOV.isDetected = false;
+            // disable FOV
+            DeactivateChildObject();
 
             Anim.SetBool("DeadBool1", true);
-            childObject.SetActive(false);
 
             StartCoroutine(WaitEvovle(originalSpeed));
         }
@@ -253,11 +267,10 @@ public class Son : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
-            // Enemy should stop detecting the player if evolution is started.
-            sonFOV.isDetected = false;
+            // disable FOV
+            DeactivateChildObject();
 
             Anim.SetBool("DeadBool2", true);
-            childObject.SetActive(false);
 
             StartCoroutine(WaitEvovle2(originalSpeed));
         }
@@ -273,7 +286,8 @@ public class Son : MonoBehaviour
 
         Anim.SetBool("Stage2", true);
 
-        childObject.SetActive(true);
+        // Re-enable FOV
+        ReactivateChildObject();
 
         aIPath.canSearch = true;
         aIPath.maxSpeed = originalSpeed;
@@ -289,7 +303,8 @@ public class Son : MonoBehaviour
 
         Anim.SetBool("Stage3", true);
 
-        childObject.SetActive(true);
+        // Re-enable FOV
+        ReactivateChildObject();
 
         aIPath.canSearch = true;
         aIPath.maxSpeed = originalSpeed;

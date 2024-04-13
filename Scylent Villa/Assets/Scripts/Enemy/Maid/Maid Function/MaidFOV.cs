@@ -42,15 +42,14 @@ public class MaidFOV : MonoBehaviour
         {
             DetectPlayer();
             SetLightPosition();
+            LightChange();
+            ShowDetection();
         }
 
         else
         {
             isDetected = false;
         }
-
-        LightChange();
-        ShowDetection();
     }
 
     // Detect whether player is in the field of view
@@ -160,7 +159,7 @@ public class MaidFOV : MonoBehaviour
         return;
     }
 
-    void ShowDetection()
+    public void ShowDetection()
     {
         Vector2 detectionPos = (Vector2)transform.position + new Vector2(0, 1.35f);
 

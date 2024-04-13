@@ -38,23 +38,18 @@ public class SonFOV : MonoBehaviour
 
     private void Update()
     {
-        
-
         if (!sonHit.hitPlayer)
         {
-            
             DetectPlayer();
             SetLightPosition();
-            
+            LightChange();
+            ShowDetection();
         }
 
         else
         {
             isDetected = false;
         }
-
-        LightChange();
-        ShowDetection();
     }
 
     // Detect whether player is in the field of view
@@ -164,7 +159,7 @@ public class SonFOV : MonoBehaviour
         return;
     }
 
-    void ShowDetection()
+    public void ShowDetection()
     {
         Vector2 detectionPos = (Vector2)transform.position + new Vector2(0, 1.35f);
 
