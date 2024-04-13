@@ -60,6 +60,8 @@ public class PlayerHealth : MonoBehaviour
                     anim.SetBool("DeadRight", true);
                 }
 
+                tag = "Untagged";
+
                 Physics2D.IgnoreLayerCollision(8, 7);
 
                 joystickPosition.joystick.SetActive(false);

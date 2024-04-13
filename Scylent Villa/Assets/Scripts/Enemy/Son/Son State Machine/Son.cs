@@ -210,7 +210,7 @@ public class Son : MonoBehaviour
     // If the fov is unactive then no detection mark appears.
     void CheckFOV()
     {
-        if (!sonFOV.gameObject.activeSelf)
+        if (!sonFOV.gameObject.activeSelf || GameObject.FindGameObjectWithTag("Player") == null)
         {
             sonFOV.isDetected = false;
             sonFOV.ShowDetection();

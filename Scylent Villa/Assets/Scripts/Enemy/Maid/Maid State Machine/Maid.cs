@@ -210,7 +210,7 @@ public class Maid : MonoBehaviour
     // If the fov is unactive then no detection mark appears.
     void CheckFOV()
     {
-        if (!maidFOV.gameObject.activeSelf)
+        if (!maidFOV.gameObject.activeSelf || GameObject.FindGameObjectWithTag("Player") == null)
         {
             maidFOV.isDetected = false;
             maidFOV.ShowDetection();

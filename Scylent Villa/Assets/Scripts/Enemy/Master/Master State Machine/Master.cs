@@ -211,7 +211,7 @@ public class Master : MonoBehaviour
     // If the fov is unactive then no detection mark appears.
     void CheckFOV()
     {
-        if (!masterFOV.gameObject.activeSelf)
+        if (!masterFOV.gameObject.activeSelf || GameObject.FindGameObjectWithTag("Player") == null)
         {
             masterFOV.isDetected = false;
             masterFOV.ShowDetection();
