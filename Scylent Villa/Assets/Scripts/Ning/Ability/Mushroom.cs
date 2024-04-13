@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mushroom : MonoBehaviour
 {
-    private AbilitySpawner abilitySpawner;
+    
     private AbilityManager abilityManager;
     private bool isAnimating = true;
     [SerializeField] private float animationDuration = 0.5f; // Duration of the animation
@@ -13,7 +13,7 @@ public class Mushroom : MonoBehaviour
     private void Awake()
     {
         // Get reference to FoodSpawner script
-        abilitySpawner = FindObjectOfType<AbilitySpawner>();
+        
         abilityManager = FindObjectOfType<AbilityManager>();
 
         StartCoroutine(Animate());
@@ -25,7 +25,7 @@ public class Mushroom : MonoBehaviour
         {
             isAnimating = false; // Stop animation
 
-            abilitySpawner.RemoveAbility();
+            
             abilityManager.MushroomAvailableBool();
 
             // Destroy the collided ability

@@ -8,6 +8,8 @@ public class FoodSpawner : MonoBehaviour
     public Transform[] spawnPoints;
     [SerializeField] private GameObject food;
     [SerializeField] private bool[] locker;
+    [SerializeField] private GameObject foodUI;
+
     private CurrencyUI currencyUI;
     public int maxFood;
     public int currentNumFood;
@@ -25,7 +27,7 @@ public class FoodSpawner : MonoBehaviour
 
         currentNumFood = 0;
         timeBtwFrame = startTime;
-
+        foodUI.SetActive(false);
         locker = new bool[spawnPoints.Length];
 
         for (int i = 0; i < locker.Length; i++)
@@ -94,10 +96,25 @@ public class FoodSpawner : MonoBehaviour
 
     public void CurrencyCount(int currencyEarned)
     {
+        
         // Add the earned currency to total currency
         totalCurrencyEarned += currencyEarned;
 
         // Update the UI with the new total currency amount
         currencyUI.UpdateTotalCurrencyUI(totalCurrencyEarned);
+
+        StartCoroutine(ActivateFoodUI());
+    }
+
+    private IEnumerator ActivateFoodUI()
+    {
+       
+        foodUI.SetActive(true);
+
+        
+        yield return new WaitForSeconds(5f);
+
+       
+        foodUI.SetActive(false);
     }
 }

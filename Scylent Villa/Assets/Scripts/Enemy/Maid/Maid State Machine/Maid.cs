@@ -231,6 +231,9 @@ public class Maid : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
+            // Enemy should stop detecting the player if evolution is started.
+            maidFOV.isDetected = false;
+
             Anim.SetBool("DeadBool1", true);
             childObject.SetActive(false);
 
@@ -249,6 +252,9 @@ public class Maid : MonoBehaviour
             // Enemy should stop moving if evolution is started.
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
+
+            // Enemy should stop detecting the player if evolution is started.
+            maidFOV.isDetected = false;
 
             Anim.SetBool("DeadBool2", true);
             childObject.SetActive(false);

@@ -232,6 +232,9 @@ public class Master : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
+            // Enemy should stop detecting the player if evolution is started.
+            masterFOV.isDetected = false;
+
             Anim.SetBool("DeadBool1", true);
             childObject.SetActive(false);
 
@@ -250,6 +253,9 @@ public class Master : MonoBehaviour
             // Enemy should stop moving if evolution is started.
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
+
+            // Enemy should stop detecting the player if evolution is started.
+            masterFOV.isDetected = false;
 
             Anim.SetBool("DeadBool2", true);
             childObject.SetActive(false);

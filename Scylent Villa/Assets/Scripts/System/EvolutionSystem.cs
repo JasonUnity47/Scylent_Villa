@@ -1,7 +1,6 @@
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EvolutionSystem : MonoBehaviour
@@ -32,6 +31,7 @@ public class EvolutionSystem : MonoBehaviour
     [Header("Increment")]
     public float moveSpeedPlus;
     public float fovPlus;
+    public float fovRangePlus;
 
     // Colors
     [Header("Color")]
@@ -60,12 +60,13 @@ public class EvolutionSystem : MonoBehaviour
         // Initialize time between each check to predefined check time.
         timeBtwEachCheck = checkTime;
 
+        // Initialize the color index to 0 because array indices start at 0.
         colorIndex = 0;
     }
 
     private void Update()
     {
-        // Time is running every frame.
+        // Evolution time is running every frame.
         TimeGone();
 
         // Keep checking each enemy during the game.
@@ -82,14 +83,17 @@ public class EvolutionSystem : MonoBehaviour
 
     void CheckEnemy()
     {
+        // Time to check enemy.
         if (timeBtwEachCheck <= 0)
         {
+            // Reset the timer to continue checking the enemies.
             timeBtwEachCheck = checkTime;
 
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
             foreach (GameObject enemy in enemies)
             {
+                // If an enemy Master is in the game scene then assign the enemy to the list.
                 if (enemy.GetComponent<Master>())
                 {
                     if (!masters.Contains(enemy))
@@ -98,6 +102,7 @@ public class EvolutionSystem : MonoBehaviour
                     }
                 }
 
+                // Else if an enemy Maid is in the game scene then assign the enemy to the list.
                 else if (enemy.GetComponent<Maid>())
                 {
                     if (!maids.Contains(enemy))
@@ -106,6 +111,7 @@ public class EvolutionSystem : MonoBehaviour
                     }
                 }
 
+                // Else if an enemy Son is in the game scene then assign the enemy to the list.
                 else if (enemy.GetComponent<Son>())
                 {
                     if (!sons.Contains(enemy))
@@ -120,21 +126,27 @@ public class EvolutionSystem : MonoBehaviour
         {
             timeBtwEachCheck -= Time.deltaTime;
         }
+
+        return;
     }
 
     void EnemyEvolve()
     {
+        // Time to Evolve.
         if (timeBtwEvolution >= timeToEvolve)
         {
+            // Reset the timer to continue evolving.
             timeBtwEvolution = 0;
 
             // Stage 2
+            // If the timer reaches a predetermined time, the enemies will evolve to the second stage.
             if (timerSystem.timer >= timeToEvolve * 5f && !stage2)
             {
                 stage2 = true;
             }
 
             // Stage 3
+            // If the timer reaches a predetermined time, the enemies will evolve to the last stage.
             if (timerSystem.timer >= timeToEvolve * 10f && !stage3)
             {
                 stage3 = true;
@@ -142,11 +154,13 @@ public class EvolutionSystem : MonoBehaviour
 
             foreach (GameObject master in masters)
             {
+                // Increase movespeed.
                 if (master.GetComponent<AIPath>())
                 {
-                    master.GetComponent<AIPath>().maxSpeed += 0.025f;
+                    master.GetComponent<AIPath>().maxSpeed += moveSpeedPlus;
                 }
 
+                // Change color over time.
                 if (master.GetComponent<SpriteRenderer>() && colorCount != 10)
                 {
                     if (master.GetComponent<SpriteRenderer>().color != colors[colorIndex])
@@ -155,22 +169,33 @@ public class EvolutionSystem : MonoBehaviour
                     }
                 }
 
-                if (master.GetComponentInChildren<MasterFOV>())
+                // Increase fov angle.
+                if (master.GetComponentInChildren<MasterFOV>() && master.GetComponentInChildren<MasterFOV>().fovAngle < 360)
                 {
-                    master.GetComponentInChildren<MasterFOV>().fovAngle += 2;
-                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightInnerAngle += 2;
-                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightOuterAngle += 2;
+                    master.GetComponentInChildren<MasterFOV>().fovAngle += fovPlus;
+                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightInnerAngle += fovPlus;
+                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightOuterAngle += fovPlus;
+                }
+
+                // If fov angle reach to maximum then increase fov range.
+                if (master.GetComponentInChildren<MasterFOV>() && master.GetComponentInChildren<MasterFOV>().fovAngle == 360)
+                {
+                    master.GetComponentInChildren<MasterFOV>().range += fovRangePlus;
+                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightInnerRadius += fovRangePlus;
+                    master.GetComponentInChildren<MasterFOV>().lightView.pointLightOuterRadius += fovRangePlus + 1;
                 }
             }
 
             // Maids
             foreach (GameObject maid in maids)
             {
+                // Increase movespeed.
                 if (maid.GetComponent<AIPath>())
                 {
-                    maid.GetComponent<AIPath>().maxSpeed += 0.025f;
+                    maid.GetComponent<AIPath>().maxSpeed += moveSpeedPlus;
                 }
 
+                // Change color over time.
                 if (maid.GetComponent<SpriteRenderer>() && colorCount != 10)
                 {
                     if (maid.GetComponent<SpriteRenderer>().color != colors[colorIndex])
@@ -179,22 +204,33 @@ public class EvolutionSystem : MonoBehaviour
                     }
                 }
 
-                if (maid.GetComponentInChildren<MaidFOV>())
+                // Increase fov angle.
+                if (maid.GetComponentInChildren<MaidFOV>() && maid.GetComponentInChildren<MaidFOV>().fovAngle < 360)
                 {
-                    maid.GetComponentInChildren<MaidFOV>().fovAngle += 2;
-                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightInnerAngle += 2;
-                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightOuterAngle += 2;
+                    maid.GetComponentInChildren<MaidFOV>().fovAngle += fovPlus;
+                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightInnerAngle += fovPlus;
+                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightOuterAngle += fovPlus;
+                }
+
+                // If fov angle reach to maximum then increase fov range.
+                if (maid.GetComponentInChildren<MaidFOV>() && maid.GetComponentInChildren<MaidFOV>().fovAngle == 360)
+                {
+                    maid.GetComponentInChildren<MaidFOV>().range += fovRangePlus;
+                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightInnerRadius += fovRangePlus;
+                    maid.GetComponentInChildren<MaidFOV>().lightView.pointLightOuterRadius += fovRangePlus + 1;
                 }
             }
 
             // Sons
             foreach (GameObject son in sons)
             {
+                // Increase movespeed.
                 if (son.GetComponent<AIPath>())
                 {
-                    son.GetComponent<AIPath>().maxSpeed += 0.025f;
+                    son.GetComponent<AIPath>().maxSpeed += moveSpeedPlus;
                 }
 
+                // Change color over time.
                 if (son.GetComponent<SpriteRenderer>() && colorCount != 10)
                 {
                     if (son.GetComponent<SpriteRenderer>().color != colors[colorIndex])
@@ -203,14 +239,24 @@ public class EvolutionSystem : MonoBehaviour
                     }
                 }
 
-                if (son.GetComponentInChildren<SonFOV>())
+                // Increase fov angle.
+                if (son.GetComponentInChildren<SonFOV>() && son.GetComponentInChildren<SonFOV>().fovAngle < 360)
                 {
-                    son.GetComponentInChildren<SonFOV>().fovAngle += 2;
-                    son.GetComponentInChildren<SonFOV>().lightView.pointLightInnerAngle += 2;
-                    son.GetComponentInChildren<SonFOV>().lightView.pointLightOuterAngle += 2;
+                    son.GetComponentInChildren<SonFOV>().fovAngle += fovPlus;
+                    son.GetComponentInChildren<SonFOV>().lightView.pointLightInnerAngle += fovPlus;
+                    son.GetComponentInChildren<SonFOV>().lightView.pointLightOuterAngle += fovPlus;
+                }
+
+                // If fov angle reach to maximum then increase fov range.
+                if (son.GetComponentInChildren<SonFOV>() && son.GetComponentInChildren<SonFOV>().fovAngle == 360)
+                {
+                    son.GetComponentInChildren<SonFOV>().range += fovRangePlus;
+                    son.GetComponentInChildren<SonFOV>().lightView.pointLightInnerRadius += fovRangePlus;
+                    son.GetComponentInChildren<SonFOV>().lightView.pointLightOuterRadius += fovRangePlus + 1;
                 }
             }
 
+            // If the color is not reach to the last color then continue change color.
             if (colorCount != 10)
             {
                 colorIndex++;
@@ -226,10 +272,12 @@ public class EvolutionSystem : MonoBehaviour
                 colorCount++;
             }
 
+            // If the color reach to the last color then no color changes anymore.
             else if (colorCount == 10)
             {
                 colorCount = 10;
             }
         }
+        return;
     }
 }

@@ -38,14 +38,10 @@ public class MaidFOV : MonoBehaviour
 
     private void Update()
     {
-        
-
         if (!maidHit.hitPlayer)
         {
-           
             DetectPlayer();
             SetLightPosition();
-            
         }
 
         else
