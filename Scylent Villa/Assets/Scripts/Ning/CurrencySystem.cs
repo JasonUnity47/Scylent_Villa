@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class CurrencySystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int fodCount = 0;
+    public int totalCurrencyEarned = 0;
 }

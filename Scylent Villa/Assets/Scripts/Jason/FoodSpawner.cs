@@ -9,11 +9,11 @@ public class FoodSpawner : MonoBehaviour
     [SerializeField] private GameObject food;
     [SerializeField] private bool[] locker;
     [SerializeField] private GameObject foodUI;
-
+    private CurrencySystem currencySystem;
     private CurrencyUI currencyUI;
     public int maxFood;
     public int currentNumFood;
-    public int totalCurrencyEarned = 0;
+    
 
     private int lastNumber = -1;
 
@@ -23,6 +23,7 @@ public class FoodSpawner : MonoBehaviour
 
     private void Start()
     {
+        currencySystem = GetComponent<CurrencySystem>();
         currencyUI = FindObjectOfType<CurrencyUI>();
 
         currentNumFood = 0;
@@ -98,10 +99,10 @@ public class FoodSpawner : MonoBehaviour
     {
         
         // Add the earned currency to total currency
-        totalCurrencyEarned += currencyEarned;
+        currencySystem.totalCurrencyEarned += currencyEarned;
 
         // Update the UI with the new total currency amount
-        currencyUI.UpdateTotalCurrencyUI(totalCurrencyEarned);
+        currencyUI.UpdateTotalCurrencyUI(currencySystem.totalCurrencyEarned);
 
         StartCoroutine(ActivateFoodUI());
     }
