@@ -12,39 +12,55 @@ public class FieldOfView : MonoBehaviour
 
     [SerializeField] private Collider2D[] items;
 
+    public float checkTime;
+    private float timeBtwEachCheck;
+
+    private void Start()
+    {
+        timeBtwEachCheck = checkTime;
+    }
+
     private void Update()
     {
-        items = Physics2D.OverlapCircleAll(transform.position, radius, whatIsItem);
-        
-        if (items.Length != 0)
+        if (timeBtwEachCheck <= 0)
         {
-            foreach (Collider2D i in items)
+            items = Physics2D.OverlapCircleAll(transform.position, radius, whatIsItem);
+
+            if (items.Length != 0)
             {
-                Vector2 direction = i.transform.position - transform.position;
-                float angle = Vector3.Angle(direction, transform.up);
-
-                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, range, whatIsItem);
-
-                if (hits.Length != 0)
+                foreach (Collider2D i in items)
                 {
-                    foreach (RaycastHit2D hit in hits)
-                    {
-                        if (angle < fovAngle / 2)
-                        {
-                            if (hit.collider.CompareTag("Item"))
-                            {
-                                Highlight(hit);
-                                Debug.DrawRay(transform.position, direction, Color.red);
-                            }
-                        }
+                    Vector2 direction = i.transform.position - transform.position;
+                    float angle = Vector3.Angle(direction, transform.up);
 
-                        else
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, range, whatIsItem);
+
+                    if (hits.Length != 0)
+                    {
+                        foreach (RaycastHit2D hit in hits)
                         {
-                            Unhighlight(hit);
+                            if (angle < fovAngle / 2)
+                            {
+                                if (hit.collider.CompareTag("Item"))
+                                {
+                                    Highlight(hit);
+                                    Debug.DrawRay(transform.position, direction, Color.red);
+                                }
+                            }
+
+                            else
+                            {
+                                Unhighlight(hit);
+                            }
                         }
                     }
                 }
             }
+        }
+
+        else
+        {
+            timeBtwEachCheck -= Time.deltaTime;
         }
     }
 
@@ -54,6 +70,11 @@ public class FieldOfView : MonoBehaviour
         {
             obj.transform.GetChild(0).gameObject.SetActive(true);
         }
+
+        if (obj.transform.childCount > 1 && obj.transform.Find("Increase Arrow"))
+        {
+            obj.transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
+        }
     }
 
     void Unhighlight(RaycastHit2D obj)
@@ -61,6 +82,11 @@ public class FieldOfView : MonoBehaviour
         if (obj.transform.childCount != 0 && obj.transform.Find("Outline") == true)
         {
             obj.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        if (obj.transform.childCount > 1 && obj.transform.Find("Increase Arrow"))
+        {
+            obj.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
         }
     }
 

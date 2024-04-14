@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 2139272967500120140}
   - component: {fileID: 3796364963846228705}
   - component: {fileID: 407999554632228163}
+  - component: {fileID: 2407495117866452629}
   m_Layer: 6
   m_Name: Mushroom
   m_TagString: Item
@@ -117,7 +118,7 @@ Transform:
   m_Children:
   - {fileID: 3360034447641198211}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2139272967500120140
 SpriteRenderer:
@@ -230,3 +231,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationDuration: 1.2
   animationHeight: 0.15
+--- !u!114 &2407495117866452629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8198549471156793836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c039b8acbfdf546bb62a59a795d900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unhighlightObject: {fileID: 5732692365976622340}

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8451393762242927693}
   - component: {fileID: 3834259864670543383}
   - component: {fileID: 8748032965316298768}
+  - component: {fileID: 5268479858279420338}
   m_Layer: 6
   m_Name: Food Can
   m_TagString: Item
@@ -118,7 +119,7 @@ Transform:
   m_Children:
   - {fileID: 8792171409501087058}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6257045117476083598
 SpriteRenderer:
@@ -233,6 +234,7 @@ MonoBehaviour:
   maxCurrencyAmount: 8
   animationDuration: 1.2
   animationHeight: 0.2
+  doubleCurrencyDuration: 15
 --- !u!50 &8748032965316298768
 Rigidbody2D:
   serializedVersion: 4
@@ -260,3 +262,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5268479858279420338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110249205905156566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c039b8acbfdf546bb62a59a795d900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unhighlightObject: {fileID: 5825925391543816315}
