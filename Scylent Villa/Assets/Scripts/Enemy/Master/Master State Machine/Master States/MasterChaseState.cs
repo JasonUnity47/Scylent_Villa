@@ -15,7 +15,10 @@ public class MasterChaseState : MasterState
     {
         base.Enter();
 
-        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
     }
 
     public override void Exit()

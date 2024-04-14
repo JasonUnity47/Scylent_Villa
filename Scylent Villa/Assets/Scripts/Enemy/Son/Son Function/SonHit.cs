@@ -24,9 +24,6 @@ public class SonHit : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHealth>().isDead = true;
 
             hitPlayer = true;
-
-            // Enemy should stop searching if player is dead.
-            aIPath.canSearch = false;
         }
     }
 }

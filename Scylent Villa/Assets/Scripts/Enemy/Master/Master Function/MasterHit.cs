@@ -24,12 +24,6 @@ public class MasterHit : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHealth>().isDead = true;
 
             hitPlayer = true;
-
-            // Enemy should stop searching if player is dead.
-            aIPath.canMove = false;
-            aIPath.canSearch = false;
-            aIPath.maxSpeed = 0;
-            aIPath.maxAcceleration = 0;
         }
     }
 }

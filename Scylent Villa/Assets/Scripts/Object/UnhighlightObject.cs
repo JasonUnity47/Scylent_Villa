@@ -10,7 +10,7 @@ public class UnhighlightObject : MonoBehaviour
 
     private void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>() != null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         }
