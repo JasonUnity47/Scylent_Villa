@@ -70,3 +70,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Scylent Villa/Assets/Fungus/Integrations/Playmaker/Fungus-PlayMaker.unitypackage.meta
+Scylent Villa/Assets/Fungus/Integrations/Spine/Fungus-Spine.unitypackage.meta
