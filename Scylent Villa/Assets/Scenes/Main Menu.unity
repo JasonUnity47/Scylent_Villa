@@ -359,7 +359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 63577896}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: ShowCredit
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1062292141}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &63577896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,7 +492,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 86532996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &86532996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,7 +913,7 @@ RectTransform:
   - {fileID: 1062292142}
   - {fileID: 29996161}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1463,7 +1487,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 292175818}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: ShowTutorial
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1311790153}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &292175818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,7 +1629,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &325236949
 MonoBehaviour:
@@ -2153,7 +2189,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 566156368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: BackStep
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 733606285}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &566156368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2274,7 +2322,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 567260384}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: ShowSettings
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 733606285}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &567260384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,7 +2934,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 853589779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: StartTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &853589779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3467,7 +3539,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244061848
 GameObject:
@@ -3724,7 +3796,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1274335895}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: BackStep
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1311790153}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1274335895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3956,6 +4040,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0050964355, y: 0.39189148}
   m_SizeDelta: {x: -49.877, y: -85.704}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1584769850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584769851}
+  - component: {fileID: 1584769852}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Game Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584769851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584769850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584769852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584769850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1301a8b457de74092461bf38fd989a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1603318999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4701,7 +4829,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1908894619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: BackStep
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1062292141}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1908894619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4822,7 +4962,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1943027728}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1943027728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4943,7 +5095,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1949022068}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: BackStep
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 29996160}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1949022068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5192,7 +5356,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2080658813}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769852}
+        m_TargetAssemblyTypeName: InputButton, Assembly-CSharp
+        m_MethodName: ShowQuit
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 29996160}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2080658813
 MonoBehaviour:
   m_ObjectHideFlags: 0
