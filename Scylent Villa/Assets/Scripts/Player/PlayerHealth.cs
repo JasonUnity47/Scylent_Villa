@@ -15,12 +15,14 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject bloodEffect;
 
     public JoystickPosition joystickPosition;
+    private CurrencySystem currencySystem;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        currencySystem = FindObjectOfType<CurrencySystem>();
     }
 
     private void Update()
@@ -67,6 +69,8 @@ public class PlayerHealth : MonoBehaviour
                 joystickPosition.joystick.SetActive(false);
                 playerMovement.enabled = false;
                 joystickPosition.enabled = false;
+
+                currencySystem.ConvertFoodToFOD();
             }
         }
     }

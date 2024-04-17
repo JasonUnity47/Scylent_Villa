@@ -12,10 +12,11 @@ public class AbilityManager : MonoBehaviour
     public GameObject mushroomButton;
     public GameObject bucketButton;
     private Button bucketButtonComponent;
+    private Button mushroomButtonComponent;
 
     private PlayerStealth playerStealth;
     private StunAbility stunAbility;
-
+    private PlayerHealth playerHealth;
     
     private bool isPlayerInStealth = false;
     public float stunDuration = 3f; 
@@ -26,9 +27,12 @@ public class AbilityManager : MonoBehaviour
         playerStealth = FindObjectOfType<PlayerStealth>();
         stunAbility = FindObjectOfType<StunAbility>();
         abilitySpawner = FindObjectOfType<AbilitySpawner>();
-        
+        playerHealth = FindObjectOfType<PlayerHealth>();
+
+        mushroomButtonComponent = mushroomButton.GetComponent<Button>();
         bucketButtonComponent = bucketButton.GetComponent<Button>();
-        
+
+        mushroomButtonComponent.interactable = true;
         bucketButtonComponent.interactable = false;
         mushroomButton.SetActive(false);
         bucketButton.SetActive(false);
@@ -37,6 +41,11 @@ public class AbilityManager : MonoBehaviour
     private void Update()
     {
         UpdateBucketButtonInteractability();
+        if (playerHealth.isDead)
+        {
+            bucketButtonComponent.interactable = false;
+            mushroomButtonComponent.interactable = false;
+        }
     }
 
     private void UpdateBucketButtonInteractability()
