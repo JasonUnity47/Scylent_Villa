@@ -10,9 +10,11 @@ public class DoubleCurrencyBuff : MonoBehaviour
     private bool isAnimating = true;
     private int spawnPointIndex; // New variable to store spawn point index
     private BuffUI buffUI;
+    private Food food;
 
     private void Awake()
     {
+        food = FindObjectOfType<Food>();
         buffUI = FindObjectOfType<BuffUI>();
         buffSpawner = FindObjectOfType<BuffSpawner>();
         StartCoroutine(Animate());
@@ -33,7 +35,7 @@ public class DoubleCurrencyBuff : MonoBehaviour
             {
                 food.ActivateDoubleCurrency();
             }
-            buffUI.ShowDoubleCurrencyBuffUI(15f);
+            buffUI.ShowDoubleCurrencyBuffUI(food.doubleCurrencyDuration);
             isAnimating = false;
             buffSpawner.DecrementBuffCount();
             buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point

@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float offset;
     [SerializeField] private float increaseAmount = 1f; // Adjust this value as needed
     [SerializeField] private float multiplier = 2f;
-    [SerializeField] private float accelerationDuration = 15f;
-    [SerializeField] private float FOVDuration = 10f;
+    public float accelerationDuration = 15f;
+    public float FOVDuration = 15f;
     private float originalFOV;
     private float currentFOV;
 

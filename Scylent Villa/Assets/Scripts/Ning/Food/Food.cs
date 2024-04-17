@@ -9,7 +9,7 @@ public class Food : MonoBehaviour
     [SerializeField] private float animationDuration = 1.2f; // Duration of the animation
     [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab
     private bool doubleCurrencyActive = false; // Flag to track if double currency is active
-    [SerializeField] private float doubleCurrencyDuration = 15f; // Duration of double currency effect
+    public float doubleCurrencyDuration = 15f; // Duration of double currency effect
 
     
     private CurrencyUI currencyUI;

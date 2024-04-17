@@ -33,7 +33,7 @@ public class IncreaseFOVBuff : MonoBehaviour
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
             playerMovement.ApplyFOVIncrease();
-            buffUI.ShowIncreaseFOVBuffUI(15f);
+            buffUI.ShowIncreaseFOVBuffUI(playerMovement.FOVDuration);
 
             isAnimating = false;
             buffSpawner.DecrementBuffCount();

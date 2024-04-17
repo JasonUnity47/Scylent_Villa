@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class BuffUI : MonoBehaviour
@@ -9,9 +10,9 @@ public class BuffUI : MonoBehaviour
     public GameObject accelerationUI;
     public GameObject increaseFOVUI;
     public GameObject doubleCurrencyUI;
-    public Text accelerationText;
-    public Text increaseFOVText;
-    public Text doubleCurrencyText;
+    public TextMeshProUGUI accelerationText;
+    public TextMeshProUGUI increaseFOVText;
+    public TextMeshProUGUI doubleCurrencyText;
 
     private Coroutine accelerationBuffCoroutine;
     private Coroutine increaseFOVBuffCoroutine;

@@ -33,7 +33,7 @@ public class AccelerationBuff : MonoBehaviour
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
             playerMovement.ApplyAcceleration();
-            buffUI.ShowAccelerationBuffUI(15f);
+            buffUI.ShowAccelerationBuffUI(playerMovement.accelerationDuration);
 
             isAnimating = false;
             buffSpawner.DecrementBuffCount();
