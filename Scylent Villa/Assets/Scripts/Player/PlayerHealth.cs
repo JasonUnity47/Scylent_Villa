@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PlayerHealth : MonoBehaviour
 
     public JoystickPosition joystickPosition;
     private CurrencySystem currencySystem;
+
+    // Define respawn point as a Transform
+    [SerializeField] private Transform respawnPoint;
 
     private void Start()
     {
@@ -70,8 +74,47 @@ public class PlayerHealth : MonoBehaviour
                 playerMovement.enabled = false;
                 joystickPosition.enabled = false;
 
-                currencySystem.ConvertFoodToFOD();
+                // Get the current active scene name
+                string currentSceneName = SceneManager.GetActiveScene().name;
+
+                // Check if the player is not in the tutorial game scene
+                if (currentSceneName != "Tutorial Level")
+                {
+                    // Call ConvertFoodToFOD function
+                    currencySystem.ConvertFoodToFOD();
+                }
+
+                // If the player is in the tutorial level, respawn the player
+                if (currentSceneName == "Tutorial Level")
+                {
+                    RespawnPlayer();
+                }
             }
         }
+    }
+
+    // Function to respawn the player at the respawn point
+    private void RespawnPlayer()
+    {
+        // Reset once flag
+        once = false;
+        // Reset death flag
+        isDead = false;
+
+        // Reset player's position to the respawn point
+        transform.position = respawnPoint.position;
+
+        // Reset necessary components (e.g., health, animations, etc.)
+        // Reset animations
+        anim.SetBool("DeadFront", false);
+        anim.SetBool("DeadBack", false);
+        anim.SetBool("DeadLeft", false);
+        anim.SetBool("DeadRight", false);
+
+        // Reactivate player controls
+        joystickPosition.joystick.SetActive(true);
+        playerMovement.enabled = true;
+        joystickPosition.enabled = true;
+
     }
 }
