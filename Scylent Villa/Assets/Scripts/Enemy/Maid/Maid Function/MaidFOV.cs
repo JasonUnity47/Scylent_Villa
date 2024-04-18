@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class MaidFOV : MonoBehaviour
 {
@@ -38,18 +39,45 @@ public class MaidFOV : MonoBehaviour
 
     private void Update()
     {
-        if (!maidHit.hitPlayer)
-        {
-            DetectPlayer();
-            SetLightPosition();
-            LightChange();
-            ShowDetection();
-        }
+        // Get the current active scene name
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
+        // Check if the enemy is not in the tutorial game scene
+        if (currentSceneName != "Tutorial Level")
+        {
+            if (!maidHit.hitPlayer)
+            {
+                DetectPlayer();
+                SetLightPosition();
+                LightChange();
+                ShowDetection();
+            }
+
+            else
+            {
+                isDetected = false;
+            }
+        }
         else
         {
-            isDetected = false;
+            if (!maidHit.hitPlayer)
+            {
+                DetectPlayer();
+                SetLightPosition();
+                LightChange();
+                ShowDetection();
+            }
+
+            else
+            {
+                isDetected = false;
+                DetectPlayer();
+                SetLightPosition();
+                LightChange();
+                ShowDetection();
+            }
         }
+
     }
 
     // Detect whether player is in the field of view

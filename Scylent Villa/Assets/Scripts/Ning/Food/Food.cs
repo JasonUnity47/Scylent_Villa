@@ -8,8 +8,7 @@ public class Food : MonoBehaviour
     [SerializeField] private int maxCurrencyAmount;
     [SerializeField] private float animationDuration = 1.2f; // Duration of the animation
     [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab
-    private bool doubleCurrencyActive = false; // Flag to track if double currency is active
-    public float doubleCurrencyDuration = 15f; // Duration of double currency effect
+    
 
     
     private CurrencyUI currencyUI;
@@ -45,7 +44,7 @@ public class Food : MonoBehaviour
             int currencyEarned = Random.Range(minCurrencyAmount, maxCurrencyAmount + 1);
 
             // If double currency is active, double the currency earned
-            if (doubleCurrencyActive)
+            if (foodSpawner.doubleCurrencyActive)
             {
                 currencyEarned *= 2;
             }
@@ -98,17 +97,5 @@ public class Food : MonoBehaviour
         }
     }
 
-    // Method to activate double currency for a certain duration
-    public void ActivateDoubleCurrency()
-    {
-        StartCoroutine(DoubleCurrencyTimer());
-    }
-
-    // Coroutine to deactivate double currency after a certain duration
-    private IEnumerator DoubleCurrencyTimer()
-    {
-        doubleCurrencyActive = true;
-        yield return new WaitForSeconds(doubleCurrencyDuration);
-        doubleCurrencyActive = false;
-    }
+    
 }

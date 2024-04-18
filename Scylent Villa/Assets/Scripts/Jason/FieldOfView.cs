@@ -41,7 +41,7 @@ public class FieldOfView : MonoBehaviour
                         {
                             if (angle < fovAngle / 2)
                             {
-                                if (hit.collider.CompareTag("Item"))
+                                if (hit.collider.CompareTag("Item") || hit.collider.CompareTag("AccelerationBuff") || hit.collider.CompareTag("DoubleCurrencyBuff") || hit.collider.CompareTag("IncreaseFOVBuff"))
                                 {
                                     Highlight(hit);
                                     Debug.DrawRay(transform.position, direction, Color.red);

@@ -104,6 +104,7 @@ public class PlayerHealth : MonoBehaviour
         // Reset death flag
         isDead = false;
 
+        FOV.SetActive(true);
         // Reset player's position to the respawn point
         transform.position = respawnPoint.position;
 
@@ -114,10 +115,14 @@ public class PlayerHealth : MonoBehaviour
         anim.SetBool("DeadLeft", false);
         anim.SetBool("DeadRight", false);
 
+        tag = "Player";
+        Physics2D.IgnoreLayerCollision(8, 7, false);
+
         // Reactivate player controls
         joystickPosition.joystick.SetActive(true);
         playerMovement.enabled = true;
         joystickPosition.enabled = true;
 
+        
     }
 }

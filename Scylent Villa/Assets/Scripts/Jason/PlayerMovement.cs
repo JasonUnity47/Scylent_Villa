@@ -13,11 +13,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float offset;
     [SerializeField] private float increaseAmount = 1f; // Adjust this value as needed
+    [SerializeField] private float increaseAngleAmount = 1f; // Adjust this value as needed
     [SerializeField] private float multiplier = 2f;
     public float accelerationDuration = 15f;
     public float FOVDuration = 15f;
     private float originalFOV;
+    private float originalInnerAngle;
+    private float originalOuterAngle;
     private float currentFOV;
+    private float currentInnerAngle;
+    private float currentOuterAngle;
 
     private Vector2 movement;
 
@@ -49,7 +54,11 @@ public class PlayerMovement : MonoBehaviour
         if (playerLight != null)
         {
             originalFOV = playerLight.pointLightOuterRadius;
+            originalInnerAngle = playerLight.pointLightInnerAngle;
+            originalOuterAngle = playerLight.pointLightOuterAngle;
             currentFOV = originalFOV;
+            currentInnerAngle = originalInnerAngle;
+            currentOuterAngle = originalOuterAngle;
         }
 
         // Store default move speed
@@ -179,13 +188,23 @@ public class PlayerMovement : MonoBehaviour
     // Apply FOV increase buff
     public void ApplyFOVIncrease()
     {
-        currentFOV += increaseAmount;
+        if (currentFOV == originalFOV && currentInnerAngle == originalInnerAngle && currentOuterAngle == originalOuterAngle)
+        {
+            currentFOV += increaseAmount;
+            currentInnerAngle += increaseAngleAmount;
+            currentOuterAngle += increaseAngleAmount;
+        }
 
         // Update FOV
         UnityEngine.Rendering.Universal.Light2D playerLight = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
         if (playerLight != null)
         {
             playerLight.pointLightOuterRadius = currentFOV;
+            // Increase the outer spot angle
+            playerLight.pointLightOuterAngle = currentOuterAngle;
+
+            // Increase the inner spot angle (optional)
+            playerLight.pointLightInnerAngle = currentInnerAngle;
         }
 
         // Start coroutine to revert changes after duration
@@ -193,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StopCoroutine(buffDurationCoroutine);
         }
-        buffDurationCoroutine = StartCoroutine(RevertFOVAfterDuration(increaseAmount));
+        buffDurationCoroutine = StartCoroutine(RevertFOVAfterDuration(increaseAmount, increaseAngleAmount, increaseAngleAmount));
     }
 
     // Coroutine to revert acceleration changes after specified duration
@@ -206,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Coroutine to revert FOV changes after specified duration
-    private IEnumerator RevertFOVAfterDuration(float increaseAmount)
+    private IEnumerator RevertFOVAfterDuration(float increaseAmount, float increaseInnerAngle, float increaseOuterAngle)
     {
         yield return new WaitForSeconds(FOVDuration); // Wait for 15 seconds
 
@@ -216,6 +235,11 @@ public class PlayerMovement : MonoBehaviour
         {
             currentFOV -= increaseAmount;
             playerLight.pointLightOuterRadius = currentFOV;
+            currentInnerAngle -= increaseAngleAmount;
+            playerLight.pointLightInnerAngle = currentInnerAngle;
+            currentOuterAngle -= increaseAngleAmount;
+            playerLight.pointLightOuterAngle = currentOuterAngle;
+
         }
     }
 }

@@ -120,7 +120,7 @@ public class BuffSpawner : MonoBehaviour
 
     public void DecrementBuffCount()
     {
-        currentNumBuff--; // Decrement currentNumFood when a food is destroyed
+        currentNumBuff--; // Decrement currentNumFood when a buff is destroyed
 
     }
 

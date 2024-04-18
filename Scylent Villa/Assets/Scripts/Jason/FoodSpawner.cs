@@ -13,7 +13,8 @@ public class FoodSpawner : MonoBehaviour
     private CurrencyUI currencyUI;
     public int maxFood;
     public int currentNumFood;
-    
+    public bool doubleCurrencyActive = false; // Flag to track if double currency is active
+    public float doubleCurrencyDuration = 15f; // Duration of double currency effect
 
     private int lastNumber = -1;
 
@@ -117,5 +118,19 @@ public class FoodSpawner : MonoBehaviour
 
        
         foodUI.SetActive(false);
+    }
+
+    // Method to activate double currency for a certain duration
+    public void ActivateDoubleCurrency()
+    {
+        StartCoroutine(DoubleCurrencyTimer());
+    }
+
+    // Coroutine to deactivate double currency after a certain duration
+    private IEnumerator DoubleCurrencyTimer()
+    {
+        doubleCurrencyActive = true;
+        yield return new WaitForSeconds(doubleCurrencyDuration);
+        doubleCurrencyActive = false;
     }
 }
