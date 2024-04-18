@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private PlayerMovement playerMovement;
     [SerializeField] private GameObject FOV;
     [SerializeField] private GameObject bloodEffect;
+    [SerializeField] private GameObject result;
 
     public JoystickPosition joystickPosition;
     private CurrencySystem currencySystem;
@@ -74,6 +75,7 @@ public class PlayerHealth : MonoBehaviour
                 playerMovement.enabled = false;
                 joystickPosition.enabled = false;
 
+
                 // Get the current active scene name
                 string currentSceneName = SceneManager.GetActiveScene().name;
 
@@ -82,6 +84,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     // Call ConvertFoodToFOD function
                     currencySystem.ConvertFoodToFOD();
+                    result.SetActive(true);
                 }
 
                 // If the player is in the tutorial level, respawn the player

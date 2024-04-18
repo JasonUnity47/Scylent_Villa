@@ -5631,6 +5631,7 @@ MonoBehaviour:
   isDead: 0
   FOV: {fileID: 600914873}
   bloodEffect: {fileID: 6400329083345891037, guid: 6bd4573fd3f810e40bbb11f299588a40, type: 3}
+  result: {fileID: 0}
   joystickPosition: {fileID: 0}
   respawnPoint: {fileID: 0}
 --- !u!114 &675553505
@@ -16928,7 +16929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27fe75214a53f34ebb820306094092a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 0}
+  volumeSlider: {fileID: 1096262152}
 --- !u!114 &1752415313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16986,8 +16987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480cc8758b1bd5049b80cb5112bfc0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyText: {fileID: 0}
-  fodText: {fileID: 0}
+  currencyText: {fileID: 1286004977}
+  fodText: {fileID: 1339577888}
   resultFood: {fileID: 0}
   resultFOD: {fileID: 0}
   convertFood: {fileID: 0}
@@ -17038,30 +17039,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1257147547}
+  - {fileID: 1649925754}
   food: {fileID: 9110249205905156566, guid: ee59b77d0933b794582397cf089eb42d, type: 3}
   locker: 
   foodUI: {fileID: 1103308739}
-  maxFood: 8
+  maxFood: 2
   currentNumFood: 0
   startTime: 3.5
 --- !u!114 &1752415319
@@ -17097,8 +17080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6b2dfad95afc247b4fc5abc47c7240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mushroomButton: {fileID: 0}
-  bucketButton: {fileID: 0}
+  mushroomButton: {fileID: 1488221001}
+  bucketButton: {fileID: 401879005}
   stunDuration: 10
   stealthDuration: 15
 --- !u!114 &1752415322
