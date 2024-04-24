@@ -11,6 +11,7 @@ public class FODSave : MonoBehaviour
 
     private float fodSave;
     private Coroutine countdownCoroutine;
+    [SerializeField] private float defaultTime;
     [SerializeField] private float remainingTime; // Remaining time for the countdown in seconds
 
     private void Start()
@@ -38,7 +39,7 @@ public class FODSave : MonoBehaviour
         }
         else
         {
-            remainingTime = 3600f; // Default to 60 minutes if no data is found
+            remainingTime = defaultTime; // Default to 60 minutes if no data is found
         }
 
         // Calculate time elapsed since the app was last closed
@@ -66,7 +67,7 @@ public class FODSave : MonoBehaviour
         SaveSystem.SaveFodSave(fodSave); // Save updated FOD save value
 
         // Reset remaining time and check if another timer should start
-        remainingTime = 3600f; // Reset to 60 minutes
+        remainingTime = defaultTime; // Reset to default
         CheckAndStartTimer();
     }
 
