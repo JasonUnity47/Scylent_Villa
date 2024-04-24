@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
+    private void Start()
+    {
+        //DeleteFodSave();
+    }
     // Function to save fodSave
     public static void SaveFodSave(float fodSave)
     {
@@ -15,6 +19,16 @@ public class SaveSystem : MonoBehaviour
     public static float LoadFodSave()
     {
         return PlayerPrefs.GetFloat("FodSave", 0.00f);
+    }
+
+    // Function to delete fodSave from PlayerPrefs
+    public static void DeleteFodSave()
+    {
+        // Delete the "FodSave" key and its associated value from PlayerPrefs
+        PlayerPrefs.DeleteKey("FodSave");
+
+        // Save the changes to PlayerPrefs
+        PlayerPrefs.Save();
     }
 
     // Function to save the volume setting
