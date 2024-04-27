@@ -12,6 +12,7 @@ TagManager:
   - AccelerationBuff
   - Enemy
   - Game Manager
+  - Stranger
   layers:
   - Default
   - TransparentFX
