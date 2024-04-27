@@ -8,20 +8,32 @@ public class TriggerText : MonoBehaviour
     public Flowchart flowChart;
     public PlayableDirector timeLine;
 
-    public string[] blockName;
+    public string objectName;
+    public string blockName;
     public string variableName;
 
     private void Update()
     {
-        if (flowChart.GetBooleanVariable(variableName))
+        if (objectName == "TextTrigger1")
         {
-            timeLine.Resume();
+            if (flowChart.GetBooleanVariable(variableName))
+            {
+                timeLine.Resume();
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        flowChart.ExecuteBlock(blockName[0]);
-        timeLine.Pause();
+        if (objectName == "TextTrigger1")
+        {
+            flowChart.ExecuteBlock(blockName);
+            timeLine.Pause();
+        }
+
+        else if (objectName == "TextTrigger2")
+        {
+            flowChart.ExecuteBlock(blockName);
+        }
     }
 }
