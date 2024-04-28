@@ -1,4 +1,5 @@
 using Fungus;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -28,12 +29,23 @@ public class TriggerText : MonoBehaviour
         if (objectName == "TextTrigger1")
         {
             flowChart.ExecuteBlock(blockName);
-            timeLine.Pause();
+            StartCoroutine(WaitTime());
         }
 
         else if (objectName == "TextTrigger2")
         {
             flowChart.ExecuteBlock(blockName);
         }
+
+        else if (objectName == "TextTrigger3")
+        {
+            flowChart.ExecuteBlock(blockName);
+        }
+    }
+
+    IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(0.5f);
+        timeLine.Pause();
     }
 }
