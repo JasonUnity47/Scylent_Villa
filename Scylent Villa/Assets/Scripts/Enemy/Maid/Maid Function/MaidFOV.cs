@@ -102,7 +102,7 @@ public class MaidFOV : MonoBehaviour
             if (playerObject.collider != null && playerObject.collider.CompareTag("Player") && !abilityManager.IsPlayerInStealth())
             {
                 Debug.DrawRay(transform.position, directionToPlayer, Color.green); // Visualize the raycast
-                isDetected = true;.
+                isDetected = true;
             }
 
             else
