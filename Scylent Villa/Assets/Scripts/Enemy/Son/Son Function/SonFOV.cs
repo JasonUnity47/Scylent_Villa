@@ -16,6 +16,7 @@ public class SonFOV : MonoBehaviour
     private GameObject detectionObject;
     private bool once = false;
     public bool isDetected = false;
+    private bool isVibrated = false;
 
     // Transfrom
     private Transform playerPos;
@@ -103,11 +104,18 @@ public class SonFOV : MonoBehaviour
             {
                 Debug.DrawRay(transform.position, directionToPlayer, Color.green); // Visualize the raycast.
                 isDetected = true;
+
+                if (!isVibrated)
+                {
+                    isVibrated = true;
+                    Handheld.Vibrate();
+                }
             }
 
             else
             {
                 isDetected = false;
+                isVibrated = false;
             }
         }
 

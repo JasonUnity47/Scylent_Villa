@@ -16,6 +16,7 @@ public class MasterFOV : MonoBehaviour
     private GameObject detectionObject;
     public bool isDetected = false;
     private bool once = false;
+    private bool isVibrated = false;
 
     // Transfrom
     private Transform playerPos;
@@ -103,11 +104,18 @@ public class MasterFOV : MonoBehaviour
             {
                 Debug.DrawRay(transform.position, directionToPlayer, Color.green); // Visualize the raycast.
                 isDetected = true;
+
+                if (!isVibrated)
+                {
+                    isVibrated = true;
+                    Handheld.Vibrate();
+                }
             }
 
             else
             {
                 isDetected = false;
+                isVibrated = false;
             }
         }
 
