@@ -33,11 +33,6 @@ public class FODSave : MonoBehaviour
         // Subscribe to sceneUnloaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Update()
-    {
-        
-        
-    }
 
     private void LoadAndAdjustCountdown()
     {

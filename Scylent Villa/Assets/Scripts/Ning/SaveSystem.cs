@@ -1,13 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
-    private void Start()
-    {
-        //DeleteFodSave();
-    }
     // Function to save fodSave
     public static void SaveFodSave(float fodSave)
     {
@@ -24,10 +18,10 @@ public class SaveSystem : MonoBehaviour
     // Function to delete fodSave from PlayerPrefs
     public static void DeleteFodSave()
     {
-        // Delete the "FodSave" key and its associated value from PlayerPrefs
+        // Delete the "FodSave" key and its associated value from PlayerPrefs.
         PlayerPrefs.DeleteKey("FodSave");
 
-        // Save the changes to PlayerPrefs
+        // Save the changes to PlayerPrefs.
         PlayerPrefs.Save();
     }
 
@@ -41,6 +35,6 @@ public class SaveSystem : MonoBehaviour
     // Function to load the volume setting
     public static float LoadVolume()
     {
-        return PlayerPrefs.GetFloat("Volume", 1.0f); // Default volume is 1.0f (max volume) if not found
+        return PlayerPrefs.GetFloat("Volume", 1.0f); // Default volume is 1.0f (max volume) if not found.
     }
 }
