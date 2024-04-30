@@ -5,29 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class FODSave : MonoBehaviour
 {
+    // Declaration
+    // UI Panel
+    [Header("UI")]
     [SerializeField] private TextMeshProUGUI fodSaveText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject countdownPanel;
 
+    // Save
     private float fodSave;
+
+    // Timer
+    [Header("Timer")]
     private Coroutine countdownCoroutine;
     [SerializeField] private float defaultTime;
     [SerializeField] private float remainingTime;
-    
 
     private void Start()
     {
-        // Load the initial FOD save value
+        // Load the initial FOD save value.
         fodSave = SaveSystem.LoadFodSave();
         
-
-        // Load the remaining countdown time and calculate elapsed time since the app was last closed
+        // Load the remaining countdown time and calculate elapsed time since the game was last closed.
         LoadAndAdjustCountdown();
 
-        // Display the FOD save value in UI
+        // Display the FOD save value in UI.
         UpdateFodSaveUI();
 
-        // Check if we should start the countdown timer
+        // Check if we should start the countdown timer.
         CheckAndStartTimer();
 
         // Subscribe to sceneUnloaded event
@@ -36,26 +41,24 @@ public class FODSave : MonoBehaviour
 
     private void LoadAndAdjustCountdown()
     {
-        // Load remaining countdown time
+        // Load remaining countdown time.
         remainingTime = PlayerPrefs.GetFloat("RemainingCountdownTime");
 
-        // Calculate elapsed time since last close
+        // Calculate elapsed time since last close.
         if (PlayerPrefs.HasKey("LastCloseTime"))
         {
             long lastCloseTime = PlayerPrefs.GetInt("LastCloseTime");
             long currentTime = GetCurrentTimestamp();
             long elapsedSeconds = currentTime - lastCloseTime;
 
-            // Round elapsed seconds to avoid precision issues
+            // Round elapsed seconds to avoid precision issues.
             elapsedSeconds = (long)Mathf.Round(elapsedSeconds);
 
-            // Subtract elapsed time from remaining time
+            // Subtract elapsed time from remaining time.
             remainingTime -= elapsedSeconds;
-
-            
         }
 
-        // Handle recovery if remaining time is zero or less
+        // Handle recovery if remaining time is zero or less.
         if (remainingTime <= 0)
         {
             HandleRecovery();
@@ -66,39 +69,36 @@ public class FODSave : MonoBehaviour
     {
         Debug.Log("Inside HandleRecovery...");
 
-        // Check if FOD save is below 5
+        // Check if FOD save is below 5.
         if (fodSave < 5)
         {
-            // Increase FOD save by 1
+            // Increase FOD save by 1.
             fodSave += 1;
 
-            // Save updated FOD save value
+            // Save updated FOD save value.
             SaveSystem.SaveFodSave(fodSave);
 
-           
-            // Reset remaining time
+            // Reset remaining time.
             remainingTime = defaultTime;
 
-            
-
-            // Update UI for FOD save value and remaining time
+            // Update UI for FOD save value and remaining time.
             UpdateFodSaveUI();
         }
 
-        // Check and start the timer if needed
+        // Check and start the timer if needed.
         CheckAndStartTimer();
     }
 
     private void UpdateFodSaveUI()
     {
-        // Update FOD save text
+        // Update FOD save text.
         fodSaveText.text = fodSave.ToString("F2");
 
-        // Calculate minutes and seconds for the remaining time
+        // Calculate minutes and seconds for the remaining time.
         float minutes = Mathf.FloorToInt(remainingTime / 60);
         float seconds = remainingTime % 60;
 
-        // Update remaining time text
+        // Update remaining time text.
         UpdateTimerUI(minutes, seconds);
     }
 
@@ -110,6 +110,8 @@ public class FODSave : MonoBehaviour
         }
 
         countdownCoroutine = StartCoroutine(CountdownTimer());
+
+        // Show panel.
         countdownPanel.SetActive(true);
     }
 
@@ -121,7 +123,10 @@ public class FODSave : MonoBehaviour
             countdownCoroutine = null;
         }
 
+        // Hide panel.
         countdownPanel.SetActive(false);
+
+        // Reset timer text to null.
         timerText.text = string.Empty;
     }
 
@@ -129,24 +134,21 @@ public class FODSave : MonoBehaviour
     {
         while (remainingTime > 0)
         {
-            // Calculate minutes and seconds for remaining time
+            // Calculate minutes and seconds for remaining time.
             float minutes = Mathf.FloorToInt(remainingTime / 60);
             float seconds = remainingTime % 60;
 
-            // Update timer UI
+            // Update timer UI.
             UpdateTimerUI(minutes, seconds);
 
-           
-
-            // Decrease remaining time by time elapsed (using Time.unscaledDeltaTime to prevent pausing)
+            // Decrease remaining time by time elapsed (using Time.unscaledDeltaTime to prevent pausing).
             remainingTime -= Time.unscaledDeltaTime;
 
-            // Yield for the next frame
+            // Yield for the next frame.
             yield return null;
         }
 
-        // Countdown finished, handle recovery
-        
+        // Countdown finished, handle recovery.
         HandleRecovery();
     }
 
@@ -154,11 +156,10 @@ public class FODSave : MonoBehaviour
     {
         if (fodSave < 5 && remainingTime > 0)
         {
-            
-            
             StartCountdownTimer();
             
         }
+
         else
         {
             StopCountdownTimer();
@@ -175,7 +176,7 @@ public class FODSave : MonoBehaviour
     {
         if (!hasFocus)
         {
-            // Save remaining time and last close time when losing focus
+            // Save remaining time and last close time when losing focus.
             PlayerPrefs.SetFloat("RemainingCountdownTime", remainingTime);
             PlayerPrefs.SetInt("LastCloseTime", (int)GetCurrentTimestamp());
         }
@@ -183,21 +184,20 @@ public class FODSave : MonoBehaviour
 
     private void OnSceneLoaded(Scene loadedScene, LoadSceneMode mode)
     {
-        // Define the name of your game scene
+        // Define the name of your game scene.
         string gameSceneName = "Standard Level"; 
 
-        // Check if the loaded scene is the game scene
+        // Check if the loaded scene is the game scene.
         if (loadedScene.name == gameSceneName)
         {
-            // Save remaining time and last close time
+            // Save remaining time and last close time.
             PlayerPrefs.SetFloat("RemainingCountdownTime", remainingTime);
             PlayerPrefs.SetInt("LastCloseTime", (int)GetCurrentTimestamp());
 
-            // Unsubscribe from the event to avoid multiple saves
+            // Unsubscribe from the event to avoid multiple saves.
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
-
 
     private long GetCurrentTimestamp()
     {
