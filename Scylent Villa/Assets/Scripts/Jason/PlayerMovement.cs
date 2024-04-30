@@ -1,21 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class PlayerMovement : MonoBehaviour
 {
     // Declaration
+    // Joystick Reference
+    [Header("Joystick Reference")]
     public Joystick joystick;
 
-    [SerializeField] private float moveSpeedDefault; // Store default move speed
+    // Movement Attribute
+    [Header("Movement Attribute")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float offset;
+
+    // Buff Value
+    [Header("Buff Value")]
+
+    // Acceleration
+    [Header("Acceleration")]
+    public float accelerationDuration = 15f;
+    [SerializeField] private float moveSpeedDefault; // Store default move speed
+    [SerializeField] private float multiplier = 2f;
+
+    // Increase FOV
+    [Header("Increase FOV")]
     [SerializeField] private float increaseAmount = 1f; // Adjust this value as needed
     [SerializeField] private float increaseAngleAmount = 1f; // Adjust this value as needed
-    [SerializeField] private float multiplier = 2f;
-    public float accelerationDuration = 15f;
     public float FOVDuration = 15f;
     private float originalFOV;
     private float originalInnerAngle;
@@ -24,10 +35,13 @@ public class PlayerMovement : MonoBehaviour
     private float currentInnerAngle;
     private float currentOuterAngle;
 
+    // Variable
+    [Header("Variable")]
     private Vector2 movement;
-
     public Vector2 direction;
 
+    // Facing Direction
+    [Header("Facing Direction")]
     public bool front = false;
     public bool back = false;
     public bool left = false;
@@ -35,17 +49,19 @@ public class PlayerMovement : MonoBehaviour
 
     public bool move = false;
 
+    // Component Reference
     private Rigidbody2D rb;
-
     private Animator anim;
 
     private Coroutine buffDurationCoroutine; // Coroutine reference for duration of buff
 
     private void Start()
     {
+        // Get reference.
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+        // The player will facing front at the beginning of the game.
         front = true;
         anim.SetBool("FrontBool", front);
 
@@ -67,15 +83,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // Get touch position.
         movement.x = joystick.Horizontal;
         movement.y = joystick.Vertical;
 
+        // If no joystick exists then no movement.
         if (joystick.gameObject.activeSelf == false)
         {
             movement.x = 0;
             movement.y = 0;
         }
 
+        // If movement value is not 0 which means the player is moving.
         if (movement.sqrMagnitude != 0)
         {
             move = true;
@@ -88,12 +107,12 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("MoveBool", move);
         }
 
+        // Set movement animations.
         anim.SetFloat("Horizontal", movement.x);
         anim.SetFloat("Vertical", movement.y);
         anim.SetFloat("Speed", movement.sqrMagnitude); // Using sqrMagnitude for better performance.
 
-        //Debug.Log(movement.x + "" + movement.y);
-
+        // Face front.
         if (movement.y < -offset && !front)
         {
             front = true;
@@ -101,8 +120,6 @@ public class PlayerMovement : MonoBehaviour
             left = false;
             right = false;
 
-            //Debug.Log(1);
-
             anim.SetBool("BackBool", back);
             anim.SetBool("RightBool", right);
             anim.SetBool("LeftBool", left);
@@ -110,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("FrontBool", front);
         }
 
+        // Face back.
         if (movement.y > offset && !back)
         {
             back = true;
@@ -117,8 +135,6 @@ public class PlayerMovement : MonoBehaviour
             left = false;
             right = false;
 
-            //Debug.Log(2);
-
             anim.SetBool("FrontBool", front);
             anim.SetBool("RightBool", right);
             anim.SetBool("LeftBool", left);
@@ -126,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("BackBool", back);
         }
 
+        // Face left.
         if (movement.x < -offset && !left)
         {
             left = true;
@@ -133,8 +150,6 @@ public class PlayerMovement : MonoBehaviour
             back = false;
             right = false;
 
-            //Debug.Log(3);
-
             anim.SetBool("FrontBool", front);
             anim.SetBool("BackBool", back);
             anim.SetBool("RightBool", right);
@@ -142,14 +157,13 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("LeftBool", left);
         }
 
+        // Face right.
         if (movement.x > offset && !right)
         {
             right = true;
             left = false;
             front = false;
             back = false;
-
-            //Debug.Log(4);
 
             anim.SetBool("FrontBool", front);
             anim.SetBool("BackBool", back);
@@ -158,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("RightBool", right);
         }
         
+        // Get facing direction.
         if (movement != Vector2.zero)
         {
             direction = ((movement + (Vector2)transform.position) - (Vector2)transform.position) * -1;
@@ -166,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Move.
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -239,7 +255,6 @@ public class PlayerMovement : MonoBehaviour
             playerLight.pointLightInnerAngle = currentInnerAngle;
             currentOuterAngle -= increaseAngleAmount;
             playerLight.pointLightOuterAngle = currentOuterAngle;
-
         }
     }
 }
