@@ -46,6 +46,7 @@ public class EvolutionSystem : MonoBehaviour
 
     private void Awake()
     {
+        // Set the evolution colors at the beginning stage of the game.
         colors = new Color[] { pink, orange, red, purple, white };
     }
 
@@ -78,6 +79,7 @@ public class EvolutionSystem : MonoBehaviour
 
     void TimeGone()
     {
+        // The time in the game will keep increasing over time.
         timeBtwEvolution += Time.deltaTime;
     }
 

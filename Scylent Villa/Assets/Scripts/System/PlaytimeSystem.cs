@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlaytimeSystem : MonoBehaviour
 {
+    // Declaration
+    // Variable
     private float fodAmount;
+
+    // Script Reference
     private InputButton inputButton;
 
     private void Start()
     {
+        // Get reference.
         inputButton = GetComponent<InputButton>();
     }
 
@@ -27,6 +32,7 @@ public class PlaytimeSystem : MonoBehaviour
             {
                 errorPanel.SetActive(true);
             }
+
             return;
         }
 
@@ -34,7 +40,9 @@ public class PlaytimeSystem : MonoBehaviour
         else if (fodAmount >= 1)
         {
             fodAmount--;
+
             SaveSystem.SaveFodSave(fodAmount);
+
             inputButton.StartGame();
         }
     }
