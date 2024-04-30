@@ -1,19 +1,18 @@
-using Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MaidHit : MonoBehaviour
 {
     // Declaration
-    private AIPath aIPath;
+    // Script Reference
     private MaidFOV maidFOV;
 
+    // Hit
+    [Header("Hit")]
     public bool hitPlayer = false;
 
     private void Start()
     {
-        aIPath = GetComponent<AIPath>();
+        // Get reference.
         maidFOV = GetComponentInChildren<MaidFOV>();
     }
 

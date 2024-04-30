@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SonChaseState : SonState
@@ -27,19 +25,19 @@ public class SonChaseState : SonState
     {
         base.LogicalUpdate();
 
-        // IF detect player THEN chase player.
+        // If detect player then chase player.
         if (son.sonFOV.isDetected)
         {
             son.aIPath.destination = playerPos.position;
         }
 
-        // CHECK whether the enemy is moving.
+        // Check whether the enemy is moving.
         son.CheckMovement();
 
-        // PERFORM animation.
+        // Perform animation.
         son.AnimationChange();
 
-        // IF not detect THEN change to IDLE STATE.
+        // If not detect then change to IDLE STATE.
         if (!son.sonFOV.isDetected)
         {
             stateMachine.ChangeState(son.IdleState);

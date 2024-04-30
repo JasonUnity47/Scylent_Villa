@@ -28,16 +28,20 @@ public class EnemyPatrol : MonoBehaviour
         aIPath = GetComponent<AIPath>();
         timeBtwWaitTime = startWaitTime; // Set the intial time for timer.
 
+        // Random spot.
         randomIndex = Random.Range(0, moveSpots.Length);
         lastIndex = -1;
     }
 
     public void Patrol()
     {
+        // Check whether a movespot is exist in the scene.
         if (moveSpots.Length != 0)
         {
+            // Move to the position.
             aIPath.destination = moveSpots[randomIndex].position;
 
+            // If the position is reached then wait for some time and move to the next position.
             if (Vector2.Distance(transform.position, moveSpots[randomIndex].position) < 0.2f)
             {
                 if (timeBtwWaitTime <= 0)

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MaidPatrolState : MaidState
@@ -22,17 +20,17 @@ public class MaidPatrolState : MaidState
     {
         base.LogicalUpdate();
 
-        // PERFORM partrol movement.
+        // Perform partrol movement.
         maid.enemyPatrol.Patrol();
 
-        // CHECK whether the enemy is moving.
+        // Check whether the enemy is moving.
         maid.CheckMovement();
 
-        // PERFORM animation.
+        // Perform animation.
         maid.AnimationChange();
 
-        // CHECK whether player is within the field of view of the enemy.
-        // IF detect THEN change to IDLE STATE.
+        // Check whether player is within the field of view of the enemy.
+        // If detect then change to IDLE STATE.
         if (maid.maidFOV.isDetected)
         {
             stateMachine.ChangeState(maid.IdleState);

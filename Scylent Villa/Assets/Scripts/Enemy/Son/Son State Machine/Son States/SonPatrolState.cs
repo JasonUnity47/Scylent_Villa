@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SonPatrolState : SonState
@@ -22,17 +20,17 @@ public class SonPatrolState : SonState
     {
         base.LogicalUpdate();
 
-        // PERFORM partrol movement.
+        // Perform partrol movement.
         son.enemyPatrol.Patrol();
 
-        // CHECK whether the enemy is moving.
+        // Check whether the enemy is moving.
         son.CheckMovement();
 
-        // PERFORM animation.
+        // Perform animation.
         son.AnimationChange();
 
-        // CHECK whether player is within the field of view of the enemy.
-        // IF detect THEN change to IDLE STATE.
+        // Check whether player is within the field of view of the enemy.
+        // If detect then change to IDLE STATE.
         if (son.sonFOV.isDetected)
         {
             stateMachine.ChangeState(son.IdleState);

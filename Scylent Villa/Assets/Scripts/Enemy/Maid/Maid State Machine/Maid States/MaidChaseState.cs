@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MaidChaseState : MaidState
@@ -27,19 +25,19 @@ public class MaidChaseState : MaidState
     {
         base.LogicalUpdate();
 
-        // IF detect player THEN chase player.
+        // If detect player then chase player.
         if (maid.maidFOV.isDetected)
         {
             maid.aIPath.destination = playerPos.position;
         }
 
-        // CHECK whether the enemy is moving.
+        // Check whether the enemy is moving.
         maid.CheckMovement();
 
-        // PERFORM animation.
+        // Perform animation.
         maid.AnimationChange();
 
-        // IF not detect THEN change to IDLE STATE.
+        // If not detect then change to IDLE STATE.
         if (!maid.maidFOV.isDetected)
         {
             stateMachine.ChangeState(maid.IdleState);

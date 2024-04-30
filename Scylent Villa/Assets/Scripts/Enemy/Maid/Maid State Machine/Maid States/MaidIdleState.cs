@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MaidIdleState : MaidState
@@ -9,6 +7,7 @@ public class MaidIdleState : MaidState
     }
 
     // Declaration
+    // Timer
     private float startTime = 0.5f;
     private float timeBtwFrame;
 
@@ -27,7 +26,7 @@ public class MaidIdleState : MaidState
     {
         base.LogicalUpdate();
 
-        // IF detect player THEN change to CHASE STATE.
+        // If detect player then change to CHASE STATE.
         if (maid.maidFOV.isDetected)
         {
             if (timeBtwFrame <= 0)
@@ -44,7 +43,7 @@ public class MaidIdleState : MaidState
 
         else
         {
-            // ELSE change to PATROL STATE.
+            // Else change to PATROL STATE.
             stateMachine.ChangeState(maid.PatrolState);
         }
     }

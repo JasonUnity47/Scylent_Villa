@@ -1,19 +1,17 @@
-using Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SonHit : MonoBehaviour
 {
     // Declaration
-    private AIPath aIPath;
+    // Script Reference
     private SonFOV sonFOV;
 
+    // Hit
+    [Header("Hit")]
     public bool hitPlayer = false;
 
     private void Start()
     {
-        aIPath = GetComponent<AIPath>();
         sonFOV = GetComponentInChildren<SonFOV>();
     }
 

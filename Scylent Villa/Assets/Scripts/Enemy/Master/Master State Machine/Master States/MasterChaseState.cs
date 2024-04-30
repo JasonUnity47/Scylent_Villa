@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MasterChaseState : MasterState
@@ -15,6 +13,7 @@ public class MasterChaseState : MasterState
     {
         base.Enter();
 
+        // Get reference.
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -30,19 +29,19 @@ public class MasterChaseState : MasterState
     {
         base.LogicalUpdate();
 
-        // IF detect player THEN chase player.
+        // If detect player then chase player.
         if (master.masterFOV.isDetected)
         {
             master.aIPath.destination = playerPos.position;
         }
 
-        // CHECK whether the enemy is moving.
+        // Check whether the enemy is moving.
         master.CheckMovement();
 
-        // PERFORM animation.
+        // Perform animation.
         master.AnimationChange();
 
-        // IF not detect THEN change to IDLE STATE.
+        // If not detect then change to IDLE STATE.
         if (!master.masterFOV.isDetected)
         {
             stateMachine.ChangeState(master.IdleState);

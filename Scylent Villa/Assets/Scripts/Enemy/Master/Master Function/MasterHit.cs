@@ -1,19 +1,18 @@
-using Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MasterHit : MonoBehaviour
 {
     // Declaration
-    private AIPath aIPath;
+    // Script Reference
     private MasterFOV masterFOV;
 
+    // Hit
+    [Header("Hit")]
     public bool hitPlayer = false;
 
     private void Start()
     {
-        aIPath = GetComponent<AIPath>();
+        // Get reference.
         masterFOV = GetComponentInChildren<MasterFOV>();
     }
 

@@ -1,6 +1,5 @@
 using Pathfinding;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Son : MonoBehaviour
@@ -26,7 +25,8 @@ public class Son : MonoBehaviour
 
     public Animator Anim { get; private set; }
 
-    // Value
+    // Movement
+    [Header("Movement")]
     public bool isMoving = false;
 
     public bool Front { get; private set; }
@@ -47,14 +47,17 @@ public class Son : MonoBehaviour
 
     private bool once2 = false;
 
-    public GameObject childObject; // Reference to the child GameObject to deactivate
+    // Object Reference
+    [Header("Object Reference")]
+    public GameObject childObject; // Reference to the child GameObject to deactivate.
 
-    public GameObject objectToInstantiate; // The object you want to instantiate
+    public GameObject objectToInstantiate; // The object you want to instantiate.
 
-    public string childTransformName; // Name of the child transform to instantiate the object at
+    public string childTransformName; // Name of the child transform to instantiate the object at.
 
     private void Awake()
     {
+        // Get reference.
         Anim = GetComponent<Animator>();
 
         evolutionSystem = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<EvolutionSystem>();
@@ -90,7 +93,7 @@ public class Son : MonoBehaviour
         StateMachine.CurrentState.PhysicsUpdate();
     }
 
-    // CHECK whether the enemy is moving.
+    // Check whether the enemy is moving.
     public void CheckMovement()
     {
         if (aIPath.velocity.magnitude != 0)
@@ -106,13 +109,13 @@ public class Son : MonoBehaviour
         return;
     }
 
-    // PERFORM animation.
+    // Perform animation.
     public void AnimationChange()
     {
-        // Check if the enemy is moving
-        isMoving = aIPath.velocity.magnitude > 0.1f; // Adjust the threshold as needed
+        // Check if the enemy is moving.
+        isMoving = aIPath.velocity.magnitude > 0.1f; // Adjust the threshold as needed.
 
-        // Look Left
+        // Look Left.
         if (aIPath.velocity.x < -activationOffset && !Left)
         {
             Left = true;
@@ -123,7 +126,7 @@ public class Son : MonoBehaviour
             Left = false;
         }
 
-        // Look Right
+        // Look Right.
         if (aIPath.velocity.x > activationOffset && !Right)
         {
             Right = true;
@@ -134,7 +137,7 @@ public class Son : MonoBehaviour
             Right = false;
         }
 
-        // Look Back
+        // Look Back.
         if (aIPath.velocity.y > activationOffset && !Back)
         {
             Back = true;
@@ -145,7 +148,7 @@ public class Son : MonoBehaviour
             Back = false;
         }
 
-        // Look Front
+        // Look Front.
         if (aIPath.velocity.y < -activationOffset && !Front)
         {
             Front = true;
@@ -156,12 +159,12 @@ public class Son : MonoBehaviour
             Front = false;
         }
 
-        // Update animation parameters
+        // Update animation parameters.
         Anim.SetBool("MoveBool", isMoving);
         Anim.SetFloat("Horizontal", Mathf.Clamp(aIPath.velocity.x, -1, 1));
         Anim.SetFloat("Vertical", Mathf.Clamp(aIPath.velocity.y, -1, 1));
 
-        // Update animation booleans
+        // Update animation booleans.
         Anim.SetBool("FrontBool", Front);
         Anim.SetBool("BackBool", Back);
         Anim.SetBool("LeftBool", Left);
@@ -182,10 +185,10 @@ public class Son : MonoBehaviour
     {
         isStunned = true;
 
-        // disable FOV
+        // Disable FOV.
         DeactivateChildObject();
 
-        // Stop movement
+        // Stop movement.
         aIPath.canMove = false;
 
         GameObject instantiatedObject = null;
@@ -197,10 +200,10 @@ public class Son : MonoBehaviour
 
         Destroy(instantiatedObject);
 
-        // Re-enable FOV
+        // Re-enable FOV.
         ReactivateChildObject();
 
-        // Resume movement
+        // Resume movement.
         aIPath.canMove = true;
 
         isStunned = false;
@@ -246,7 +249,7 @@ public class Son : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
-            // disable FOV
+            // Disable FOV.
             DeactivateChildObject();
 
             Anim.SetBool("DeadBool1", true);
@@ -267,7 +270,7 @@ public class Son : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
-            // disable FOV
+            // Disable FOV.
             DeactivateChildObject();
 
             Anim.SetBool("DeadBool2", true);
@@ -286,7 +289,7 @@ public class Son : MonoBehaviour
 
         Anim.SetBool("Stage2", true);
 
-        // Re-enable FOV
+        // Re-enable FOV.
         ReactivateChildObject();
 
         aIPath.canSearch = true;
@@ -303,7 +306,7 @@ public class Son : MonoBehaviour
 
         Anim.SetBool("Stage3", true);
 
-        // Re-enable FOV
+        // Re-enable FOV.
         ReactivateChildObject();
 
         aIPath.canSearch = true;
