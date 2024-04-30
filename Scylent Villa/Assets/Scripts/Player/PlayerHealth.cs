@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject FOV;
     [SerializeField] private GameObject bloodEffect;
     [SerializeField] private GameObject result;
+    [SerializeField] private GameObject selfLight;
 
     public JoystickPosition joystickPosition;
     private CurrencySystem currencySystem;
@@ -42,9 +43,12 @@ public class PlayerHealth : MonoBehaviour
 
                 FOV.SetActive(false);
 
+                selfLight.SetActive(false);
+
                 Vector2 bloodPos = (Vector2)transform.position + new Vector2(0, 0.1f);
 
                 GameObject blood = Instantiate(bloodEffect, bloodPos, Quaternion.identity, transform);
+
                 Destroy(blood, 1.3f);
 
                 if (playerMovement.front)
@@ -90,7 +94,7 @@ public class PlayerHealth : MonoBehaviour
                 // If the player is in the tutorial level, respawn the player
                 if (currentSceneName == "Tutorial Level")
                 {
-                    RespawnPlayer();
+                    StartCoroutine(WaitRespawn());
                 }
             }
         }
@@ -105,6 +109,9 @@ public class PlayerHealth : MonoBehaviour
         isDead = false;
 
         FOV.SetActive(true);
+
+        selfLight.SetActive(true);
+
         // Reset player's position to the respawn point
         transform.position = respawnPoint.position;
 
@@ -124,5 +131,11 @@ public class PlayerHealth : MonoBehaviour
         joystickPosition.enabled = true;
 
         
+    }
+
+    IEnumerator WaitRespawn()
+    {
+        yield return new WaitForSeconds(2f);
+        RespawnPlayer();
     }
 }

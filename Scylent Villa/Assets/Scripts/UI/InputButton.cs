@@ -132,6 +132,14 @@ public class InputButton : MonoBehaviour
         return;
     }
 
+    public void SkipCutscene()
+    {
+        SceneManager.LoadScene(3);
+        TimeResume();
+
+        return;
+    }
+
     // Quit
     public void QuitGame()
     {

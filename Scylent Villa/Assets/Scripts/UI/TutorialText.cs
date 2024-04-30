@@ -17,6 +17,13 @@ public class TutorialText : MonoBehaviour
             // Activate the UI panel
             uiPanel.SetActive(true);
         }
+
+        // Check if this object is End Point
+        if (this.gameObject.name == "End Point")
+        {
+            // Activate the UI panel
+            uiPanel.SetActive(true);
+        }
     }
 
     // This method is called when another collider exits the trigger area
