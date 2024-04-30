@@ -1,16 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilitySpawner : MonoBehaviour
 {
     // Declaration
+    // Spawn Point
+    [Header("Spawn Point")]
     public Transform[] abilitySpawnPoints;
+
+    // Ability
+    [Header("Ability")]
     [SerializeField] private GameObject bucket;
     [SerializeField] private GameObject mushroom;
     private GameObject currentAbility;
     private bool abilitySpawned = false;
-
 
     private void Start()
     {
@@ -19,10 +21,10 @@ public class AbilitySpawner : MonoBehaviour
 
     private void Update()
     {
-        // Check if the ability has been destroyed
+        // Check if the ability has been destroyed.
         if (!abilitySpawned && currentAbility == null)
         {
-            // Spawn a new ability
+            // Spawn a new ability.
             SpawnNewAbility();
         }
     }
@@ -36,11 +38,12 @@ public class AbilitySpawner : MonoBehaviour
     {
         int randomNumber = Random.Range(0, abilitySpawnPoints.Length);
         Transform spawnPoint = abilitySpawnPoints[randomNumber];
-        // Randomly choose between bucket and mushroom
+
+        // Randomly choose between bucket and mushroom.
         GameObject abilityPrefab = Random.Range(0, 2) == 0 ? bucket : mushroom;
         currentAbility = Instantiate(abilityPrefab, spawnPoint.position, Quaternion.identity);
-        // Set ability spawned flag to true
+
+        // Set ability spawned flag to true.
         abilitySpawned = true;
     }
 }
-

@@ -3,19 +3,28 @@ using UnityEngine;
 
 public class DoubleCurrencyBuff : MonoBehaviour
 {
-    [SerializeField] private float animationDuration = 1.2f; // Duration of the animation
-    [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab
-    private BuffSpawner buffSpawner;
+    // Declaration
+    // Animation
+    [Header("Animation")]
+    [SerializeField] private float animationDuration = 1.2f; // Duration of the animation.
+    [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab.
     private bool isAnimating = true;
-    private int spawnPointIndex; // New variable to store spawn point index
+
+    // Buff Spawner
+    private BuffSpawner buffSpawner;
+    private int spawnPointIndex; // New variable to store spawn point index.
+
+    // Script Reference
     private BuffUI buffUI;
     private FoodSpawner foodSpawner;
 
     private void Awake()
     {
+        // Get reference.
         foodSpawner = FindObjectOfType<FoodSpawner>();
         buffUI = FindObjectOfType<BuffUI>();
         buffSpawner = FindObjectOfType<BuffSpawner>();
+
         StartCoroutine(Animate());
     }
 
@@ -30,22 +39,28 @@ public class DoubleCurrencyBuff : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Food[] foods = FindObjectsOfType<Food>();
+
             foreach (Food food in foods)
             {
                 foodSpawner.ActivateDoubleCurrency();
             }
+
+            // Show buff ui.
             buffUI.ShowDoubleCurrencyBuffUI(foodSpawner.doubleCurrencyDuration);
+
+            // Stop Animation.
             isAnimating = false;
+
             buffSpawner.DecrementBuffCount();
-            buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point
+            buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point.
+
             Destroy(gameObject);
         }
     }
 
-
     private IEnumerator Animate()
     {
-        while (isAnimating) // Loop animation if isAnimating is true
+        while (isAnimating) // Loop animation if isAnimating is true.
         {
             Vector2 originalPos = transform.position;
             Vector2 targetPos = originalPos + new Vector2(0, animationHeight);
@@ -61,7 +76,7 @@ public class DoubleCurrencyBuff : MonoBehaviour
 
             transform.position = targetPos;
 
-            yield return new WaitForSeconds(0f); // Wait for a short time at the top position
+            yield return new WaitForSeconds(0f); // Wait for a short time at the top position.
 
             timeElapsed = 0f;
 
@@ -74,7 +89,7 @@ public class DoubleCurrencyBuff : MonoBehaviour
 
             transform.position = originalPos;
 
-            yield return null; // Add a small delay before starting the animation again
+            yield return null; // Add a small delay before starting the animation again.
         }
     }
 }

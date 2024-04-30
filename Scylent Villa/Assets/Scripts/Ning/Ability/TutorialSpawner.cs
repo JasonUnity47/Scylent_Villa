@@ -1,13 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialSpawner : MonoBehaviour
 {
-    public GameObject mushroomSpawn; // Prefab to spawn
-    public GameObject bucketSpawn; // Prefab to spawn
-    public Transform spawnPoint1; // Point where the prefab should spawn
-    public Transform spawnPoint2; // Point where the prefab should spawn
+    // Declaration
+    // Object Spawn
+    [Header("Object Spawn")]
+    public GameObject mushroomSpawn; // Prefab to spawn.
+    public GameObject bucketSpawn; // Prefab to spawn.
+
+    // Spawn Point
+    [Header("Spawn Point")]
+    public Transform spawnPoint1; // Point where the prefab should spawn.
+    public Transform spawnPoint2; // Point where the prefab should spawn.
+
     private bool spawnedMushroom = false;
     private bool spawnedBucket = false;
 
@@ -25,8 +30,7 @@ public class TutorialSpawner : MonoBehaviour
 
     private void SpawnMushroom()
     {
-        
-        // Spawn the prefab at the spawn point
+        // Spawn the prefab at the spawn point.
         Instantiate(mushroomSpawn, spawnPoint1.position, spawnPoint1.rotation);
         spawnedMushroom = true;
     }

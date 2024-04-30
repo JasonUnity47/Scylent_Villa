@@ -1,22 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class IncreaseFOVBuff : MonoBehaviour
 {
-    [SerializeField] private float animationDuration = 1.2f; // Duration of the animation
-    [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab
-    
-    private BuffSpawner buffSpawner;
+    // Declaration
+    // Animation
+    [Header("Animation")]
+    [SerializeField] private float animationDuration = 1.2f; // Duration of the animation.
+    [SerializeField] private float animationHeight = 0.15f; // Height to move the food prefab.
     private bool isAnimating = true;
-    private BuffUI buffUI;
 
-    private int spawnPointIndex; // New variable to store spawn point index
+    // Buff Spawner
+    private BuffSpawner buffSpawner;
+    private int spawnPointIndex; // New variable to store spawn point index.
+
+    // Script Reference
+    private BuffUI buffUI;
 
     private void Awake()
     {
+        // Get reference.
         buffUI = FindObjectOfType<BuffUI>();
         buffSpawner = FindObjectOfType<BuffSpawner>();
+
         StartCoroutine(Animate());
     }
 
@@ -32,21 +38,25 @@ public class IncreaseFOVBuff : MonoBehaviour
         {
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
+            // Apply buff to player movement.
             playerMovement.ApplyFOVIncrease();
+
+            // Show buff ui.
             buffUI.ShowIncreaseFOVBuffUI(playerMovement.FOVDuration);
 
+            // Stop animation.
             isAnimating = false;
+
             buffSpawner.DecrementBuffCount();
-            buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point
+            buffSpawner.UnlockSpawnPoint(spawnPointIndex); // Unlock spawn point.
+
             Destroy(gameObject);
         }
     }
 
-
-
     private IEnumerator Animate()
     {
-        while (isAnimating) // Loop animation if isAnimating is true
+        while (isAnimating) // Loop animation if isAnimating is true.
         {
             Vector2 originalPos = transform.position;
             Vector2 targetPos = originalPos + new Vector2(0, animationHeight);
@@ -62,7 +72,7 @@ public class IncreaseFOVBuff : MonoBehaviour
 
             transform.position = targetPos;
 
-            yield return new WaitForSeconds(0f); // Wait for a short time at the top position
+            yield return new WaitForSeconds(0f); // Wait for a short time at the top position.
 
             timeElapsed = 0f;
 
@@ -75,7 +85,7 @@ public class IncreaseFOVBuff : MonoBehaviour
 
             transform.position = originalPos;
 
-            yield return null; // Add a small delay before starting the animation again
+            yield return null; // Add a small delay before starting the animation again.
         }
     }
 }
