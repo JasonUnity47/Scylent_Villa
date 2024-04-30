@@ -1,23 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     // Declaration
+    // Check
+    [Header("Check")]
     public bool isDead = false;
     private bool once = false;
 
+    // Component Reference
     private Rigidbody2D rb;
     private Animator anim;
     private PlayerMovement playerMovement;
+
+    // Object Reference
+    [Header("Object Reference")]
     [SerializeField] private GameObject FOV;
     [SerializeField] private GameObject bloodEffect;
     [SerializeField] private GameObject result;
     [SerializeField] private GameObject selfLight;
+    [SerializeField] private JoystickPosition joystickPosition;
 
-    public JoystickPosition joystickPosition;
+    // Find Reference
     private CurrencySystem currencySystem;
 
     // Define respawn point as a Transform
@@ -25,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        // Get Reference.
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
@@ -33,24 +40,34 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        // Check if the player is dead.
         if (isDead)
         {
+            // Stop moving.
             rb.velocity = Vector2.zero;
 
+            // Toggler to confirm the player will only die once.
             if (!once)
             {
+                // Confirm dead,
                 once = true;
 
+                // Hide FOV.
                 FOV.SetActive(false);
 
+                // Hide Self Light.
                 selfLight.SetActive(false);
 
+                // Set the blood vfx position.
                 Vector2 bloodPos = (Vector2)transform.position + new Vector2(0, 0.1f);
 
+                // Show the blood vfx.
                 GameObject blood = Instantiate(bloodEffect, bloodPos, Quaternion.identity, transform);
 
+                // Destroy the player.
                 Destroy(blood, 1.3f);
 
+                // Check the player direction when he is dead.
                 if (playerMovement.front)
                 {
                     anim.SetBool("DeadFront", true);
@@ -71,14 +88,16 @@ public class PlayerHealth : MonoBehaviour
                     anim.SetBool("DeadRight", true);
                 }
 
+                // No more player in the game.
                 tag = "Untagged";
 
+                // No collision / detection.
                 Physics2D.IgnoreLayerCollision(8, 7);
 
+                // Disable the functions of player.
                 joystickPosition.joystick.SetActive(false);
                 playerMovement.enabled = false;
                 joystickPosition.enabled = false;
-
 
                 // Get the current active scene name
                 string currentSceneName = SceneManager.GetActiveScene().name;
@@ -88,12 +107,15 @@ public class PlayerHealth : MonoBehaviour
                 {
                     // Call ConvertFoodToFOD function
                     currencySystem.ConvertFoodToFOD();
+
+                    // Show the result panel.
                     result.SetActive(true);
                 }
 
                 // If the player is in the tutorial level, respawn the player
                 if (currentSceneName == "Tutorial Level")
                 {
+                    // Set a timer to delay the respawn function.
                     StartCoroutine(WaitRespawn());
                 }
             }
@@ -105,11 +127,14 @@ public class PlayerHealth : MonoBehaviour
     {
         // Reset once flag
         once = false;
+
         // Reset death flag
         isDead = false;
 
+        // Show FOV.
         FOV.SetActive(true);
 
+        // Show Self Light.
         selfLight.SetActive(true);
 
         // Reset player's position to the respawn point
@@ -129,8 +154,6 @@ public class PlayerHealth : MonoBehaviour
         joystickPosition.joystick.SetActive(true);
         playerMovement.enabled = true;
         joystickPosition.enabled = true;
-
-        
     }
 
     IEnumerator WaitRespawn()
