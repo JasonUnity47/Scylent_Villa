@@ -205,6 +205,18 @@ public class InputButton : MonoBehaviour
         return;
     }
 
+    // Restart Game
+    public void RestartGame()
+    {
+        // Play ui sound.
+        FindObjectOfType<AudioManager>().Play("Click");
+
+        // Restart the game.
+        SceneManager.LoadScene(3);
+
+        return;
+    }
+
     // Freeze Time
     void TimeStop()
     {
