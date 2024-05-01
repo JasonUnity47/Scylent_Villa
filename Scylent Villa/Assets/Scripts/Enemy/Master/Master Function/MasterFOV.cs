@@ -131,38 +131,24 @@ public class MasterFOV : MonoBehaviour
     {
         if (!isDetected)
         {
-            // Get the blend tree parameters for horizontal and vertical movement.
-            float horizontalMovement = master.Anim.GetFloat("Horizontal");
-            float verticalMovement = master.Anim.GetFloat("Vertical");
-
-            // Determine the direction based on blend tree parameters.
-            if (Mathf.Abs(horizontalMovement) > Mathf.Abs(verticalMovement))
+            if (master.Front)
             {
-                // Horizontal movement dominates.
-                if (horizontalMovement > 0)
-                {
-                    // Moving right.
-                    transform.rotation = Quaternion.Euler(0, 0, -90);
-                }
-                else if (horizontalMovement < 0)
-                {
-                    // Moving left.
-                    transform.rotation = Quaternion.Euler(0, 0, 90);
-                }
+                transform.rotation = Quaternion.Euler(0, 0, 180);
             }
-            else
+
+            else if (master.Back)
             {
-                // Vertical movement dominates.
-                if (verticalMovement > 0)
-                {
-                    // Moving front.
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                }
-                else if (verticalMovement < 0)
-                {
-                    // Moving back.
-                    transform.rotation = Quaternion.Euler(0, 0, 180);
-                }
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            else if (master.Left)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+
+            else if (master.Right)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, -90);
             }
         }
 

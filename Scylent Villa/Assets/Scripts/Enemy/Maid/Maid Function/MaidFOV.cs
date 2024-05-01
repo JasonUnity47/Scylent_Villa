@@ -131,38 +131,24 @@ public class MaidFOV : MonoBehaviour
     {
         if (!isDetected)
         {
-            // Get the blend tree parameters for horizontal and vertical movement.
-            float horizontalMovement = maid.Anim.GetFloat("Horizontal");
-            float verticalMovement = maid.Anim.GetFloat("Vertical");
-
-            // Determine the direction based on blend tree parameters.
-            if (Mathf.Abs(horizontalMovement) > Mathf.Abs(verticalMovement))
+            if (maid.Front)
             {
-                // Horizontal movement dominates.
-                if (horizontalMovement > 0)
-                {
-                    // Moving right.
-                    transform.rotation = Quaternion.Euler(0, 0, -90);
-                }
-                else if (horizontalMovement < 0)
-                {
-                    // Moving left.
-                    transform.rotation = Quaternion.Euler(0, 0, 90);
-                }
+                transform.rotation = Quaternion.Euler(0, 0, 180);
             }
-            else
+
+            else if (maid.Back)
             {
-                // Vertical movement dominates.
-                if (verticalMovement > 0)
-                {
-                    // Moving front.
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                }
-                else if (verticalMovement < 0)
-                {
-                    // Moving back.
-                    transform.rotation = Quaternion.Euler(0, 0, 180);
-                }
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            else if (maid.Left)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+
+            else if (maid.Right)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, -90);
             }
         }
 
