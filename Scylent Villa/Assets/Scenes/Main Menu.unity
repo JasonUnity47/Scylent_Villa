@@ -1811,6 +1811,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292175815}
   m_CullTransparentMesh: 1
+--- !u!114 &310670295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6009922251074795321, guid: 93b75df84e45ae24fac749fbb1174b0c, type: 3}
+  m_PrefabInstance: {fileID: 1768412019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c7fd326c35e534cb5e170db72ca930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &325236945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2117,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 360271084}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 310670295}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: SoundOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &360271084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2227,7 +2250,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 387974769}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 310670295}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: SoundOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &387974769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5307,7 +5342,7 @@ MonoBehaviour:
   fodSaveText: {fileID: 1242724618}
   timerText: {fileID: 192833149}
   countdownPanel: {fileID: 1919566988}
-  defaultTime: 60
+  defaultTime: 10
   remainingTime: 0
 --- !u!114 &1584769854
 MonoBehaviour:
@@ -5770,6 +5805,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6009922251074795321, guid: 93b75df84e45ae24fac749fbb1174b0c, type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 1968258654}
+    - target: {fileID: 6009922251074795321, guid: 93b75df84e45ae24fac749fbb1174b0c, type: 3}
+      propertyPath: soundOnButton
+      value: 
+      objectReference: {fileID: 360271083}
+    - target: {fileID: 6009922251074795321, guid: 93b75df84e45ae24fac749fbb1174b0c, type: 3}
+      propertyPath: soundOffButton
+      value: 
+      objectReference: {fileID: 387974768}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
