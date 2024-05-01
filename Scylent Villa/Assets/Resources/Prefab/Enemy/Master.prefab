@@ -207,7 +207,7 @@ Transform:
   - {fileID: 5781266338117436693}
   - {fileID: 740235578052060177}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2137368117656782088
 SpriteRenderer:
@@ -249,7 +249,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: adaf695040e56df419683e6aa341b698, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -502,6 +502,7 @@ MonoBehaviour:
   childObject: {fileID: 7711046501017134649}
   objectToInstantiate: {fileID: 7132299326919155788, guid: 1b96f03b508fa7a44817ef6a62115fed, type: 3}
   childTransformName: EffectPosition
+  selfLight: {fileID: 3082799681131766070}
 --- !u!114 &7391777752039204894
 MonoBehaviour:
   m_ObjectHideFlags: 0

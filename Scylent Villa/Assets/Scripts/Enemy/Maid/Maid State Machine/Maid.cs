@@ -55,6 +55,8 @@ public class Maid : MonoBehaviour
 
     public string childTransformName; // Name of the child transform to instantiate the object at
 
+    public GameObject selfLight; // Light that show the enemy itself.
+
     private void Awake()
     {
         // Get reference.s
@@ -226,12 +228,14 @@ public class Maid : MonoBehaviour
     public void DeactivateChildObject()
     {
         childObject.SetActive(false);
+        selfLight.SetActive(false);
     }
 
     // Method to reactivate the child object
     public void ReactivateChildObject()
     {
         childObject.SetActive(true);
+        selfLight.SetActive(true);
     }
 
     public void EvolveStage()
@@ -249,7 +253,7 @@ public class Maid : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
-            // Disable FOV.
+            // Disable FOV and self light.
             DeactivateChildObject();
 
             Anim.SetBool("DeadBool1", true);
@@ -270,7 +274,7 @@ public class Maid : MonoBehaviour
             aIPath.canSearch = false;
             aIPath.maxSpeed = 0;
 
-            // Disable FOV.
+            // Disable FOV and self light.
             DeactivateChildObject();
 
             Anim.SetBool("DeadBool2", true);
@@ -289,7 +293,7 @@ public class Maid : MonoBehaviour
 
         Anim.SetBool("Stage2", true);
 
-        // Re-enable FOV.
+        // Re-enable FOV and self light.
         ReactivateChildObject();
 
         aIPath.canSearch = true;
@@ -306,7 +310,7 @@ public class Maid : MonoBehaviour
 
         Anim.SetBool("Stage3", true);
 
-        // Re-enable FOV.
+        // Re-enable FOV and self light.
         ReactivateChildObject();
 
         aIPath.canSearch = true;
