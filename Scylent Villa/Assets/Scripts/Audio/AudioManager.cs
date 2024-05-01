@@ -88,6 +88,26 @@ public class AudioManager : MonoBehaviour
         return;
     }
 
+    // Play sound.
+    public void Stop(string name)
+    {
+        // Find the sound.
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        // If no specific sound in the scene.
+        if (s == null)
+        {
+            // Show error.
+            Debug.LogWarning("Sound: " + name + " not found!");
+
+            return;
+        }
+
+        // Play sound.
+        s.source.Stop();
+
+        return;
+    }
     // This method is called whenever the slider value changes
     void OnVolumeChanged(float volume)
     {

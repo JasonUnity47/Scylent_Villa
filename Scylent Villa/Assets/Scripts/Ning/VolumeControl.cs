@@ -1,34 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class VolumeControl : MonoBehaviour
 {
-    // Declaration
     public Slider volumeSlider;
-    //public AudioSource audioSource; // Reference to the AudioSource component you want to control the volume.
+    // List of audio sources you want to control
+    public List<AudioSource> audioSources;
+
+
 
     void Start()
     {
-        // Load the saved volume value.
+
+
+        // Add a listener for when the slider value changes
+        volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+
+        // Load the saved volume value
         float savedVolume = SaveSystem.LoadVolume();
 
-        // Set the initial value of the slider to match the saved volume.
+
+        // Set the initial value of the slider to match the saved volume
         volumeSlider.value = savedVolume;
 
-        // Set the volume of the audio source to match the saved volume.
-        //audioSource.volume = savedVolume;
+        // Set the volume of all audio sources to match the saved volume
+        OnVolumeChanged(savedVolume);
 
-        // Add a listener for when the slider value changes.
-        volumeSlider.onValueChanged.AddListener(delegate { OnVolumeChanged(); });
+
     }
 
-    // This method is called whenever the slider value changes
-    void OnVolumeChanged()
+    public void OnVolumeChanged(float value)
     {
-        // Update the volume of the audio source to match the slider value.
-        // audioSource.volume = volumeSlider.value;
+        foreach (var audioSource in audioSources)
+        {
+            audioSource.volume = value; // Directly set the volume
+        }
 
-        // Save the current volume setting.
-        SaveSystem.SaveVolume(volumeSlider.value);
+
+        // Save the current volume setting
+        SaveSystem.SaveVolume(value);
+
+
     }
+
+
+
+
 }

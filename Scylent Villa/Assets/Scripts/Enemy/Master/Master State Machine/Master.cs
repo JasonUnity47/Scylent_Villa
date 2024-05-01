@@ -186,6 +186,7 @@ public class Master : MonoBehaviour
 
     private IEnumerator StunCoroutine(float duration)
     {
+        
         isStunned = true;
 
         // Disable FOV.

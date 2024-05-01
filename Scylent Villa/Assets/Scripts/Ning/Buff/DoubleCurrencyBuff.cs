@@ -38,6 +38,7 @@ public class DoubleCurrencyBuff : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Buff");
             Food[] foods = FindObjectsOfType<Food>();
 
             foreach (Food food in foods)

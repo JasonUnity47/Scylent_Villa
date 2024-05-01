@@ -193,6 +193,7 @@ public class SonFOV : MonoBehaviour
         if (isDetected && !once)
         {
             once = true;
+            FindObjectOfType<AudioManager>().Play("Detect");
             detectionObject = Instantiate(detectionMark, detectionPos, Quaternion.identity, son.gameObject.transform);
         }
 

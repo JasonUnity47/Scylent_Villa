@@ -35,6 +35,7 @@ public class AccelerationBuff : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Buff");
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
             // Apply acceleration buff to player movement.

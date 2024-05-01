@@ -55,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Coroutine buffDurationCoroutine; // Coroutine reference for duration of buff
 
+    private bool isWalkSoundPlaying = false; // Flag to track if walk sound is playing
+
+
     private void Start()
     {
         // Get reference.
@@ -106,7 +109,25 @@ public class PlayerMovement : MonoBehaviour
             move = false;
             anim.SetBool("MoveBool", move);
         }
-
+        // Handle walk sound based on movement state
+        if (move)
+        {
+            if (!isWalkSoundPlaying)
+            {
+                // Player started moving, play walk sound
+                FindObjectOfType<AudioManager>().Play("Walk");
+                isWalkSoundPlaying = true;
+            }
+        }
+        else
+        {
+            if (isWalkSoundPlaying)
+            {
+                // Player stopped moving, stop walk sound
+                FindObjectOfType<AudioManager>().Stop("Walk");
+                isWalkSoundPlaying = false;
+            }
+        }
         // Set movement animations.
         anim.SetFloat("Horizontal", movement.x);
         anim.SetFloat("Vertical", movement.y);

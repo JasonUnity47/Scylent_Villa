@@ -40,6 +40,7 @@ public class Food : MonoBehaviour
         // If this gameobject collide with object named Player.
         if (collision.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Pickup");
             isAnimating = false; // Stop animation.
 
             // Earn currency.

@@ -68,6 +68,7 @@ public class AbilityManager : MonoBehaviour
 
     public void ActivateMushroomAbility()
     {
+        FindObjectOfType<AudioManager>().Play("Stealth");
         playerStealth.MakeInvisibleForDuration(stealthDuration);
 
         // Get the current active scene name.
@@ -94,6 +95,7 @@ public class AbilityManager : MonoBehaviour
 
     public void ActivateBucketAbility()
     {
+        FindObjectOfType<AudioManager>().Play("Stun");
         stunAbility.UseStunAbility(stunDuration);
 
         // Get the current active scene name.

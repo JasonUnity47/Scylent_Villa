@@ -36,6 +36,7 @@ public class IncreaseFOVBuff : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Buff");
             PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
             // Apply buff to player movement.

@@ -193,6 +193,7 @@ public class MasterFOV : MonoBehaviour
         if (isDetected && !once)
         {
             once = true;
+            FindObjectOfType<AudioManager>().Play("Detect");
             detectionObject = Instantiate(detectionMark, detectionPos, Quaternion.identity, master.gameObject.transform);
         }
 

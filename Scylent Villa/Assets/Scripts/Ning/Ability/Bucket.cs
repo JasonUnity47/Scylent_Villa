@@ -24,6 +24,7 @@ public class Bucket : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Pickup");
             isAnimating = false; // Stop animation.
 
             abilityManager.BucketAvailableBool();

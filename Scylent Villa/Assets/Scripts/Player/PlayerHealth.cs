@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [Header("Check")]
     public bool isDead = false;
     private bool once = false;
+    private bool isDeadSoundPlayed = false; // Flag to track if dead sound is played
 
     // Value
     [Header("Dead")]
@@ -55,6 +56,14 @@ public class PlayerHealth : MonoBehaviour
             {
                 // Confirm dead,
                 once = true;
+
+                // Play dead sound if not played yet
+                if (!isDeadSoundPlayed)
+                {
+                    // Play dead sound
+                    FindObjectOfType<AudioManager>().Play("Dead");
+                    isDeadSoundPlayed = true; // Set the flag to true
+                }
 
                 // Hide FOV.
                 FOV.SetActive(false);
@@ -113,6 +122,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // Reset once flag
         once = false;
+        isDeadSoundPlayed = false; // Reset the dead sound played flag
 
         // Reset death flag
         isDead = false;

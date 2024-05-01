@@ -24,6 +24,7 @@ public class Mushroom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("Pickup");
             isAnimating = false; // Stop animation.
             
             abilityManager.MushroomAvailableBool();
