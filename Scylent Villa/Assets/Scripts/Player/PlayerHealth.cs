@@ -10,6 +10,10 @@ public class PlayerHealth : MonoBehaviour
     public bool isDead = false;
     private bool once = false;
 
+    // Value
+    [Header("Dead")]
+    public float waitForDead = 2f;
+
     // Component Reference
     private Rigidbody2D rb;
     private Animator anim;
@@ -99,25 +103,7 @@ public class PlayerHealth : MonoBehaviour
                 playerMovement.enabled = false;
                 joystickPosition.enabled = false;
 
-                // Get the current active scene name
-                string currentSceneName = SceneManager.GetActiveScene().name;
-
-                // Check if the player is not in the tutorial game scene
-                if (currentSceneName != "Tutorial Level")
-                {
-                    // Call ConvertFoodToFOD function
-                    currencySystem.ConvertFoodToFOD();
-
-                    // Show the result panel.
-                    result.SetActive(true);
-                }
-
-                // If the player is in the tutorial level, respawn the player
-                if (currentSceneName == "Tutorial Level")
-                {
-                    // Set a timer to delay the respawn function.
-                    StartCoroutine(WaitRespawn());
-                }
+                StartCoroutine(WaitDead());
             }
         }
     }
@@ -156,9 +142,27 @@ public class PlayerHealth : MonoBehaviour
         joystickPosition.enabled = true;
     }
 
-    IEnumerator WaitRespawn()
+    IEnumerator WaitDead()
     {
-        yield return new WaitForSeconds(2f);
-        RespawnPlayer();
+        yield return new WaitForSeconds(waitForDead);
+
+        // Get the current active scene name
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        // Check if the player is not in the tutorial game scene
+        if (currentSceneName != "Tutorial Level")
+        {
+            // Call ConvertFoodToFOD function
+            currencySystem.ConvertFoodToFOD();
+
+            // Show the result panel.
+            result.SetActive(true);
+        }
+
+        // If the player is in the tutorial level, respawn the player
+        if (currentSceneName == "Tutorial Level")
+        {
+            RespawnPlayer();
+        }
     }
 }
