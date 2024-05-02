@@ -3234,6 +3234,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Heartbeat
+    clip: {fileID: 8300000, guid: c58172d5215995244aeccab3e0427857, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   volumeSlider: {fileID: 1968258654}
   soundOnButton: {fileID: 360271083}
   soundOffButton: {fileID: 387974768}

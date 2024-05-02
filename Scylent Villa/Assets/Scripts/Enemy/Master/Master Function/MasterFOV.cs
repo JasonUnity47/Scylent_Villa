@@ -17,6 +17,7 @@ public class MasterFOV : MonoBehaviour
     public bool isDetected = false;
     private bool once = false;
     private bool isVibrated = false;
+    private bool isHeartbeatPlaying = false;
 
     // Transfrom
     private Transform playerPos;
@@ -83,7 +84,7 @@ public class MasterFOV : MonoBehaviour
                 ShowDetection();
             }
         }
-
+        HandleHeartbeatSound(); // Check the heartbeat sound state.
     }
 
     // Detect whether player is in the field of view.
@@ -207,5 +208,20 @@ public class MasterFOV : MonoBehaviour
     public bool IsPlayerDetected()
     {
         return isDetected;
+    }
+
+    // Function to handle the heartbeat sound based on isDetected state.
+    void HandleHeartbeatSound()
+    {
+        if (isDetected && !isHeartbeatPlaying)
+        {
+            isHeartbeatPlaying = true;
+            FindObjectOfType<AudioManager>().Play("Heartbeat"); // Play the heartbeat sound.
+        }
+        else if (!isDetected && isHeartbeatPlaying)
+        {
+            isHeartbeatPlaying = false;
+            FindObjectOfType<AudioManager>().Stop("Heartbeat"); // Stop the heartbeat sound.
+        }
     }
 }
