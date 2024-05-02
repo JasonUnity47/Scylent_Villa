@@ -165,8 +165,15 @@ public class AudioManager : MonoBehaviour
     // Save button states using PlayerPrefs
     void SaveButtonStates()
     {
-        PlayerPrefs.SetInt("SoundOnButtonActive", soundOnButton.gameObject.activeSelf ? 1 : 0);
-        PlayerPrefs.SetInt("SoundOffButtonActive", soundOffButton.gameObject.activeSelf ? 1 : 0);
+        if (soundOnButton != null)
+        {
+            PlayerPrefs.SetInt("SoundOnButtonActive", soundOnButton.gameObject.activeSelf ? 1 : 0);
+        }
+
+        if (soundOffButton != null)
+        {
+            PlayerPrefs.SetInt("SoundOffButtonActive", soundOffButton.gameObject.activeSelf ? 1 : 0);
+        }
     }
 
     // Load button states using PlayerPrefs
@@ -175,8 +182,15 @@ public class AudioManager : MonoBehaviour
         bool soundOnActive = PlayerPrefs.GetInt("SoundOnButtonActive", 0) == 1;
         bool soundOffActive = PlayerPrefs.GetInt("SoundOffButtonActive", 1) == 1;
 
-        soundOnButton.gameObject.SetActive(soundOnActive);
-        soundOffButton.gameObject.SetActive(soundOffActive);
+        if (soundOnButton != null)
+        {
+            soundOnButton.gameObject.SetActive(soundOnActive);
+        }
+
+        if (soundOffButton != null)
+        {
+            soundOffButton.gameObject.SetActive(soundOffActive);
+        }
     }
 
     // Call save on application quit
