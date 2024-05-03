@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     // Reference to the volume slider
-    private Slider volumeSlider;
+    //private Slider volumeSlider;
 
     // References to the Sound On and Sound Off buttons
     private Button soundOnButton;
@@ -57,18 +57,18 @@ public class AudioManager : MonoBehaviour
         }
 
         // Attach the OnVolumeChanged method to the slider's onValueChanged event
-        if (volumeSlider != null)
-        {
-            volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
-        }
+        //if (volumeSlider != null)
+        //{
+            //volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+        //}
 
         // Load the saved volume value and set it as the initial slider value
-        float savedVolume = SaveSystem.LoadVolume();
-        volumeSlider.value = savedVolume;
-        lastVolume = savedVolume; // Store the saved volume
-        OnVolumeChanged(savedVolume);
+        //float savedVolume = SaveSystem.LoadVolume();
+        //volumeSlider.value = savedVolume;
+        //lastVolume = savedVolume; // Store the saved volume
+        //OnVolumeChanged(savedVolume);
         // Load and set the button states
-        LoadButtonStates();
+        //LoadButtonStates();
     }
 
     // Play sound.
@@ -138,7 +138,7 @@ public class AudioManager : MonoBehaviour
     // Method to mute sound
     public void SoundOff()
     {
-        volumeSlider.value = 0; // Set slider to 0
+        //volumeSlider.value = 0; // Set slider to 0
         foreach (Sound s in sounds)
         {
             s.source.volume = 0; // Directly set the volume
@@ -155,7 +155,7 @@ public class AudioManager : MonoBehaviour
     // Method to unmute sound
     public void SoundOn()
     {
-        volumeSlider.value = lastVolume; // Set slider to last saved volume
+        //volumeSlider.value = lastVolume; // Set slider to last saved volume
         OnVolumeChanged(lastVolume); // Update volume of audio sources
 
         // Update button states

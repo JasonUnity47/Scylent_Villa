@@ -2107,9 +2107,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 639119670}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: SoundOff
+      - m_Target: {fileID: 1584769857}
+        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
+        m_MethodName: MuteMixer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2240,9 +2240,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 639119670}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: SoundOn
+      - m_Target: {fileID: 1584769857}
+        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
+        m_MethodName: MuteMixer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5508,6 +5508,7 @@ GameObject:
   - component: {fileID: 1584769853}
   - component: {fileID: 1584769855}
   - component: {fileID: 1584769856}
+  - component: {fileID: 1584769857}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Game Manager
@@ -5583,6 +5584,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967a6908328d6aa49982b3afdda1a87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1584769857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584769850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51187c0238c08343b9a2c02b44d71d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 62aebf03bc2870c46970e9a96ddf1cd6, type: 2}
+  volumeSlider: {fileID: 1968258654}
+  mute: 0
 --- !u!1 &1603318999
 GameObject:
   m_ObjectHideFlags: 0
@@ -6921,13 +6937,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 568079490}
   m_HandleRect: {fileID: 743013422}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.00000001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.00000001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584769857}
+        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2080658810
 GameObject:
   m_ObjectHideFlags: 0
