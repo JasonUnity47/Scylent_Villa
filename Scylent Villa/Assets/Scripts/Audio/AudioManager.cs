@@ -13,11 +13,14 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     // Reference to the volume slider
-    public Slider volumeSlider;
+    private Slider volumeSlider;
 
     // References to the Sound On and Sound Off buttons
-    public Button soundOnButton;
-    public Button soundOffButton;
+    private Button soundOnButton;
+    private Button soundOffButton;
+
+    // Audio mixer reference
+    public AudioMixerGroup audioMixer;
 
     // Variable to store the last saved volume
     private float lastVolume;
@@ -50,6 +53,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = audioMixer;
         }
 
         // Attach the OnVolumeChanged method to the slider's onValueChanged event
