@@ -25,17 +25,12 @@ public class Timer : MonoBehaviour
         // Start counting the time.
         rawTime += Time.deltaTime;
 
+        // Calculate minutes and seconds separately
+        minutes = Mathf.FloorToInt(rawTime / 60);
         seconds = Mathf.FloorToInt(rawTime % 60);
-        minutes = Mathf.Floor(rawTime / 60);
 
-        if (minutes <= 60)
-        {
-            minuteAmount = minutes.ToString("00");
-        }
-
-        if (seconds <= 60)
-        {
-            secondAmount = seconds.ToString("00");
-        }
+        // Format the time to display with leading zeros
+        minuteAmount = minutes.ToString("00");
+        secondAmount = seconds.ToString("00");
     }
 }
