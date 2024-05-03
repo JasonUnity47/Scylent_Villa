@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Coroutine buffDurationCoroutine; // Coroutine reference for duration of buff
 
-    private bool isWalkSoundPlaying = false; // Flag to track if walk sound is playing
+    public bool isWalkSoundPlaying = false; // Flag to track if walk sound is playing
 
 
     private void Start()
@@ -86,124 +86,138 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Get touch position.
-        movement.x = joystick.Horizontal;
-        movement.y = joystick.Vertical;
-
-        // If no joystick exists then no movement.
-        if (joystick.gameObject.activeSelf == false)
+        if (Time.timeScale == 0)
         {
-            movement.x = 0;
-            movement.y = 0;
+            // Time pause, stop walk sound.
+            FindObjectOfType<AudioManager>().Stop("Walk");
+            isWalkSoundPlaying = false;
         }
 
-        // If movement value is not 0 which means the player is moving.
-        if (movement.sqrMagnitude != 0)
+        if (Time.timeScale != 0)
         {
-            move = true;
-            anim.SetBool("MoveBool", move);
-        }
+            // Get touch position.
+            movement.x = joystick.Horizontal;
+            movement.y = joystick.Vertical;
 
-        else
-        {
-            move = false;
-            anim.SetBool("MoveBool", move);
-        }
-        // Handle walk sound based on movement state
-        if (move)
-        {
-            if (!isWalkSoundPlaying)
+            // If no joystick exists then no movement.
+            if (joystick.gameObject.activeSelf == false)
             {
-                // Player started moving, play walk sound
-                FindObjectOfType<AudioManager>().Play("Walk");
-                isWalkSoundPlaying = true;
+                movement.x = 0;
+                movement.y = 0;
             }
-        }
-        else
-        {
-            if (isWalkSoundPlaying)
+
+            // If movement value is not 0 which means the player is moving.
+            if (movement.sqrMagnitude != 0)
             {
-                // Player stopped moving, stop walk sound
-                FindObjectOfType<AudioManager>().Stop("Walk");
-                isWalkSoundPlaying = false;
+                move = true;
+                anim.SetBool("MoveBool", move);
             }
-        }
-        // Set movement animations.
-        anim.SetFloat("Horizontal", movement.x);
-        anim.SetFloat("Vertical", movement.y);
-        anim.SetFloat("Speed", movement.sqrMagnitude); // Using sqrMagnitude for better performance.
 
-        // Face front.
-        if (movement.y < -offset && !front)
-        {
-            front = true;
-            back = false;
-            left = false;
-            right = false;
+            else
+            {
+                move = false;
+                anim.SetBool("MoveBool", move);
+            }
+            // Handle walk sound based on movement state
+            if (move)
+            {
+                if (!isWalkSoundPlaying)
+                {
+                    // Player started moving, play walk sound
+                    FindObjectOfType<AudioManager>().Play("Walk");
+                    isWalkSoundPlaying = true;
+                }
+            }
+            else
+            {
+                if (isWalkSoundPlaying)
+                {
+                    // Player stopped moving, stop walk sound
+                    FindObjectOfType<AudioManager>().Stop("Walk");
+                    isWalkSoundPlaying = false;
+                }
+            }
 
-            anim.SetBool("BackBool", back);
-            anim.SetBool("RightBool", right);
-            anim.SetBool("LeftBool", left);
+            // Set movement animations.
+            anim.SetFloat("Horizontal", movement.x);
+            anim.SetFloat("Vertical", movement.y);
+            anim.SetFloat("Speed", movement.sqrMagnitude); // Using sqrMagnitude for better performance.
 
-            anim.SetBool("FrontBool", front);
-        }
+            // Face front.
+            if (movement.y < -offset && !front)
+            {
+                front = true;
+                back = false;
+                left = false;
+                right = false;
 
-        // Face back.
-        if (movement.y > offset && !back)
-        {
-            back = true;
-            front = false;
-            left = false;
-            right = false;
+                anim.SetBool("BackBool", back);
+                anim.SetBool("RightBool", right);
+                anim.SetBool("LeftBool", left);
 
-            anim.SetBool("FrontBool", front);
-            anim.SetBool("RightBool", right);
-            anim.SetBool("LeftBool", left);
+                anim.SetBool("FrontBool", front);
+            }
 
-            anim.SetBool("BackBool", back);
-        }
+            // Face back.
+            if (movement.y > offset && !back)
+            {
+                back = true;
+                front = false;
+                left = false;
+                right = false;
 
-        // Face left.
-        if (movement.x < -offset && !left)
-        {
-            left = true;
-            front = false;
-            back = false;
-            right = false;
+                anim.SetBool("FrontBool", front);
+                anim.SetBool("RightBool", right);
+                anim.SetBool("LeftBool", left);
 
-            anim.SetBool("FrontBool", front);
-            anim.SetBool("BackBool", back);
-            anim.SetBool("RightBool", right);
+                anim.SetBool("BackBool", back);
+            }
 
-            anim.SetBool("LeftBool", left);
-        }
+            // Face left.
+            if (movement.x < -offset && !left)
+            {
+                left = true;
+                front = false;
+                back = false;
+                right = false;
 
-        // Face right.
-        if (movement.x > offset && !right)
-        {
-            right = true;
-            left = false;
-            front = false;
-            back = false;
+                anim.SetBool("FrontBool", front);
+                anim.SetBool("BackBool", back);
+                anim.SetBool("RightBool", right);
 
-            anim.SetBool("FrontBool", front);
-            anim.SetBool("BackBool", back);
-            anim.SetBool("LeftBool", left);
+                anim.SetBool("LeftBool", left);
+            }
 
-            anim.SetBool("RightBool", right);
-        }
-        
-        // Get facing direction.
-        if (movement != Vector2.zero)
-        {
-            direction = ((movement + (Vector2)transform.position) - (Vector2)transform.position) * -1;
+            // Face right.
+            if (movement.x > offset && !right)
+            {
+                right = true;
+                left = false;
+                front = false;
+                back = false;
+
+                anim.SetBool("FrontBool", front);
+                anim.SetBool("BackBool", back);
+                anim.SetBool("LeftBool", left);
+
+                anim.SetBool("RightBool", right);
+            }
+
+            // Get facing direction.
+            if (movement != Vector2.zero)
+            {
+                direction = ((movement + (Vector2)transform.position) - (Vector2)transform.position) * -1;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        // Move.
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (Time.timeScale != 0)
+        {
+            // Move.
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     // Apply acceleration buff

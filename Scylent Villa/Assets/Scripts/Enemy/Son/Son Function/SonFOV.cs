@@ -89,6 +89,7 @@ public class SonFOV : MonoBehaviour
         {
             isDetected = !isDetected;
         }
+
         HandleHeartbeatSound(); // Check the heartbeat sound state. 
     }
 
@@ -218,12 +219,12 @@ public class SonFOV : MonoBehaviour
     // Function to handle the heartbeat sound based on isDetected state.
     void HandleHeartbeatSound()
     {
-        if (isDetected && !isHeartbeatPlaying)
+        if (isDetected && !isHeartbeatPlaying && Time.timeScale != 0)
         {
             isHeartbeatPlaying = true;
             FindObjectOfType<AudioManager>().Play("Heartbeat"); // Play the heartbeat sound.
         }
-        else if (!isDetected && isHeartbeatPlaying)
+        else if (!isDetected && isHeartbeatPlaying || Time.timeScale == 0)
         {
             isHeartbeatPlaying = false;
             FindObjectOfType<AudioManager>().Stop("Heartbeat"); // Stop the heartbeat sound.

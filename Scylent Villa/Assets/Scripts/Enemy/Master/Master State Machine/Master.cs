@@ -248,6 +248,8 @@ public class Master : MonoBehaviour
             // Activate only once.
             once = true;
 
+            FindObjectOfType<AudioManager>().Stop("Heartbeat"); // Stop the heartbeat sound.
+
             // Store original value.
             float originalSpeed = aIPath.maxSpeed;
 
@@ -268,6 +270,8 @@ public class Master : MonoBehaviour
         {
             // Activate only once.
             once2 = true;
+
+            FindObjectOfType<AudioManager>().Stop("Heartbeat"); // Stop the heartbeat sound.
 
             // Store original value.
             float originalSpeed = aIPath.maxSpeed;

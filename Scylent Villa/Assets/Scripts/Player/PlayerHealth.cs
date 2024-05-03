@@ -51,6 +51,10 @@ public class PlayerHealth : MonoBehaviour
             // Stop moving.
             rb.velocity = Vector2.zero;
 
+            // Stop walking sound.
+            FindObjectOfType<AudioManager>().Stop("Walk");
+            playerMovement.isWalkSoundPlaying = false;
+
             // Toggler to confirm the player will only die once.
             if (!once)
             {
