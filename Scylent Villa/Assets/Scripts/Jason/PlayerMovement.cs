@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Variable
     [Header("Variable")]
-    private Vector2 movement;
+    public Vector2 movement;
     public Vector2 direction;
 
     // Facing Direction
