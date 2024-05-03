@@ -50,6 +50,7 @@ public class CurrencySystem : MonoBehaviour
         currencyUI.ResultCurrencyUI(totalCurrencyEarned);
         currencyUI.ResultFODUI(fodCount);
         currencyUI.CurrentFODUI(fodCount);
+        currencyUI.ShowTime();
 
         int foodTotal = totalCurrencyEarned;
 

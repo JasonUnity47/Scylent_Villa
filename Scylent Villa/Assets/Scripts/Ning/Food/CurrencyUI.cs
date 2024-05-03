@@ -15,6 +15,10 @@ public class CurrencyUI : MonoBehaviour
     [Header("Result")]
     public TextMeshProUGUI resultFood;
     public TextMeshProUGUI resultFOD;
+    public GameObject timePanel;
+    public TMP_Text minuteText;
+    public TMP_Text secondText;
+    public Timer timer;
 
     // Convertion
     [Header("Convertion")]
@@ -63,5 +67,16 @@ public class CurrencyUI : MonoBehaviour
     public void TotalFODUI(float fFinalFOD)
     {
         finalFOD.text = fFinalFOD.ToString("F2");
+    }
+
+    public void ShowTime()
+    {
+        minuteText.text = timer.minuteAmount.ToString();
+        secondText.text = timer.secondAmount.ToString();
+
+        if (!timePanel.activeSelf)
+        {
+            timePanel.SetActive(true);
+        }
     }
 }
