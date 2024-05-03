@@ -11,19 +11,29 @@ public class CameraController : MonoBehaviour
 
     [Header("Camera Offset Settings")]
     public float offsetAmount = 2f; // Adjust this value as needed for the desired offset
+    public float lerpSpeed = 5f; // Speed of interpolation; increase for faster response
+
+    // Current offset of the camera
+    private Vector3 currentOffset;
 
     void Start()
     {
         // Get the Cinemachine Virtual Camera component
         cinemachineCamera = GetComponent<CinemachineVirtualCamera>();
+
+        // Initialize current offset to the camera's current `Tracked Object Offset`
+        currentOffset = cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset;
     }
 
     void Update()
     {
-        // Calculate the offset based on the player's movement direction
-        Vector3 offset = playerMovement.movement.normalized * offsetAmount;
+        // Calculate the desired offset based on the player's movement direction
+        Vector3 desiredOffset = playerMovement.movement.normalized * offsetAmount;
 
-        // Update the Cinemachine camera's `Tracked Object Offset` based on the calculated offset
-        cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = offset;
+        // Smoothly interpolate the current offset towards the desired offset
+        currentOffset = Vector3.Lerp(currentOffset, desiredOffset, lerpSpeed * Time.deltaTime);
+
+        // Update the Cinemachine camera's `Tracked Object Offset` based on the current offset
+        cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset = currentOffset;
     }
 }
