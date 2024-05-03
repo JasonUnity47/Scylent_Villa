@@ -3196,7 +3196,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0993344be200cf84bab6704605481e6b, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: Stun
     clip: {fileID: 8300000, guid: d0b210bfe024a2d4f91f909c5415c316, type: 3}
@@ -3240,9 +3240,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  volumeSlider: {fileID: 1968258654}
-  soundOnButton: {fileID: 360271083}
-  soundOffButton: {fileID: 387974768}
+  audioMixer: {fileID: 24300002, guid: 62aebf03bc2870c46970e9a96ddf1cd6, type: 2}
 --- !u!4 &639119671
 Transform:
   m_ObjectHideFlags: 0
@@ -3995,7 +3993,7 @@ AudioSource:
   m_GameObject: {fileID: 1001993648}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 62aebf03bc2870c46970e9a96ddf1cd6, type: 2}
   m_audioClip: {fileID: 8300000, guid: 314e23f038a1a3246a3686a81ace8547, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5508,7 +5506,6 @@ GameObject:
   - component: {fileID: 1584769851}
   - component: {fileID: 1584769852}
   - component: {fileID: 1584769853}
-  - component: {fileID: 1584769854}
   - component: {fileID: 1584769855}
   - component: {fileID: 1584769856}
   m_Layer: 0
@@ -5562,21 +5559,6 @@ MonoBehaviour:
   countdownPanel: {fileID: 1919566988}
   defaultTime: 10
   remainingTime: 0
---- !u!114 &1584769854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584769850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a27fe75214a53f34ebb820306094092a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 1968258654}
-  audioSources:
-  - {fileID: 1001993649}
 --- !u!114 &1584769855
 MonoBehaviour:
   m_ObjectHideFlags: 0

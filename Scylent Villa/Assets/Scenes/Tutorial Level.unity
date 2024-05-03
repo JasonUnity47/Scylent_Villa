@@ -6442,7 +6442,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0993344be200cf84bab6704605481e6b, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: Stun
     clip: {fileID: 8300000, guid: d0b210bfe024a2d4f91f909c5415c316, type: 3}
@@ -6486,9 +6486,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  volumeSlider: {fileID: 1096262152}
-  soundOnButton: {fileID: 1218754730}
-  soundOffButton: {fileID: 704845188}
+  audioMixer: {fileID: 24300002, guid: 62aebf03bc2870c46970e9a96ddf1cd6, type: 2}
 --- !u!4 &586084333
 Transform:
   m_ObjectHideFlags: 0
@@ -14608,7 +14606,7 @@ AudioSource:
   m_GameObject: {fileID: 927165670}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 62aebf03bc2870c46970e9a96ddf1cd6, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9711d7105d64a29448353c2ae26d34b4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -19539,7 +19537,6 @@ GameObject:
   - component: {fileID: 1752415315}
   - component: {fileID: 1752415314}
   - component: {fileID: 1752415313}
-  - component: {fileID: 1752415312}
   - component: {fileID: 1752415325}
   - component: {fileID: 1752415326}
   m_Layer: 0
@@ -19549,21 +19546,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1752415312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752415311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a27fe75214a53f34ebb820306094092a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 1096262152}
-  audioSources:
-  - {fileID: 927165671}
 --- !u!114 &1752415313
 MonoBehaviour:
   m_ObjectHideFlags: 0
