@@ -1458,6 +1458,7 @@ MonoBehaviour:
   player: {fileID: 675553510}
   playerMovement: {fileID: 675553505}
   offsetAmount: 2
+  lerpSpeed: 5
 --- !u!1 &339215563
 GameObject:
   m_ObjectHideFlags: 0
@@ -6872,9 +6873,9 @@ MonoBehaviour:
   joystick: {fileID: 1930359631}
   moveSpeed: 5
   offset: 0.15
-  accelerationDuration: 15
+  accelerationDuration: 10
   moveSpeedDefault: 0
-  multiplier: 2
+  multiplier: 1.2
   increaseAmount: 1
   increaseAngleAmount: 10
   FOVDuration: 10
