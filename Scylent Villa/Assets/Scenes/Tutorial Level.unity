@@ -7120,10 +7120,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 586084332}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: SoundOn
-        m_Mode: 1
+      - m_Target: {fileID: 1752415327}
+        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15994,13 +15994,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1357765165}
   m_HandleRect: {fileID: 1424565913}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.00000001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.00000001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1752415327}
+        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1108154755
 GameObject:
   m_ObjectHideFlags: 0
@@ -16771,10 +16783,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 586084332}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: SoundOff
-        m_Mode: 1
+      - m_Target: {fileID: 1752415327}
+        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19539,6 +19551,7 @@ GameObject:
   - component: {fileID: 1752415313}
   - component: {fileID: 1752415325}
   - component: {fileID: 1752415326}
+  - component: {fileID: 1752415327}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Game Manager
@@ -19769,6 +19782,21 @@ MonoBehaviour:
   moveSpeedPlus: 0
   fovPlus: 0
   fovRangePlus: 0
+--- !u!114 &1752415327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752415311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51187c0238c08343b9a2c02b44d71d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 62aebf03bc2870c46970e9a96ddf1cd6, type: 2}
+  volumeSlider: {fileID: 1096262152}
+  mute: 0
 --- !u!1 &1776153560
 GameObject:
   m_ObjectHideFlags: 0
