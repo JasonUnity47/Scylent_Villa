@@ -2106,19 +2106,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 360271084}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1584769857}
-        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
-        m_MethodName: MuteMixer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &360271084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,19 +2227,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 387974769}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1584769857}
-        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
-        m_MethodName: MuteMixer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &387974769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5598,7 +5574,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 62aebf03bc2870c46970e9a96ddf1cd6, type: 2}
   volumeSlider: {fileID: 1968258654}
-  mute: 0
+  soundOnButton: {fileID: 387974768}
+  soundOffButton: {fileID: 360271083}
 --- !u!1 &1603318999
 GameObject:
   m_ObjectHideFlags: 0
@@ -6943,19 +6920,7 @@ MonoBehaviour:
   m_Value: 0.00000001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1584769857}
-        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
-        m_MethodName: SetVolume
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2080658810
 GameObject:
   m_ObjectHideFlags: 0

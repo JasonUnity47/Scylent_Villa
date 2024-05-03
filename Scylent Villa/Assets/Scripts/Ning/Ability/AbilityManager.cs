@@ -29,6 +29,7 @@ public class AbilityManager : MonoBehaviour
     private bool isPlayerInStealth = false;
     public float stunDuration = 3f; 
     public float stealthDuration = 3f;
+    private string currentSceneName;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class AbilityManager : MonoBehaviour
         abilitySpawner = FindObjectOfType<AbilitySpawner>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         tutorialSpawner = FindObjectOfType<TutorialSpawner>();
+        currentSceneName = SceneManager.GetActiveScene().name;
 
         mushroomButtonComponent = mushroomButton.GetComponent<Button>();
         bucketButtonComponent = bucketButton.GetComponent<Button>();
@@ -53,12 +55,13 @@ public class AbilityManager : MonoBehaviour
         UpdateBucketButtonInteractability();
 
         // Check whether the player is dead.
-        if (playerHealth.isDead)
+        if (playerHealth.isDead && currentSceneName != "Tutorial Level")
         {
             // Disable the button function.
             bucketButtonComponent.interactable = false;
             mushroomButtonComponent.interactable = false;
         }
+        
     }
 
     private void UpdateBucketButtonInteractability()
@@ -71,8 +74,7 @@ public class AbilityManager : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("Stealth");
         playerStealth.MakeInvisibleForDuration(stealthDuration);
 
-        // Get the current active scene name.
-        string currentSceneName = SceneManager.GetActiveScene().name;
+        
 
         // Check if the player is not in the tutorial game scene.
         if (currentSceneName != "Tutorial Level")
@@ -98,8 +100,7 @@ public class AbilityManager : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("Stun");
         stunAbility.UseStunAbility(stunDuration);
 
-        // Get the current active scene name.
-        string currentSceneName = SceneManager.GetActiveScene().name;
+        
 
         // Check if the player is not in the tutorial game scene.
         if (currentSceneName != "Tutorial Level")
