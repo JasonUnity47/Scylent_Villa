@@ -84,6 +84,11 @@ public class MaidFOV : MonoBehaviour
                 ShowDetection();
             }
         }
+        // If the object is inactive or not active based on your condition, toggle isDetected.
+        if (!gameObject.activeSelf) // Condition: if the game object is inactive
+        {
+            isDetected = !isDetected;
+        }
         HandleHeartbeatSound(); // Check the heartbeat sound state.
     }
 

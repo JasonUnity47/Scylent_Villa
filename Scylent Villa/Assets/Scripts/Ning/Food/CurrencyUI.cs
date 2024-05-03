@@ -20,6 +20,7 @@ public class CurrencyUI : MonoBehaviour
     [Header("Convertion")]
     public TextMeshProUGUI convertFood;
     public TextMeshProUGUI convertFOD;
+    public TextMeshProUGUI currentFOD;
     public TextMeshProUGUI finalFOD;
 
     // Methods to update the currency UI with total amount.
@@ -52,6 +53,11 @@ public class CurrencyUI : MonoBehaviour
     public void ConvertFODUI(float fConvertFOD)
     {
         convertFOD.text = fConvertFOD.ToString("F2");
+    }
+
+    public void CurrentFODUI(float fCurrentFOD)
+    {
+        currentFOD.text = fCurrentFOD.ToString();
     }
 
     public void TotalFODUI(float fFinalFOD)

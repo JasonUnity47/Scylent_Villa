@@ -49,7 +49,8 @@ public class CurrencySystem : MonoBehaviour
         // Get reference.
         currencyUI.ResultCurrencyUI(totalCurrencyEarned);
         currencyUI.ResultFODUI(fodCount);
-        
+        currencyUI.CurrentFODUI(fodCount);
+
         int foodTotal = totalCurrencyEarned;
 
         currencyUI.ConvertCurrencyUI(foodTotal);

@@ -48,7 +48,7 @@ public class MasterFOV : MonoBehaviour
     {
         // Get the current active scene name.
         string currentSceneName = SceneManager.GetActiveScene().name;
-
+        
         // Check if the enemy is not in the tutorial game scene.
         if (currentSceneName != "Tutorial Level")
         {
@@ -83,6 +83,11 @@ public class MasterFOV : MonoBehaviour
                 LightChange();
                 ShowDetection();
             }
+        }
+        // If the object is inactive or not active based on your condition, toggle isDetected.
+        if (!gameObject.activeSelf) // Condition: if the game object is inactive
+        {
+            isDetected = !isDetected;
         }
         HandleHeartbeatSound(); // Check the heartbeat sound state.
     }
