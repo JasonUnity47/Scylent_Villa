@@ -65,7 +65,7 @@ public class BuffSpawner : MonoBehaviour
                 // Random spawn buff.
                 int randomNumber = Random.Range(0, buffSpawnPoints.Length);
 
-                Debug.Log(randomNumber);
+              
 
                 if (randomNumber != lastNumber && !buffLocker[randomNumber])
                 {

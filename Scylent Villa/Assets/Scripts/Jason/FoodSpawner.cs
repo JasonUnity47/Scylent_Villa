@@ -83,7 +83,7 @@ public class FoodSpawner : MonoBehaviour
                 // Random spawn food.
                 int randomNumber = Random.Range(0, spawnPoints.Length);
 
-                Debug.Log(randomNumber);
+                
 
                 if (randomNumber != lastNumber && locker[randomNumber] == false)
                 {
