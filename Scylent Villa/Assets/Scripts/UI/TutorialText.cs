@@ -28,6 +28,7 @@ public class TutorialText : MonoBehaviour
         {
             // Show the UI panel.
             uiPanel.SetActive(true);
+            FindObjectOfType<AudioManager>().Stop("Heartbeat"); // Stop the heartbeat sound.
         }
     }
 

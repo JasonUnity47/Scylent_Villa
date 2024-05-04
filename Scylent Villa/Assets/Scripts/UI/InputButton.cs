@@ -142,6 +142,8 @@ public class InputButton : MonoBehaviour
         // Play ui sound.
         FindObjectOfType<AudioManager>().Play("Click");
 
+        FindObjectOfType<AudioManager>().Stop("Heartbeat"); // Stop the heartbeat sound.
+
         // Load to the main mene scene.
         SceneManager.LoadScene(0);
 
