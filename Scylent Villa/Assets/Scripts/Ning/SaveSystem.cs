@@ -6,7 +6,7 @@ public class SaveSystem : MonoBehaviour
     // Start method that deletes fodSave when the script starts
     void Start()
     {
-        DeleteFodSave();
+        //DeleteFodSave();
     }
 
     // Function to save fodSave
