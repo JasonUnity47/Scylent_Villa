@@ -214,8 +214,13 @@ public class InputButton : MonoBehaviour
         // Play ui sound.
         FindObjectOfType<AudioManager>().Play("Click");
 
-        // Restart the game.
-        SceneManager.LoadScene(3);
+        float fodAmount = PlayerPrefs.GetFloat("FodSave");
+
+        if (fodAmount >= 5)
+        {
+            // Restart the game.
+            SceneManager.LoadScene(3);
+        }
 
         return;
     }

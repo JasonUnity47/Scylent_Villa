@@ -15,7 +15,7 @@ public class ShowSkip : MonoBehaviour
 
     IEnumerator WaitSkip()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
 
         // If the skip button is not active.
         if (!skipButton.activeSelf)
