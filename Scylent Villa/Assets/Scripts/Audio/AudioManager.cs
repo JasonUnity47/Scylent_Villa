@@ -9,34 +9,11 @@ public class AudioManager : MonoBehaviour
     // Sound References
     public Sound[] sounds;
 
-    // This gameobject itself.
-    public static AudioManager instance;
-
     // Audio mixer reference
     public AudioMixerGroup audioMixer;
 
-    
-
     private void Awake()
     {
-        // If the scene doesn't have a Audio Manager.
-        if (instance == null)
-        {
-            // Set this gameobject as the Audio Manager in the scene.
-            instance = this;
-        }
-
-        else
-        {
-            // Destroy this gameobject if the scene already has a Audio Manager.
-            Destroy(gameObject);
-
-            return;
-        }
-
-        // Make this gameobject keep when switching scenes.
-        DontDestroyOnLoad(this);
-
         // Assignment for each sound.
         foreach (Sound s in sounds)
         {
