@@ -214,7 +214,7 @@ public class InputButton : MonoBehaviour
         // Play ui sound.
         FindObjectOfType<AudioManager>().Play("Click");
 
-        float fodAmount = PlayerPrefs.GetFloat("FodSave");
+        float fodAmount = SaveSystem.LoadFodSave();
 
         if (fodAmount >= 5)
         {
