@@ -6875,7 +6875,7 @@ MonoBehaviour:
   moveSpeedDefault: 0
   multiplier: 1.2
   increaseAmount: 1
-  increaseAngleAmount: 10
+  increaseAngleAmount: 20
   FOVDuration: 10
   movement: {x: 0, y: 0}
   direction: {x: 0, y: 0}
@@ -16123,7 +16123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The mushrooms on the ground will make you invisible for 15 seconds
+  m_text: The mushrooms on the ground will make you invisible for 10 seconds.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8229619118aee324fb5b205d10472411, type: 2}
   m_sharedMaterial: {fileID: 6683793405126458427, guid: 8229619118aee324fb5b205d10472411, type: 2}
@@ -19658,7 +19658,7 @@ MonoBehaviour:
   mushroomButton: {fileID: 1488221001}
   bucketButton: {fileID: 2144260416}
   stunDuration: 10
-  stealthDuration: 15
+  stealthDuration: 10
 --- !u!114 &1752415322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34098,7 +34098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956166582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09955006, y: -14.498509, z: -10}
+  m_LocalPosition: {x: -0.0995462, y: -14.498509, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
