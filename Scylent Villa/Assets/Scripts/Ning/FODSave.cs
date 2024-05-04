@@ -20,13 +20,13 @@ public class FODSave : MonoBehaviour
     private Coroutine countdownCoroutine;
     [SerializeField] private float defaultTime;
     [SerializeField] private float remainingTime;
-    
+
 
     private void Start()
     {
         // Load the initial FOD save value.
         fodSave = SaveSystem.LoadFodSave();
-        
+
         // Load the remaining countdown time and calculate elapsed time since the game was last closed.
         LoadAndAdjustCountdown();
 
@@ -158,9 +158,7 @@ public class FODSave : MonoBehaviour
         if (fodSave < 5 && remainingTime > 0)
         {
             StartCountdownTimer();
-            
         }
-
         else
         {
             StopCountdownTimer();
@@ -170,7 +168,6 @@ public class FODSave : MonoBehaviour
     private void UpdateTimerUI(float minutes, float seconds)
     {
         timerText.text = $"{minutes:00}:{seconds:00}";
-        Debug.Log($"Updating timer UI: {minutes:00}:{seconds:00}");
     }
 
     private void OnApplicationFocus(bool hasFocus)
@@ -186,7 +183,7 @@ public class FODSave : MonoBehaviour
     private void OnSceneLoaded(Scene loadedScene, LoadSceneMode mode)
     {
         // Define the name of your game scene.
-        string gameSceneName = "Standard Level"; 
+        string gameSceneName = "Standard Level";
 
         // Check if the loaded scene is the game scene.
         if (loadedScene.name == gameSceneName)
