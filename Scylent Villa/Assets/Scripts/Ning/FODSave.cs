@@ -69,54 +69,15 @@ public class FODSave : MonoBehaviour
     {
         Debug.Log("Inside HandleRecovery...");
 
-        // Check if FOD save is below 5.
-        if (fodSave < 5 && remainingTime <= 0 && remainingTime > -10)
+        while (remainingTime <= 0)
         {
-            // Increase FOD save by 1.
-            fodSave += 1;
-            if (fodSave > 5)
-            {
-                fodSave = 5;
-            }
-        }
-        else if (fodSave < 5 && remainingTime <= -10 && remainingTime > -20)
-        {
-            // Increase FOD save by 1.
-            fodSave += 2;
-            if (fodSave > 5)
-            {
-                fodSave = 5;
-            }
-        }   
-        else if (fodSave < 5 && remainingTime <= -20 && remainingTime > -30)
-        {
-            // Increase FOD save by 1.
-            fodSave += 3;
-            if (fodSave > 5)
-            {
-                fodSave = 5;
-            }
-        }
-        else if (fodSave < 5 && remainingTime <= -30 && remainingTime > -40)
-        {
-            // Increase FOD save by 1.
-            fodSave += 4;
-            if (fodSave > 5)
-            {
-                fodSave = 5;
-            }
-        }
-        else if (fodSave < 5 && remainingTime <= -40)
-        {
-             // Increase FOD save by 1.
-            fodSave += 5;
-            if (fodSave > 5)
-            {
-                fodSave = 5;
-            }
-        }
+            remainingTime += 10;
 
-        
+            if (fodSave < 5)
+            {
+                fodSave++;
+            }
+        }
 
         // Save updated FOD save value.
         SaveSystem.SaveFodSave(fodSave);

@@ -5534,7 +5534,7 @@ MonoBehaviour:
   fodSaveText: {fileID: 1242724618}
   timerText: {fileID: 192833149}
   countdownPanel: {fileID: 1919566988}
-  defaultTime: 10
+  defaultTime: 100
   remainingTime: 0
 --- !u!114 &1584769855
 MonoBehaviour:
