@@ -20,6 +20,7 @@ public class FODSave : MonoBehaviour
     private Coroutine countdownCoroutine;
     [SerializeField] private float defaultTime;
     [SerializeField] private float remainingTime;
+    
 
     private void Start()
     {
@@ -67,11 +68,11 @@ public class FODSave : MonoBehaviour
 
     private void HandleRecovery()
     {
-        Debug.Log("Inside HandleRecovery...");
+        float recoveryTime = defaultTime;
 
         while (remainingTime <= 0)
         {
-            remainingTime += 10;
+            remainingTime += recoveryTime;
 
             if (fodSave < 5)
             {
