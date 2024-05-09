@@ -135,20 +135,11 @@ public class FoodSpawner : MonoBehaviour
         // Update the UI with the new total currency amount
         currencyUI.UpdateTotalCurrencyUI(currencySystem.totalCurrencyEarned);
 
-        StartCoroutine(ActivateFoodUI());
-    }
-
-    private IEnumerator ActivateFoodUI()
-    {
         // Show ui panel.
         foodUI.SetActive(true);
-
-        
-        yield return new WaitForSeconds(5f);
-
-        // Hide ui panel.
-        foodUI.SetActive(false);
     }
+
+    
 
     // Method to activate double currency for a certain duration
     public void ActivateDoubleCurrency()

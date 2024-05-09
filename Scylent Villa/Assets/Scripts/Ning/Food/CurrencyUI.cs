@@ -16,8 +16,11 @@ public class CurrencyUI : MonoBehaviour
     public TextMeshProUGUI resultFood;
     public TextMeshProUGUI resultFOD;
     public GameObject timePanel;
+    public GameObject resultPanel;
     public TMP_Text minuteText;
     public TMP_Text secondText;
+    public TMP_Text minuteUIText;
+    public TMP_Text secondUIText;
     public Timer timer;
 
     // Convertion
@@ -26,6 +29,13 @@ public class CurrencyUI : MonoBehaviour
     public TextMeshProUGUI convertFOD;
     public TextMeshProUGUI currentFOD;
     public TextMeshProUGUI finalFOD;
+
+    bool isResult = false;
+
+    private void Update()
+    {
+        ShowTimeUI();
+    }
 
     // Methods to update the currency UI with total amount.
     public void UpdateTotalCurrencyUI(int totalCurrency)
@@ -77,6 +87,22 @@ public class CurrencyUI : MonoBehaviour
         if (!timePanel.activeSelf)
         {
             timePanel.SetActive(true);
+        }
+    }
+
+    public void ShowTimeUI()
+    {
+        minuteUIText.text = timer.minuteAmount.ToString();
+        secondUIText.text = timer.secondAmount.ToString();
+
+        if (resultPanel.activeSelf)
+        {
+            isResult = true;
+        }
+
+        if (isResult)
+        {
+            Time.timeScale = 0;
         }
     }
 }

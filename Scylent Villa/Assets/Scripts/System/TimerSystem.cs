@@ -56,18 +56,9 @@ public class TimerSystem : MonoBehaviour
         // Reset survival time after awarding FOD.
         survivalTime = 0f;
 
-        // Set a timer to show ui panel.
-        StartCoroutine(ActivateFODUI());
-    }
-
-    private IEnumerator ActivateFODUI()
-    {
         // Show panel.
         uIFOD.SetActive(true);
-
-        yield return new WaitForSeconds(5f);
-
-        // Hide panel.
-        uIFOD.SetActive(false);
     }
+
+
 }

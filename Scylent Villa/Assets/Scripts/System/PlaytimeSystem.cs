@@ -6,7 +6,7 @@ public class PlaytimeSystem : MonoBehaviour
 {
     // Declaration
     // Variable
-    private float fodAmount;
+    private float heartAmount;
 
     // Script Reference
     private InputButton inputButton;
@@ -20,13 +20,13 @@ public class PlaytimeSystem : MonoBehaviour
     private void Update()
     {
         // Keep updating the fod amount that the player has.
-        fodAmount = SaveSystem.LoadFodSave();
+        heartAmount = SaveSystem.LoadHeart();
     }
 
     public void CheckFOD(GameObject errorPanel)
     {
         // If the FOD amount is less than 1 then reject the player to play the game and show error message.
-        if (fodAmount < 1)
+        if (heartAmount < 1)
         {
             if (!errorPanel.activeSelf)
             {
@@ -37,11 +37,11 @@ public class PlaytimeSystem : MonoBehaviour
         }
 
         // Else if the fod amount is equal or more than 1 then enable player to play the game by reducing 1 FOD.
-        else if (fodAmount >= 1)
+        else if (heartAmount >= 1)
         {
-            fodAmount--;
+            heartAmount--;
 
-            SaveSystem.SaveFodSave(fodAmount);
+            SaveSystem.SaveHeart(heartAmount);
 
             inputButton.StartGame();
         }

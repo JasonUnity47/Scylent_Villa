@@ -44,4 +44,15 @@ public class SaveSystem : MonoBehaviour
     {
         return PlayerPrefs.GetFloat("Volume", 1.0f); // Default volume is 1.0f (max volume) if not found.
     }
+
+    public static void SaveHeart(float saveHeart)
+    {
+        PlayerPrefs.SetFloat("SaveHeart", saveHeart);
+        PlayerPrefs.Save();
+    }
+
+    public static float LoadHeart()
+    {
+        return PlayerPrefs.GetFloat("SaveHeart", 0f);
+    }
 }

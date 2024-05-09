@@ -8,13 +8,15 @@ public class FODSave : MonoBehaviour
     // Declaration
     // UI Panel
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI fodSaveText;
+    [SerializeField] private TextMeshProUGUI heartText;
+    [SerializeField] private TextMeshProUGUI fodText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject countdownPanel;
 
     // Save
-    private float fodSave;
+    private float heart = 0;
 
+    private float saveFOD;
     // Timer
     [Header("Timer")]
     private Coroutine countdownCoroutine;
@@ -24,14 +26,15 @@ public class FODSave : MonoBehaviour
 
     private void Start()
     {
-        // Load the initial FOD save value.
-        fodSave = SaveSystem.LoadFodSave();
+        heart = SaveSystem.LoadHeart();
+
+        saveFOD = SaveSystem.LoadFodSave();
 
         // Load the remaining countdown time and calculate elapsed time since the game was last closed.
         LoadAndAdjustCountdown();
 
         // Display the FOD save value in UI.
-        UpdateFodSaveUI();
+        UpdateHeartUI();
 
         // Check if we should start the countdown timer.
         CheckAndStartTimer();
@@ -40,6 +43,7 @@ public class FODSave : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+   
     private void LoadAndAdjustCountdown()
     {
         // Load remaining countdown time.
@@ -74,27 +78,28 @@ public class FODSave : MonoBehaviour
         {
             remainingTime += recoveryTime;
 
-            if (fodSave < 5)
+            if (heart < 5)
             {
-                fodSave++;
+                heart++;
             }
         }
 
         // Save updated FOD save value.
-        SaveSystem.SaveFodSave(fodSave);
+        SaveSystem.SaveHeart(heart);
         // Update UI for FOD save value and remaining time.
-        UpdateFodSaveUI();
+        UpdateHeartUI();
         // Reset remaining time.
         remainingTime = defaultTime;
         // Check and start the timer if needed.
         CheckAndStartTimer();
     }
 
-    private void UpdateFodSaveUI()
+    private void UpdateHeartUI()
     {
         // Update FOD save text.
-        fodSaveText.text = fodSave.ToString("F2");
+        heartText.text = heart.ToString();
 
+        fodText.text = saveFOD.ToString("F2");
         // Calculate minutes and seconds for the remaining time.
         float minutes = Mathf.FloorToInt(remainingTime / 60);
         float seconds = remainingTime % 60;
@@ -155,7 +160,7 @@ public class FODSave : MonoBehaviour
 
     private void CheckAndStartTimer()
     {
-        if (fodSave < 5 && remainingTime > 0)
+        if (heart < 5 && remainingTime > 0)
         {
             StartCountdownTimer();
         }
