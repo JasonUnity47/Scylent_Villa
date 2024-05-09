@@ -212,17 +212,14 @@ public class InputButton : MonoBehaviour
     // Restart Game
     public void RestartGame()
     {
-        // Play ui sound.
-        FindObjectOfType<AudioManager>().Play("Click");
+        
 
-        float fodAmount = SaveSystem.LoadFodSave();
-
-        if (fodAmount >= 5)
-        {
-            // Restart the game.
-            SceneManager.LoadScene("Standard Level");
-            Time.timeScale = 1;
-        }
+        
+        
+        // Restart the game.
+        SceneManager.LoadScene("Standard Level");
+            
+        
 
         return;
     }

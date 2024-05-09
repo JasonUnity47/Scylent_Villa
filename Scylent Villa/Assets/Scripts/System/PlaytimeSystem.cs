@@ -46,4 +46,30 @@ public class PlaytimeSystem : MonoBehaviour
             inputButton.StartGame();
         }
     }
+
+    public void StandardCheckFOD(GameObject errorPanel)
+    {
+        // Play ui sound.
+        FindObjectOfType<AudioManager>().Play("Click");
+        // If the FOD amount is less than 1 then reject the player to play the game and show error message.
+        if (heartAmount < 1)
+        {
+            if (!errorPanel.activeSelf)
+            {
+                errorPanel.SetActive(true);
+            }
+
+            return;
+        }
+
+        // Else if the fod amount is equal or more than 1 then enable player to play the game by reducing 1 FOD.
+        else if (heartAmount >= 1)
+        {
+            heartAmount--;
+
+            SaveSystem.SaveHeart(heartAmount);
+
+            inputButton.RestartGame();
+        }
+    }
 }

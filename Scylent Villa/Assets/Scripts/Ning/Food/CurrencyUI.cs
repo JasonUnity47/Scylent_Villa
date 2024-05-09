@@ -32,9 +32,20 @@ public class CurrencyUI : MonoBehaviour
 
     bool isResult = false;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+        isResult = false;
+    }
+
     private void Update()
     {
+
         ShowTimeUI();
+
+        
+        
+        
     }
 
     // Methods to update the currency UI with total amount.
@@ -103,6 +114,7 @@ public class CurrencyUI : MonoBehaviour
         if (isResult)
         {
             Time.timeScale = 0;
+
         }
     }
 }
