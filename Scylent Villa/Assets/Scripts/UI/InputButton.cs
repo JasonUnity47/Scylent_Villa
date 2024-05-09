@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -219,7 +220,43 @@ public class InputButton : MonoBehaviour
         if (fodAmount >= 5)
         {
             // Restart the game.
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene("Standard Level");
+        }
+
+        return;
+    }
+
+    public void ShowShop(GameObject shop)
+    {
+        // Play ui sound.
+        FindObjectOfType<AudioManager>().Play("Click");
+
+        // If panel is not active.
+        if (!shop.activeSelf)
+        {
+            // Show panel.
+            shop.SetActive(true);
+
+            // Freeze time.
+            TimeStop();
+        }
+
+        return;
+    }
+
+    public void ShowRemark(GameObject panel)
+    {
+        // Play ui sound.
+        FindObjectOfType<AudioManager>().Play("Click");
+
+        // If panel is not active.
+        if (!panel.activeSelf)
+        {
+            // Show panel.
+            panel.SetActive(true);
+
+            // Freeze time.
+            TimeStop();
         }
 
         return;
