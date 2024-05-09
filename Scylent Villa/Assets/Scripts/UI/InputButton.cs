@@ -221,6 +221,7 @@ public class InputButton : MonoBehaviour
         {
             // Restart the game.
             SceneManager.LoadScene("Standard Level");
+            Time.timeScale = 1;
         }
 
         return;
